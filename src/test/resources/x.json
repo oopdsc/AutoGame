@@ -1,0 +1,274 @@
+{
+  "s": 1,
+  "a": {
+    "user": {
+      "ep": {
+        "e1": 20906216,
+        "e2": 6473953,
+        "e3": 14694049,
+        "e4": 3002843
+      }
+    },
+    "yamen": {
+      "win": {
+        "rwd": {
+          "items": [
+            {
+              "kind": 6,
+              "id": 33,
+              "count": 4
+            }
+          ],
+          "jiade": [
+            {
+              "kind": 2,
+              "id": 18,
+              "count": 4
+            },
+            {
+              "kind": 2,
+              "id": 18,
+              "count": 4
+            },
+            {
+              "kind": 2,
+              "id": 17,
+              "count": 4
+            },
+            {
+              "kind": 2,
+              "id": 18,
+              "count": 8
+            },
+            {
+              "kind": 2,
+              "id": 18,
+              "count": 12
+            },
+            {
+              "kind": 2,
+              "id": 17,
+              "count": 12
+            }
+          ]
+        },
+        "over": {
+          "hid": 33,
+          "isover": 1,
+          "fuser": {
+            "uid": "7004281",
+            "name": "\u98d8\u9038\u6ef4\u5de6\u6487\u5b50",
+            "job": 3,
+            "sex": 1,
+            "level": 4,
+            "vip": 0,
+            "vipStatus": 1,
+            "chenghao": 0,
+            "extra_ch": "",
+            "dress": 0,
+            "beijing": 0,
+            "offlineCh": "",
+            "frame": 0,
+            "chatFrame": 0,
+            "head": 0,
+            "mingrenchenghao": 0,
+            "guajian": 0,
+            "signName": ""
+          },
+          "killnum": 15,
+          "win": 1
+        }
+      },
+      "fight": {
+        "hid": 0,
+        "fuser": [],
+        "fheros": [],
+        "shop": [],
+        "fstate": 0,
+        "ackadd": 0,
+        "skilladd": 0,
+        "hp": 0,
+        "hpmax": 0,
+        "killnum": 0,
+        "fheronum": 0,
+        "money": 69
+      },
+      "info": {
+        "state": 3,
+        "cd": {
+          "next": 0,
+          "label": "yamen"
+        },
+        "fitnum": 0,
+        "chunum": 2,
+        "chumax": 2,
+        "qhid": 0,
+        "fuser": [],
+        "day_cd": {
+          "next": 1637596800,
+          "label": "yamen_day"
+        },
+        "zsRandCount": 3,
+        "zsRandMoney": 50
+      }
+    },
+    "system": {
+      "sys": {
+        "time": 1637555282
+      }
+    }
+  },
+  "u": {
+    "hero": {
+      "heroList": [
+        {
+          "id": "33",
+          "level": "200",
+          "senior": "3",
+          "exp": "0",
+          "zzexp": 734,
+          "pkexp": 254,
+          "epskill": [
+            {
+              "id": 62,
+              "level": 1,
+              "zz": 4,
+              "slv": 0
+            },
+            {
+              "id": 57,
+              "level": 1,
+              "zz": 4,
+              "slv": 0
+            },
+            {
+              "id": 8,
+              "level": 1,
+              "zz": 3,
+              "slv": 0
+            },
+            {
+              "id": 12,
+              "level": 1,
+              "zz": 2,
+              "slv": 0
+            },
+            {
+              "id": 19,
+              "level": 1,
+              "zz": 4,
+              "slv": 0
+            }
+          ],
+          "pkskill": [
+            {
+              "id": 1,
+              "level": 1
+            },
+            {
+              "id": 2,
+              "level": 1
+            }
+          ],
+          "ghskill": [
+            {
+              "id": 3,
+              "level": 3,
+              "use": []
+            },
+            {
+              "id": 4,
+              "level": 0,
+              "use": [
+                {
+                  "id": 129,
+                  "count": 10,
+                  "kind": 1
+                }
+              ]
+            }
+          ],
+          "hep": {
+            "e1": "0",
+            "e2": "0",
+            "e3": "0",
+            "e4": "0"
+          },
+          "banish": 0,
+          "mount": 0,
+          "ur": 0,
+          "urfree": 0,
+          "bindhid": 0,
+          "league_fz": 0,
+          "zz": {
+            "e1": 8,
+            "e2": 3,
+            "e3": 2,
+            "e4": 4
+          },
+          "zep": {
+            "e1": 32238,
+            "e2": 12089,
+            "e3": 8059,
+            "e4": 16119
+          },
+          "wep": {
+            "e1": 0,
+            "e2": 0,
+            "e3": 0,
+            "e4": 0
+          },
+          "xsep": [],
+          "gep": {
+            "e1": 25790,
+            "e2": 0,
+            "e3": 0,
+            "e4": 0
+          },
+          "whgep": {
+            "e1": 0,
+            "e2": 0,
+            "e3": 0,
+            "e4": 0
+          },
+          "xsghep": {
+            "e1": 0,
+            "e2": 0,
+            "e3": 0,
+            "e4": 0
+          },
+          "btep": {
+            "e1": 0,
+            "e2": 0,
+            "e3": 0,
+            "e4": 0
+          },
+          "whep": {
+            "e1": 0,
+            "e2": 0,
+            "e3": 0,
+            "e4": 0
+          },
+          "sbep": {
+            "e1": 0,
+            "e2": 0,
+            "e3": 0,
+            "e4": 0
+          },
+          "zcep": {
+            "e1": 0,
+            "e2": 0,
+            "e3": 0,
+            "e4": 0
+          },
+          "aep": {
+            "e1": 58028,
+            "e2": 12089,
+            "e3": 8059,
+            "e4": 16119
+          }
+        }
+      ]
+    }
+  }
+}

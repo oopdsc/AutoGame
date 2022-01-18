@@ -39,7 +39,7 @@ public class GetInfoPlayer extends BasePlayer {
 
     public void getAll(String folder){
         String resp = this.getAllinfo();
-//        this.getCash(resp, folder);
+        this.getCash(resp, folder);
         this.hero(folder);
         this.getCourtyardInfo(false, folder);
         System.out.println("done : " + folder);
@@ -66,9 +66,20 @@ public class GetInfoPlayer extends BasePlayer {
         List<Object> meili1 = dc.read("$.a.item.itemList[?(@.id==93)].count");
         List<Object> meili2 = dc.read("$.a.item.itemList[?(@.id==94)].count");
 
+        Integer desk = dc.read("$.a.school.base.desk", Integer.class);
+
         logger.info("cash1 {}", dc.read("$.a.user.user.cash").toString());
         String cash = dc.read("$.a.user.user.cash").toString();
         logger.info("cash2 {}", cash);
+
+        List<Object> jinguoling = dc.read("$.a.item.itemList[?(@.id==138)].count");
+        Integer x1 = 0;
+
+        if(Objects.isNull(jinguoling) || jinguoling.size() == 0){
+        }else{
+            x1  = Integer.valueOf(jinguoling.get(0).toString());
+        }
+
         List<Object> rr = Arrays.asList(
                 getFromList(book1),
                 getFromList(book2),
@@ -81,11 +92,13 @@ public class GetInfoPlayer extends BasePlayer {
                 getFromList(qinmi2),
                 getFromList(meili1),
                 getFromList(meili2),
-                cash);
+                cash,
+                desk,
+                x1);
         String content = Strings.join(rr, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/Items-20220112.txt"), this.getData().username + "," + content + "\n", true);
+            FileUtils.write(new File("./"+ folder +"/Items-20220119.txt"), this.getData().username + "," + content + "\n", true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -299,19 +312,7 @@ public class GetInfoPlayer extends BasePlayer {
 
         Object zhiliAttr = dc.read("$.a.user.old_ep.ep");
 
-        Integer cash = dc.read("$.a.user.user.cash", Integer.class);
-
-        Integer desk = dc.read("$.a.school.base.desk", Integer.class);
-
-        List<Object> jinguoling = dc.read("$.a.item.itemList[?(@.id==138)].count");
-        Integer x1 = 0;
-
-        if(Objects.isNull(jinguoling) || jinguoling.size() == 0){
-        }else{
-            x1  = Integer.valueOf(jinguoling.get(0).toString());
-        }
-
-        List<Object> rr = Arrays.asList(cash, x1, desk);
+        List<Object> rr = Arrays.asList(zhiliAttr.toString());
 //        heros.addAll(rr);
         String content1 = Strings.join(heros, ',');
         String content2 = Strings.join(rr, ',');

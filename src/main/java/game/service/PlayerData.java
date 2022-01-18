@@ -32,7 +32,7 @@ public class PlayerData {
     public int cooknum = 1;
 
 
-    public int[] schoolHero = {1, 2, 6, 8, 10};
+    public int[] schoolHero = {1, 2, 8, 13, 55};
 
     public String uid;
     public String token;

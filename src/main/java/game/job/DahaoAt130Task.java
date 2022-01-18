@@ -110,9 +110,9 @@ public class DahaoAt130Task {
         p.silu();
         p.taofa();
 
-        p.yardward();
         p.hunt();
 
+        p.yardward();
         p.buyZhongzi();
     }
 

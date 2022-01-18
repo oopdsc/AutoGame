@@ -93,10 +93,13 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
         p.silu();
         p.taofa();
 
-        p.yardward();
+        p.hunt();
 
+        p.yardward();
         p.buyZhongzi();
         p.mobaiZJ();
+
+
     }
 
     /**

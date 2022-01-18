@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static game.service.GameRunner.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,21 +20,38 @@ class GetInfoPlayerTest {
     @Test
     void getCash() {
 
-        es.submit(() -> runner.singleDahao(p -> {
-            GetInfoPlayer gp = new GetInfoPlayer(p);
-            gp.getAll(DAHAO);
-        }) );
+        Future<String> fDAHAO = es.submit(() -> {
 
-        es.submit(() -> runner.singleXiaohao1(p -> {
-            GetInfoPlayer gp = new GetInfoPlayer(p);
-            gp.getAll(XIAOHAO1);
+            runner.singleDahao(p -> {
+                GetInfoPlayer gp = new GetInfoPlayer(p);
+                gp.getAll(DAHAO);
+            });
+            return "dahao";
+        } );
 
-        }) );
+        Future<String> fXIAOHAO1 = es.submit(() -> {
 
-        es.submit(() -> runner.singleXiaohao2(p -> {
-            GetInfoPlayer gp = new GetInfoPlayer(p);
-            gp.getAll(XIAOHAO2);
-        }) );
+            runner.singleXiaohao1(p -> {
+                GetInfoPlayer gp = new GetInfoPlayer(p);
+                gp.getAll(XIAOHAO1);
+            });
+            return "XIAOHAO1";
+        } );
+
+        Future<String> fXIAOHAO2 = es.submit(() -> {
+
+            runner.singleXiaohao2(p -> {
+                GetInfoPlayer gp = new GetInfoPlayer(p);
+                gp.getAll(XIAOHAO2);
+            });
+            return "XIAOHAO2";
+        } );
+
+        try {
+            System.out.println(fDAHAO.get() + fXIAOHAO1.get() + fXIAOHAO2.get());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 

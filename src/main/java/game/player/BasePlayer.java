@@ -4,6 +4,7 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import game.service.GameRunner;
 import game.service.PlayerData;
+import io.swagger.models.auth.In;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -14,10 +15,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -76,7 +74,7 @@ public class BasePlayer {
     }
 
     public String getAllinfo() {
-        return this.runAction3("{\"rsn\":\"%s\",\"guide\":{\"login\":{\"platform\":\"qiangwanzdhgios\",\"ug\":\"\"}}}").getBody();
+        return this.runAction3NoLog("{\"rsn\":\"%s\",\"guide\":{\"login\":{\"platform\":\"qiangwanzdhgios\",\"ug\":\"\"}}}").getBody();
     }
 
 
@@ -103,56 +101,42 @@ public class BasePlayer {
     }
 
     public void buyItem3() {
+        String body1 = "{\"club\":{\"shopBuy\":{\"id\":12}},\"rsn\":\"%s\"}";
+        String body2 = "{\"club\":{\"shopBuy\":{\"id\":13}},\"rsn\":\"%s\"}";
+        String body3 = "{\"club\":{\"shopBuy\":{\"id\":14}},\"rsn\":\"%s\"}";
 
-        if (data.buyItem3) {
-            String body1 = "{\"club\":{\"shopBuy\":{\"id\":12}},\"rsn\":\"%s\"}";
-            String body2 = "{\"club\":{\"shopBuy\":{\"id\":13}},\"rsn\":\"%s\"}";
-            String body3 = "{\"club\":{\"shopBuy\":{\"id\":14}},\"rsn\":\"%s\"}";
-
-            for (int i = 1; i <= 6; i++) {
-                this.runAction1(body1);
-                this.runAction1(body2);
-                this.runAction1(body3);
-            }
+        for (int i = 1; i <= data.buyItem3; i++) {
+            this.runAction1(body1);
+            this.runAction1(body2);
+            this.runAction1(body3);
         }
-
-
     }
 
     public void buyItem2() {
+        String body1 = "{\"club\":{\"shopBuy\":{\"id\":9}},\"rsn\":\"%s\"}";
+        String body2 = "{\"club\":{\"shopBuy\":{\"id\":10}},\"rsn\":\"%s\"}";
+        String body3 = "{\"club\":{\"shopBuy\":{\"id\":11}},\"rsn\":\"%s\"}";
 
-        if (data.buyItem2) {
-            String body1 = "{\"club\":{\"shopBuy\":{\"id\":9}},\"rsn\":\"%s\"}";
-            String body2 = "{\"club\":{\"shopBuy\":{\"id\":10}},\"rsn\":\"%s\"}";
-            String body3 = "{\"club\":{\"shopBuy\":{\"id\":11}},\"rsn\":\"%s\"}";
-
-            for (int i = 1; i <= 8; i++) {
-                this.runAction1(body1);
-                this.runAction1(body2);
-                this.runAction1(body3);
-            }
+        for (int i = 1; i <= data.buyItem2; i++) {
+            this.runAction1(body1);
+            this.runAction1(body2);
+            this.runAction1(body3);
         }
     }
 
     public void buyItem1() {
+        String body1 = "{\"club\":{\"shopBuy\":{\"id\":4}},\"rsn\":\"%s\"}";
+        String body2 = "{\"club\":{\"shopBuy\":{\"id\":5}},\"rsn\":\"%s\"}";
+        String body3 = "{\"club\":{\"shopBuy\":{\"id\":6}},\"rsn\":\"%s\"}";
 
-        if (data.buyItem1) {
-            String body1 = "{\"club\":{\"shopBuy\":{\"id\":4}},\"rsn\":\"%s\"}";
-            String body2 = "{\"club\":{\"shopBuy\":{\"id\":5}},\"rsn\":\"%s\"}";
-            String body3 = "{\"club\":{\"shopBuy\":{\"id\":6}},\"rsn\":\"%s\"}";
-
-            for (int i = 1; i <= 11; i++) {
-                this.runAction1(body1);
-                this.runAction1(body2);
-                this.runAction1(body3);
-            }
+        for (int i = 1; i <= data.buyItem1; i++) {
+            this.runAction1(body1);
+            this.runAction1(body2);
+            this.runAction1(body3);
         }
-
-
     }
 
     public void buyItem0() {
-
         if (data.buyItem0) {
             String body1 = "{\"club\":{\"shopBuy\":{\"id\":16}},\"rsn\":\"" + getRsn() + "\"}";
             String body2 = "{\"club\":{\"shopBuy\":{\"id\":17}},\"rsn\":\"" + getRsn() + "\"}";
@@ -163,20 +147,26 @@ public class BasePlayer {
     }
 
     public void buyXiongnu() {
+
         String body1 = "{\"wordboss\":{\"shopBuy\":{\"id\":1}},\"rsn\":\"%s\"}";
         String body2 = "{\"wordboss\":{\"shopBuy\":{\"id\":2}},\"rsn\":\"%s\"}";
         String body3 = "{\"wordboss\":{\"shopBuy\":{\"id\":3}},\"rsn\":\"%s\"}";
-        String body7 = "{\"wordboss\":{\"shopBuy\":{\"id\":7}},\"rsn\":\"%s\"}";
-        for (int i = 1; i <= 10; i++) {
+
+        for (int i = 1; i <= data.buyXiongnu1; i++) {
             this.runAction1(body1);
             this.runAction1(body2);
             this.runAction1(body3);
+        }
+
+        if(data.buyXiongnu2){
+            String body6 = "{\"wordboss\":{\"shopBuy\":{\"id\":6}},\"rsn\":\"" + getRsn() + "\"}";
+            String body7 = "{\"wordboss\":{\"shopBuy\":{\"id\":7}},\"rsn\":\"%s\"}";
+            for (int i = 1; i <= 2; i++) {
+                this.runAction1(body6);
+            }
             this.runAction1(body7);
         }
-        String body6 = "{\"wordboss\":{\"shopBuy\":{\"id\":6}},\"rsn\":\"" + getRsn() + "\"}";
-        for (int i = 1; i <= 2; i++) {
-            this.runAction1(body6);
-        }
+
     }
 
     public void zhengwu() {
@@ -221,12 +211,28 @@ public class BasePlayer {
         this.execute(baseUrl, body2);
     }
 
+    public List<Integer> combine(Integer[] school, Integer[] noschool){
+        List<Integer> lists = new LinkedList<>();
+        if(school.length > 0){
+            lists.addAll(Arrays.asList(school));
+        }
+
+        lists.addAll(Arrays.asList(PlayerData.commonSchool));
+        if(noschool.length > 0){
+            lists.removeAll(Arrays.asList(noschool));
+        }
+
+        return lists;
+    }
+
     /**
      */
     public void schoolOne() {
-        if(data.schoolHero.length > 0){
-            for(int i = 1; i <= data.schoolHero.length; i++){
-                this.schoolOne(i, data.schoolHero[i - 1]);
+        List<Integer> schools = this.combine(data.schoolHero, data.noschoolHero);
+
+        if(schools.size() >= data.deskNum){
+            for(int i = 1; i <= data.deskNum; i++){
+                this.schoolOne(i, schools.get(i - 1));
             }
         }
     }
@@ -240,6 +246,14 @@ public class BasePlayer {
         this.runAction2("{\"rsn\":\"%s\",\"school\":{\"over\":{\"id\":" + id + "}}}");
         this.runAction2("{\"rsn\":\"%s\",\"school\":{\"start\":{\"id\":" + id + ",\"hid\":" + hid + "}}}");
     }
+
+    //升级老婆技能
+    //{"wife":{"upskill":{"skillId":1033,"id":33}},"rsn":"3hwkehfksn"}
+
+    //升级武将光环
+    //{"hero":{"upghskill":{"sid":4,"id":35}},"rsn":"9zzstinbjmt"}
+//    {"hero":{"upghskill":{"sid":6,"id":38}},"rsn":"7cpoycoccg"}
+
 
     public void useXoItems() {
         this.runAction3("{\"wife\":{\"weige\":[]},\"rsn\":\"%s\"}");
@@ -511,6 +525,8 @@ public class BasePlayer {
     }
 
 
+    //挑战
+    //{"yamen":{"tiaozhan":{"id":79858,"hid":9,"fuid":7009025}},"rsn":"8aermovjmm"}
     //普通衙门
     public void yamen3() {
         try {
@@ -726,7 +742,7 @@ public class BasePlayer {
      * 晚上8点的匈奴
      */
     public void hitXiongnu() {
-        for (int hid : data.mengguid) {
+        for (int hid : data.geerdan) {
             if (hid > 0) {
                 String body = "{\"wordboss\":{\"hitgeerdan\":{\"id\":" + hid + "}},\"rsn\":\"" + getRsn() + "\"}";
                 this.execute(baseUrl, body);
@@ -849,6 +865,11 @@ public class BasePlayer {
         return this.runActionSleep(action, 3);
     }
 
+    public ResponseEntity<String> runAction3NoLog(String action) {
+        return this.runActionSleepNoLog(action, 3);
+    }
+
+
     public ResponseEntity<String> runAction4(String action) {
         return this.runActionSleep(action, 4);
     }
@@ -856,6 +877,12 @@ public class BasePlayer {
     public ResponseEntity<String> runActionSleep(String action, int second) {
         String body = String.format(action, getRsn());
         ResponseEntity<String> resp = this.executeSleep(this.baseUrl, body, second);
+        return resp;
+    }
+
+    public ResponseEntity<String> runActionSleepNoLog(String action, int second) {
+        String body = String.format(action, getRsn());
+        ResponseEntity<String> resp = this.executeSleepNoLog(this.baseUrl, body, second);
         return resp;
     }
 
@@ -877,7 +904,15 @@ public class BasePlayer {
         HttpEntity entity = new HttpEntity(body, getHttpHeaders());
         logger.info(this.data.username + ":" + body);
         ResponseEntity<String> response = this.restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-        logger.debug(response.getBody());
+        logger.info(response.getBody());
+        sleep(second);
+        return response;
+    }
+
+    public ResponseEntity<String> executeSleepNoLog(String url, String body, int second) {
+        HttpEntity entity = new HttpEntity(body, getHttpHeaders());
+        logger.info(this.data.username + ":" + body);
+        ResponseEntity<String> response = this.restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
         sleep(second);
         return response;
     }

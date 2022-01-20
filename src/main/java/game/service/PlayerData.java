@@ -3,9 +3,7 @@ package game.service;
 import game.config.Flags;
 
 public class PlayerData {
-
     public String username = "";
-
     public String openid = "";
     public String openkey = "";
     public int silu = 40;
@@ -15,7 +13,6 @@ public class PlayerData {
     public int zidCount = Flags.zidCount;
 
     public int shopnum = 0;
-
     public int vipLv = 0;
 
     public int wifeId = 1;
@@ -24,23 +21,30 @@ public class PlayerData {
 
     public int[] heroid = {0};
     public int[] mengguid = {0};
+    public int[] geerdan = {0};
     public int hitBoss = 0;
 
-    public int[] mzid = {0};
+    public int[] mzid = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
     public int cookid = 207;
     public int cooknum = 1;
 
-
-    public int[] schoolHero = {1, 2, 8, 13, 55};
+    public static Integer[] commonSchool = {55, 36, 38, 41, 1, 2, 8, 13, 23, 26, 10, 11, 12, 6, 20, 16, 24, 33,34, 35,  37,   39, 40,  28};
+    public int deskNum = 5;
+    public Integer[] schoolHero = {};
+    public Integer[] noschoolHero = {};
 
     public String uid;
     public String token;
 
+    public int buyItem3 = 0;
+    public int buyItem2 = 0;
+    public int buyItem1 = 0;
 
-    public boolean buyItem3 = false;
-    public boolean buyItem2 = false;
-    public boolean buyItem1 = false;
+    public int buyXiongnu1 = 5;
+    public boolean buyXiongnu2 = false;
+
+    //军机
     public boolean buyItem0 = false;
 
     public boolean yamen = false;
@@ -95,38 +99,6 @@ public class PlayerData {
 
     public void setTaofa(int taofa) {
         this.taofa = taofa;
-    }
-
-    public boolean isBuyItem3() {
-        return buyItem3;
-    }
-
-    public void setBuyItem3(boolean buyItem3) {
-        this.buyItem3 = buyItem3;
-    }
-
-    public boolean isBuyItem2() {
-        return buyItem2;
-    }
-
-    public void setBuyItem2(boolean buyItem2) {
-        this.buyItem2 = buyItem2;
-    }
-
-    public boolean isBuyItem1() {
-        return buyItem1;
-    }
-
-    public void setBuyItem1(boolean buyItem1) {
-        this.buyItem1 = buyItem1;
-    }
-
-    public boolean isBuyItem0() {
-        return buyItem0;
-    }
-
-    public void setBuyItem0(boolean buyItem0) {
-        this.buyItem0 = buyItem0;
     }
 
     public int getZid() {

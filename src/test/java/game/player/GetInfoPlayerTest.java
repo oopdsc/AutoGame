@@ -18,7 +18,7 @@ class GetInfoPlayerTest {
     ExecutorService es = Executors.newWorkStealingPool(40);
 
     @Test
-    void getCash() {
+    void getAll() {
 
         Future<String> fDAHAO = es.submit(() -> {
 

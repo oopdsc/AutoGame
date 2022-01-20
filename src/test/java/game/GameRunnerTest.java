@@ -1,14 +1,21 @@
 package game;
 
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
 import game.active.DefaultGameRunner;
 import game.player.GetInfoPlayer;
 import game.player.HeroPlayer;
+import game.player.MeiliPlayer;
 import game.player.ZizhiPlayer;
 import game.service.GameRunner;
 import game.service.PlayerData;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.StopWatch;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import static game.service.GameRunner.*;
 
@@ -78,5 +85,69 @@ class GameRunnerTest {
         );
 
         GameRunner.sleep(3);
+    }
+
+    @Test
+    public void schoolOne(){
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.single(GameRunner.HUODONG, p -> {
+
+            p.schoolOne();
+
+        });
+
+        sw.stop();
+        System.out.println("Done, time :" + sw.getTotalTimeSeconds());
+    }
+
+
+    @Test
+    public void bpvb(){
+        StopWatch sw = new StopWatch();
+        sw.start();
+        int size = 3;
+        for(int i = 1 ; i <= size; i++){
+            runner.single(GameRunner.HUODONG, d -> d.heroid[0] > 1,p -> {
+
+                //pgh12345 - 48
+                //pgh123456 - 33
+                String res = p.getAllinfo();
+                DocumentContext dc = JsonPath.parse(res);
+
+                Integer bmap = dc.read("$.a.user.guide.bmap");
+                if(bmap.intValue() <= 130){
+
+                    try {
+                        FileUtils.write(new File("./Guanka.txt"), p.data.username + ":" + bmap.intValue() + "\n", true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    p.runAction3("{\"user\":{\"entergk\":[]},\"rsn\":\"%s\"}");
+
+                    int smap = bmap.intValue()  * 40;
+                    int mmap = bmap.intValue() * 5 + 1;
+
+                    p.runAction3("{\"rsn\":\"%s\",\"guide\":{\"guide\":{\"smap\":"+smap  +",\"bmap\":"+bmap.intValue()+",\"mmap\":"+ mmap +"}}}");
+
+                    p.pvb(p.data.heroid[0]);
+
+                    p.runAction3("{\"rsn\":\"%s\",\"guide\":{\"guide\":{\"smap\":"+smap  +",\"bmap\":"+ (bmap.intValue() + 1)+",\"mmap\":"+ mmap +"}}}");
+
+                    p.runAction3("{\"user\":{\"onekey_msg\":[]},\"rsn\":\"%s\"}");
+
+                    p.bpvb();
+
+                }else{
+                    logger.info("{} current bmap is {}", p.data.username, bmap.intValue());
+                }
+
+            });
+        }
+
+
+        sw.stop();
+        System.out.println("Done, time :" + sw.getTotalTimeSeconds());
     }
 }

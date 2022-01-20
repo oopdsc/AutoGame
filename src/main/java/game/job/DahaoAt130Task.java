@@ -74,7 +74,7 @@ public class DahaoAt130Task {
                             doAt2(p);
                         } else if(h == 3){
                             doAt3(p);
-                        } else if(h == 7){
+                        }else if(h == 7){
                             doAt7(p);
                         } else if(h == 10){
                             doAt10(p);
@@ -123,6 +123,7 @@ public class DahaoAt130Task {
     public void doAt2(BasePlayer p){
         p.laofan();
         p.householdMake();
+        p.buyXiongnu();
     }
 
 
@@ -139,6 +140,14 @@ public class DahaoAt130Task {
             p.mengzhanReward();
             p.mengzhan();
         }
+
+        p.buybook();
+        p.buyItem0();
+        p.buyItem3();
+        p.buyItem2();
+        p.buyItem1();
+        p.shopCanjuan();
+
 
     }
 
@@ -168,7 +177,7 @@ public class DahaoAt130Task {
      * @param p
      */
     public void doAt19(BasePlayer p){
-        p.buyXiongnu();
+
     }
 
     /**
@@ -181,6 +190,7 @@ public class DahaoAt130Task {
             p.hitXiongnu();
         }
 
+
     }
 
     /**
@@ -188,14 +198,7 @@ public class DahaoAt130Task {
      * @param p
      */
     public void doAt22(BasePlayer p){
-        p.buybook();
 
-        p.buyItem0();
-        p.buyItem1();
-        p.buyItem2();
-        p.buyItem3();
-
-        p.shopCanjuan();
     }
 
     /**

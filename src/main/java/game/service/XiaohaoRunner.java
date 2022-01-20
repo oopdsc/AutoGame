@@ -30,12 +30,6 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
         if (h % 4 == 1) {
             p.schoolOne();
 
-//            p.schoolOne(1, 55);
-//            p.schoolOne(2, 1);
-//            p.schoolOne(3, 2);
-//            p.schoolOne(4, 38);
-//            p.schoolOne(5, 41);
-
             p.son();
 
             p.zhengwu1();
@@ -74,6 +68,8 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
             doAt12(p);
         } else if (h == 19) {
             doAt19(p);
+        } else if (h == 20) {
+            doAt20(p);
         } else if (h == 22) {
             doAt22(p);
         } else if (h == 23) {
@@ -110,6 +106,7 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
     public void doAt2(BasePlayer p) {
         p.laofan();
         p.householdMake();
+        p.buyXiongnu();
     }
 
 
@@ -127,6 +124,10 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
             p.mengzhanReward();
             p.mengzhan();
         }
+
+        p.buybook();
+        p.buyItem3();
+        p.shopCanjuan();
 
     }
 
@@ -159,7 +160,17 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
      * @param p
      */
     public void doAt19(BasePlayer p) {
-        p.buyXiongnu();
+
+    }
+
+    /**
+     * 买匈奴道具  20+ 次
+     * @param p
+     */
+    public void doAt20(BasePlayer p){
+        if (Flags.xiongnu) {
+            p.hitXiongnu();
+        }
     }
 
     /**
@@ -168,9 +179,7 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
      * @param p
      */
     public void doAt22(BasePlayer p) {
-        p.buybook();
 
-        p.shopCanjuan();
     }
 
     /**

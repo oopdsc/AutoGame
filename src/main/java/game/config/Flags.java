@@ -10,6 +10,9 @@ public class Flags {
 
     public static boolean fullyamen = false;
 
+    //  1 杨树种子
+    //  2 桦树种子
+    //  8 玉米
     public static int zidbuy = 8;
 
     public static int zidCount = 10;

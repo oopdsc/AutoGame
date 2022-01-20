@@ -279,6 +279,7 @@ public class GetInfoPlayer extends BasePlayer {
         List<Map<String, Object>> heros2 = dc.read("$.a.hero.heroList");
 //        Map<Integer, Object> topheros2 = new HashMap<>();
 
+        boolean hasMachao = false;
         for(int i = 0; i < heros2.size(); i++){
             Hero hero = new Hero();
             Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
@@ -293,32 +294,26 @@ public class GetInfoPlayer extends BasePlayer {
             heros.add(hero);
 //            topheros2.put(zz, id + HeroData.heroname.get(id) + "-" + lv + ":" + zz);
 
+            if(id.intValue() == 36){
+                hasMachao = true;
+            }
         }
-//        topheros2
-//
-//                .keySet().stream()
-////                .sorted((y, x) -> {
-////            return (x < y) ? -1 : ((x == y) ? 0 : 1);
-////        })
-//                .forEach(key ->{
-//            heros.add(topheros2.get(key));
-//        });
 
         heros.sort((y, x) -> {
             return (x.zz < y.zz) ? -1 : ((x.zz == y.zz) ? 0 : 1);
         });
 
-        Object allAttr = dc.read("$.a.user.ep.e2");
+        Object zhiliAttr = dc.read("$.a.user.ep.e2");
 
-        Object zhiliAttr = dc.read("$.a.user.old_ep.ep");
+        Object allAttr = dc.read("$.a.user.old_ep.ep");
 
-        List<Object> rr = Arrays.asList(zhiliAttr.toString());
-//        heros.addAll(rr);
+        List<Object> rr = Arrays.asList(hasMachao, data.silu, zhiliAttr.toString());
         String content1 = Strings.join(heros, ',');
         String content2 = Strings.join(rr, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/hero.txt"), this.getData().username + "," + content1 + "," + content2 + "\r", true);
+            FileUtils.write(new File("./"+ folder +"/hero.txt"), this.getData().username + "," + content1 + "\r", true);
+            FileUtils.write(new File("./"+ folder +"/attr.txt"), this.getData().username + "," + content2 + "\r", true);
         } catch (IOException e) {
             e.printStackTrace();
         }

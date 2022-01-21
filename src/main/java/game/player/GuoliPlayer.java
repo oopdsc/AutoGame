@@ -76,6 +76,9 @@ public class GuoliPlayer extends BasePlayer {
     }
 
 
+    public void kuafu_reward(){
+        this.runAction2("{\"huodong\":{\"hd313Get\":[]},\"rsn\":\"%s\"}");
+    }
 
 
 }

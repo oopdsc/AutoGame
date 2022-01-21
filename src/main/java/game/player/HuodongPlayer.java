@@ -234,4 +234,15 @@ public class HuodongPlayer extends BasePlayer {
 
     }
 
+    public void cangjian(){
+        this.runAction1("{\"huodong2\":{\"hd776Hero\":{\"id\":1}},\"rsn\":\"%s\"}");
+
+        for(int i = 1; i <= 10; i++){
+            this.runAction1("{\"huodong2\":{\"hd776Play\":{\"type\":1}},\"rsn\":\"%s\"}");
+            this.runAction1("{\"huodong2\":{\"hd776Play\":{\"type\":3}},\"rsn\":\"%s\"}");
+            this.runAction1("{\"huodong2\":{\"hd776Play\":{\"type\":2}},\"rsn\":\"%s\"}");
+            this.runAction1("{\"huodong2\":{\"hd776Play\":{\"type\":4}},\"rsn\":\"%s\"}");
+        }
+    }
+
 }

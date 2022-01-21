@@ -31,9 +31,9 @@ class QinmiPlayerTest {
 
     @Test
     void singleCook() {
-        runner.single(GameRunner.RUNNER, d -> d.username.equals("cq147369"), p -> {
+        runner.single(GameRunner.RUNNER, d -> d.username.equals("wang25687"), p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 200; i++){
+            for(int i = 1; i <= 5; i++){
                 qp.cook();
             }
         });

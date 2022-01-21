@@ -139,6 +139,8 @@ class GameRunnerTest {
 
                     p.bpvb();
 
+                    GameRunner.sleep(2);
+
                 }else{
                     logger.info("{} current bmap is {}", p.data.username, bmap.intValue());
                 }

@@ -39,10 +39,10 @@ public class GetInfoPlayer extends BasePlayer {
 
     public void getAll(String folder){
         String resp = this.getAllinfo();
-        this.getCash(resp, folder);
-        this.hero(folder);
-        this.getCourtyardInfo(false, folder);
-        System.out.println("done : " + folder);
+//        this.getCash(resp, folder);
+        this.hero(resp, folder);
+//        this.getCourtyardInfo(false, folder);
+//        System.out.println("done : " + folder);
     }
 
 
@@ -268,9 +268,9 @@ public class GetInfoPlayer extends BasePlayer {
     }
 
 
-    public void hero(String folder){
-        ResponseEntity<String> resp =  this.runAction3("{\"rsn\":\"%s\",\"guide\":{\"login\":{\"platform\":\"qiangwanzdhgios\",\"ug\":\"\"}}}");
-        String res = resp.getBody();
+    public void hero(String res, String folder){
+//        ResponseEntity<String> resp =  this.runAction3("{\"rsn\":\"%s\",\"guide\":{\"login\":{\"platform\":\"qiangwanzdhgios\",\"ug\":\"\"}}}");
+//        String res = resp.getBody();
         Configuration conf = Configuration.defaultConfiguration();
         Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
         DocumentContext dc = JsonPath.using(conf2).parse(res);
@@ -280,39 +280,41 @@ public class GetInfoPlayer extends BasePlayer {
 //        Map<Integer, Object> topheros2 = new HashMap<>();
 
         boolean hasMachao = false;
-        for(int i = 0; i < heros2.size(); i++){
-            Hero hero = new Hero();
-            Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
-
-            Integer lv = Integer.valueOf(heros2.get(i).get("level").toString());
-            Integer zz = Integer.valueOf(((Map)heros2.get(i).get("zz")).get("e1").toString());
-
-            hero.lv = lv.intValue();
-            hero.zz = zz.intValue();
-            hero.name = HeroData.heroname.get(id);
-            hero.id = id;
-            heros.add(hero);
-//            topheros2.put(zz, id + HeroData.heroname.get(id) + "-" + lv + ":" + zz);
-
-            if(id.intValue() == 36){
-                hasMachao = true;
-            }
-        }
+//        for(int i = 0; i < heros2.size(); i++){
+//            Hero hero = new Hero();
+//            Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
+//
+//            Integer lv = Integer.valueOf(heros2.get(i).get("level").toString());
+//            Integer zz = Integer.valueOf(((Map)heros2.get(i).get("zz")).get("e1").toString());
+//
+//            hero.lv = lv.intValue();
+//            hero.zz = zz.intValue();
+//            hero.name = HeroData.heroname.get(id);
+//            hero.id = id;
+//            heros.add(hero);
+////            topheros2.put(zz, id + HeroData.heroname.get(id) + "-" + lv + ":" + zz);
+//
+////            if(id.intValue() == 36){
+////                hasMachao = true;
+////            }
+//        }
 
         heros.sort((y, x) -> {
             return (x.zz < y.zz) ? -1 : ((x.zz == y.zz) ? 0 : 1);
         });
 
+        Integer bmap = dc.read("$.a.user.guide.bmap");
+
         Object zhiliAttr = dc.read("$.a.user.ep.e2");
 
         Object allAttr = dc.read("$.a.user.old_ep.ep");
 
-        List<Object> rr = Arrays.asList(hasMachao, data.silu, zhiliAttr.toString());
+        List<Object> rr = Arrays.asList(data.silu, zhiliAttr.toString(), bmap);
         String content1 = Strings.join(heros, ',');
         String content2 = Strings.join(rr, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/hero.txt"), this.getData().username + "," + content1 + "\r", true);
+//            FileUtils.write(new File("./"+ folder +"/hero.txt"), this.getData().username + "," + content1 + "\r", true);
             FileUtils.write(new File("./"+ folder +"/attr.txt"), this.getData().username + "," + content2 + "\r", true);
         } catch (IOException e) {
             e.printStackTrace();

@@ -267,7 +267,6 @@ public interface GameRunner<T extends BasePlayer> {
             String players = FileUtils.readFileToString(playerData.getFile(), Charset.defaultCharset());
 
             List<PlayerData> datas = JSONObject.parseArray(players, PlayerData.class);
-
             Flux<PlayerData> flux = Flux.fromIterable(datas);
 
             flux.filter(predicate).map(this::login).doOnNext(onNext).subscribe();

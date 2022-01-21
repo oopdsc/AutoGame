@@ -230,6 +230,9 @@ public class BasePlayer {
     public void schoolOne() {
         List<Integer> schools = this.combine(data.schoolHero, data.noschoolHero);
 
+        String body1 = "{\"rsn\":\"" + getRsn() + "\",\"school\":{\"allover\":[]}}";
+        this.execute(baseUrl, body1);
+
         if(schools.size() >= data.deskNum){
             for(int i = 1; i <= data.deskNum; i++){
                 this.schoolOne(i, schools.get(i - 1));
@@ -243,7 +246,7 @@ public class BasePlayer {
      * @param hid hero id
      */
     public void schoolOne(int id, int hid) {
-        this.runAction2("{\"rsn\":\"%s\",\"school\":{\"over\":{\"id\":" + id + "}}}");
+//        this.runAction2("{\"rsn\":\"%s\",\"school\":{\"over\":{\"id\":" + id + "}}}");
         this.runAction2("{\"rsn\":\"%s\",\"school\":{\"start\":{\"id\":" + id + ",\"hid\":" + hid + "}}}");
     }
 
@@ -904,7 +907,7 @@ public class BasePlayer {
         HttpEntity entity = new HttpEntity(body, getHttpHeaders());
         logger.info(this.data.username + ":" + body);
         ResponseEntity<String> response = this.restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-        logger.info(response.getBody());
+        logger.debug(response.getBody());
         sleep(second);
         return response;
     }

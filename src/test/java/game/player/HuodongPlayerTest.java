@@ -85,4 +85,18 @@ class HuodongPlayerTest {
         });
         System.out.println("done");
     }
+
+    @Test
+    void cangjian(){
+        runner.all1(p -> {
+            GuoliPlayer gp = new GuoliPlayer(p);
+            gp.kuafu_reward();
+
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.cangjian();
+
+
+        });
+        System.out.println("done");
+    }
 }

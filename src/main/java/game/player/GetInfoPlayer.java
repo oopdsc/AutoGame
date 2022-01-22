@@ -39,8 +39,8 @@ public class GetInfoPlayer extends BasePlayer {
 
     public void getAll(String folder){
         String resp = this.getAllinfo();
-//        this.getCash(resp, folder);
-        this.hero(resp, folder);
+        this.getCash(resp, folder);
+//        this.hero(resp, folder);
 //        this.getCourtyardInfo(false, folder);
 //        System.out.println("done : " + folder);
     }
@@ -98,7 +98,7 @@ public class GetInfoPlayer extends BasePlayer {
         String content = Strings.join(rr, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/Items-20220119.txt"), this.getData().username + "," + content + "\n", true);
+            FileUtils.write(new File("./"+ folder +"/Items-20220122.txt"), this.getData().username + "," + content + "\n", true);
         } catch (IOException e) {
             e.printStackTrace();
         }

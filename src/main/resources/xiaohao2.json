@@ -125,28 +125,46 @@
     21,22,23,24,25,26,27,28,29,30,
     31,32,33,34,35,36,37,38,39,40,
     41,42,43,44,45,46,48,49,
-    55]},
+    55]
+  },
   {
     "username": "wang77",
     "openid": "2735108_ios",
     "openkey": "067ca14bf7d3509751ae20db159d2aba",
-    "noschoolHero": [
-      55
-    ],
+
     "zid": 21,
-    "zidbuy": 1
+    "cookid" : 0,
+    "zidbuy": 1,
+
+    "yanwuFuId" : "7003763",
+    "yanwuRid" : 1,
+
+    "noschoolHero": [55]
   },
-    { "username": "wang777","openid":"2798211_ios","openkey":"74583e00516903f7d7ef225bcbd98d6e",
-      "noschoolHero" : [55],
-      "zid" : 21,
-      "zidbuy" : 1
-    },
+  {
+    "username": "wang777","openid":"2798211_ios","openkey":"74583e00516903f7d7ef225bcbd98d6e",
+
+    "zid" : 21,
+    "cookid" : 0,
+    "zidbuy" : 1,
+
+    "yanwuFuId" : "7003763",
+    "yanwuRid" : 2,
+
+    "noschoolHero" : [55]
+  },
   {
     "username": "wang7777",
     "openid": "2804471_ios",
     "openkey": "57d9fd03dbe5b8fa25016099c80c0bac",
-    "noschoolHero": [55],
+
+    "yanwuFuId" : "7003763",
+    "yanwuRid" : 3,
+
     "zidbuy": 1,
-    "zid": 21
+    "cookid" : 0,
+    "zid": 21,
+
+    "noschoolHero": [55]
   }
 ]

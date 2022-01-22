@@ -771,7 +771,7 @@ public class BasePlayer {
                 this.runAction3("{\"rsn\":\"%s\",\"hanlin\":{\"comein\":{\"fuid\":" + ruid + "}}}");
             }
 
-            this.runAction3("{\"rsn\":\"%s\",\"hanlin\":{\"opendesk\":{\"num\":2}}}");
+            this.runAction3("{\"rsn\":\"%s\",\"hanlin\":{\"opendesk\":{\"num\":1}}}");
         }
     }
 

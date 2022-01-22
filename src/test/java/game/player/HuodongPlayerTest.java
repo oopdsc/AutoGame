@@ -99,4 +99,17 @@ class HuodongPlayerTest {
         });
         System.out.println("done");
     }
+
+
+    @Test
+    void double11(){
+        runner.all1(p -> {
+
+            HuodongPlayer hp = new HuodongPlayer(p);
+
+
+
+        });
+        System.out.println("done");
+    }
 }

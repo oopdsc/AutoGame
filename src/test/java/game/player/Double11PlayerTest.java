@@ -11,13 +11,13 @@ class Double11PlayerTest {
 
     @Test
     void buyItems() {
-        runner.all(p -> {
+        runner.all1(p -> {
             Double11Player hp = new Double11Player(p);
-            for(int i = 1; i<=p.data.shopnum; i++){
-                hp.buyJinguoIn11();
-            }
+            hp.buyJinguoIn11();
             hp.buyQinmi();
+            hp.buyMeili();
         });
+        System.out.println("done");
     }
 
 }

@@ -12,7 +12,7 @@ class LianmengPlayerTest {
 
     @Test
     void club() {
-        runner.single(GameRunner.GOLD, d-> d.huodong, p -> {
+        runner.single(GameRunner.GOLD, p -> {
             LianmengPlayer lp = new LianmengPlayer(p);
             lp.club();
         });

@@ -4,6 +4,8 @@ import game.active.DefaultGameRunner;
 import game.service.GameRunner;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ZizhiPlayerTest {
@@ -12,19 +14,86 @@ class ZizhiPlayerTest {
 
     @Test
     void everyUser5() {
-        runner.single(GameRunner.RUNNER,
+        runner.all1(
                 p -> {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
-                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
+//                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
+//                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
+
+                    zp.useBook(2, 1);
+                    zp.useBook(2, 2);
+                    zp.useBook(2, 8);
+                    zp.useBook(63, 38);
+//                    zp.useBook(63, 38);
+//                    zp.useBook(63, 38);
+                }, null, p -> {
+                    ZizhiPlayer zp = new ZizhiPlayer(p);
+
+                    zp.useBook(2, 1);
+                    zp.useBook(2, 2);
+                    zp.useBook(2, 8);
+                    zp.useBook(63, 38);
                 });
         System.out.println("done");
     }
 
+
     @Test
-    void useJuanzhou() {
+    void chongbangJuanzhou() {
+        System.out.println("start" + new Date());
         runner.single(GameRunner.HUODONG,
                 p -> {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
+
+                    for(int i = 1; i <= 1000; i++){
+                        zp.useJuanzhou0(127, 55);
+                    }
+        });
+    }
+
+    @Test
+    void chongbangBook() {
+        System.out.println("start" + new Date());
+        runner.single(GameRunner.HUODONG,
+                p -> {
+                    ZizhiPlayer zp = new ZizhiPlayer(p);
+                    for(int i = 1; i <= 150; i++){
+                        zp.useBook0(128, 55);
+                    }
+
+                });
+    }
+
+    @Test
+    void useJuanzhou() {
+        System.out.println("start" + new Date());
+        runner.single(GameRunner.HUODONG,
+                p -> {
+                    ZizhiPlayer zp = new ZizhiPlayer(p);
+
+                    //郭嘉武力
+                    for(int i = 1; i <= 100; i++){
+                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":66,\"num\":1,\"id\":41}},\"rsn\":\"%s\"}");
+                    }
+//                   孙武武力
+                    for(int i = 1; i <= 200; i++){
+                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":47,\"num\":1,\"id\":28}},\"rsn\":\"%s\"}");
+                    }
+                    // 周瑜武力
+                    for(int i = 1; i <= 100; i++){
+                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":63,\"num\":1,\"id\":38}},\"rsn\":\"%s\"}");
+                    }
+
+                    for(int i = 1; i <= 500; i++){
+                        //马云绿智力
+                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":127,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
+                        //郭嘉政治
+                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":67,\"num\":1,\"id\":41}},\"rsn\":\"9rbmcmizjc\"}");
+                        //关银屏魅力
+                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":109,\"num\":1,\"id\":51}},\"rsn\":\"%s\"}");
+                    }
+
+
 //                    for (int i = 1; i <= 2000; i++) {
 //                        zp.useJuanzhou();
 //                    }
@@ -37,10 +106,10 @@ class ZizhiPlayerTest {
 //                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":1,\"sid\":128,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
 //                    }
 
-                    for(int i = 1; i<= 400;i++){
-//                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":107,\"num\":1,\"id\":51}},\"rsn\":\"%s\"}");
-                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":1611,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
-                    }
+//                    for(int i = 1; i<= 400;i++){
+////                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":107,\"num\":1,\"id\":51}},\"rsn\":\"%s\"}");
+//                        zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":1611,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
+//                    }
 //
 //                    for (int i = 1; i <= 80; i++){
 //                        //郭嘉 - 3星政治 - 公羊传
@@ -88,11 +157,12 @@ class ZizhiPlayerTest {
 //                    }
 
                 });
-        System.out.println("done");
+        System.out.println("done" + new Date());
     }
 
+    @Test
     public void reward(){
-        runner.all(p -> {
+        runner.all1(p -> {
             ZizhiPlayer zp = new ZizhiPlayer(p);
             zp.reward();
         });

@@ -3,14 +3,12 @@
     "username": "cq147369",
     "openid": "2582176_ios",
     "openkey": "971e6dfd4def2cac5c2260ff07a20133",
-
-    "cookid" : 0,
     "silu": 20,
-
+"hunt" : [41, 44, 45],
     "yanwuRid" : 1,
     "yanwuFuId" : "7006984",
 
-    "deskNum" : 9,
+    "deskNum" : 11,
 
     "hitboss" : 2,
     "heroid" : [1,2,3,4,5,6,7,8,9,10,
@@ -41,10 +39,10 @@
     "yanwuFuId" : "7006984",
     "yanwuRid" : 2,
 
-    "deskNum" : 10,
+    "deskNum" : 16,
     "noschoolHero" : [38, 33, 16],
 
-    "hitboss" : 13,
+    "hitboss" : 5,
     "heroid" : [33, 38, 16],
     "buyItem3": 1,
 
@@ -68,10 +66,10 @@
     "yanwuFuId" : "7006984",
     "yanwuRid" : 3,
 
-    "deskNum" : 10,
+    "deskNum" : 12,
     "noschoolHero" : [38, 33, 16],
 
-    "hitboss" : 13,
+    "hitboss" : 6,
     "heroid" : [33, 16, 38],
     "buyItem3": 1,
 
@@ -96,7 +94,7 @@
     "yanwuFuId" : "7005929",
     "yanwuRid" : 2,
 
-    "deskNum" : 9,
+    "deskNum" : 13,
     "noschoolHero" : [36, 51],
 
     "hitboss" : 11,
@@ -122,7 +120,7 @@
     "yanwuFuId" : "7005929",
     "yanwuRid" : 3,
 
-    "deskNum" : 9,
+    "deskNum" : 11,
     "noschoolHero" : [36],
     "schoolHero" : [58],
 
@@ -150,7 +148,7 @@
     "yanwuFuId" : "7007245",
     "yanwuRid" : 1,
 
-    "deskNum" : 12,
+    "deskNum" : 16,
     "noschoolHero" : [36, 65, 41, 38,33],
     "schoolHero" : [58],
 
@@ -177,7 +175,7 @@
     "yanwuFuId" : "7007245",
     "yanwuRid" : 2,
 
-    "deskNum" : 10,
+    "deskNum" : 14,
     "noschoolHero" : [51,36,38],
 
     "hitboss" : 13,
@@ -203,7 +201,7 @@
     "yanwuFuId" : "7007245",
     "yanwuRid" : 3,
 
-    "deskNum" : 10,
+    "deskNum" : 12,
     "noschoolHero" : [36,38,55,41],
 
     "hitboss" : 13,
@@ -230,7 +228,7 @@
     "yanwuFuId" : "7001825",
     "yanwuRid" : 1,
 
-    "deskNum" : 10,
+    "deskNum" : 14,
     "noschoolHero" : [51,36,38],
 
     "hitboss" : 13,
@@ -250,13 +248,13 @@
     "yanwuRid" : 2,
     "yanwuFuId" : "7001825",
 
-    "deskNum" : 10,
+    "deskNum" : 12,
     "noschoolHero" : [36],
     "schoolHero" : [58],
 
-    "hitboss" : 11,
-    "heroid" : [36],
-
+    "hitboss" : 12,
+    "heroid" : [36, 38, 41],
+"hunt" : [36, 38, 41],
     "buyXiongnu1" : 5,
     "geerdan" : [36],
     "mengguid" : [1,2,3,4,5,6,7,8,9,10,
@@ -269,12 +267,13 @@
   { "username": "pgh1234","openid":"3291072_ios","openkey":"0e3819f858b51525d373f3fd819b1aa8",
     "yanwuRid" : 3,
     "yanwuFuId" : "7001825",
+"hunt" : [36, 38, 41],
 
-    "deskNum" : 8,
+    "deskNum" : 12,
     "noschoolHero" : [36],
     "schoolHero" : [58],
 
-    "hitboss" : 11,  "heroid" : [36],
+    "hitboss" : 12,  "heroid" :[36, 38, 41],
 
     "buyXiongnu1" : 5,
     "geerdan" : [36],
@@ -290,8 +289,10 @@
     "yanwuFuId" : "7003804",
     "yanwuRid" : 1,
 
-    "hitboss" : 11,  "heroid" : [36],
+    "hitboss" : 12,  "heroid" :[36, 38, 41],
+"hunt" : [36, 38, 41],
 
+"deskNum" : 12,
     "schoolHero" : [58],
     "noschoolHero" : [36],
 
@@ -308,11 +309,13 @@
 
     "yanwuFuId" : "7003804",
     "yanwuRid" : 2,
+"hunt" : [36, 51, 41],
 
+"deskNum" : 12,
     "schoolHero" : [51],
     "noschoolHero" : [36],
 
-    "hitboss" : 11,  "heroid" : [36],
+    "hitboss" : 12,  "heroid" : [36,51],
 
     "buyXiongnu1" : 5,
     "geerdan" : [36],

@@ -44,6 +44,38 @@ public class QinmiController {
         return "done";
     }
 
+    @ApiOperation(value="用亲密道具1", tags = {"亲密榜"})
+    @GetMapping("/useItem1")
+    @ResponseBody
+    public String useItem1() {
+
+        runner.all( p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 100; i++){
+                qp.qinmi11();
+            }
+
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="用亲密道具2", tags = {"亲密榜"})
+    @GetMapping("/useItem2")
+    @ResponseBody
+    public String useItem2() {
+
+        runner.all( p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 100; i++){
+                qp.qinmi12();
+            }
+
+        });
+
+        return "done";
+    }
+
 
 }
 

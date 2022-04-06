@@ -14,8 +14,24 @@ class MeiliPlayerTest {
 
     DefaultGameRunner runner = new DefaultGameRunner();
 
+    @Test
+    public void alluseMeiliItems1() {
+
+        int num = 21;
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.all1(p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= num; i++){
+                mp.meili2();
+            }
+        });
+        sw.stop();
+        System.out.println("done " + sw.getTotalTimeSeconds() );
+    }
+
     /**
-     * 担任用魅力道具1。个人亲密用
+     * 担任用魅力道具1。个人魅力用
      */
     @Test
     void meili1() {
@@ -33,13 +49,13 @@ class MeiliPlayerTest {
     }
 
     /**
-     * 担任用魅力道具2。个人亲密用
+     * 担任用魅力道具2。个人魅力用
      */
     @Test
     void meili2() {
         StopWatch sw = new StopWatch();
         sw.start();
-        int num = 16000;
+        int num = 1000;
         runner.single(GameRunner.HUODONG, p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
             for(int i = 1; i <= num; i++){
@@ -80,7 +96,32 @@ class MeiliPlayerTest {
     }
 
 
+    @Test
+    void upBeast() {
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.single(GameRunner.HUODONG, p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= 13; i++){
+                mp.upLvBeast2(1, 8);
+                mp.upLvBeast2(2, 8);
+                mp.upLvBeast2(3, 8);
+            }
 
+        });
+        sw.stop();
+        System.out.println("Done, time :" + sw.getTotalTimeSeconds());
+    }
+
+
+    @Test
+    void kua_meili(){
+        String all1 = runner.all1( p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            mp.kua_meili();
+        });
+        System.out.println(all1);
+    }
 
 
 }

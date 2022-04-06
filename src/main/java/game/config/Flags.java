@@ -14,8 +14,13 @@ public class Flags {
     //  2 桦树种子
     //  8 玉米
     public static int zidbuy = 8;
-
     public static int zidCount = 10;
+
+    public static int zid = 21;
+
+    public static int cook = 5;
+    public static int cooknum = 1;
+    public static int cookid = 207;
 
     public static String dahao = "false";
 
@@ -24,5 +29,8 @@ public class Flags {
 
     public static int sleepTime = 20;
 
-    public static int cook = 5;
+
+    public static boolean yamen = false;
+
+    public static boolean yamenShop = false;
 }

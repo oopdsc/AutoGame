@@ -40,6 +40,19 @@ public class MeiliController {
         return "done";
     }
 
+    @ApiOperation(value="跨服魅力", tags = {"魅力榜"})
+    @GetMapping("/kuaMeili")
+    @ResponseBody
+    public String kuaMeili() {
+
+        runner.all( p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            mp.kua_meili();
+        });
+
+        return "done";
+    }
+
     @ApiOperation(value="加珍兽", tags = {"珍兽榜"})
     @GetMapping("/beast")
     @ResponseBody

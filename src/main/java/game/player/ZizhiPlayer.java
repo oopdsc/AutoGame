@@ -99,15 +99,28 @@ public class ZizhiPlayer extends BasePlayer {
     }
 
     public void useBook(int sid, int hid){
+        this.runAction1("{\"hero\":{\"upzzskill\":{\"type\":1,\"sid\":"+sid+",\"num\":1,\"id\":"+hid+"}},\"rsn\":\"%s\"}");
+    }
+
+    public void useBook0(int sid, int hid){
         this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":1,\"sid\":"+sid+",\"num\":1,\"id\":"+hid+"}},\"rsn\":\"%s\"}");
     }
 
+    public void useJuanzhou0(int sid, int hid){
+        this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":"+sid+",\"num\":1,\"id\":"+hid+"}},\"rsn\":\"%s\"}");
+    }
+
     public void reward(){
-        this.baseReward("202");
-        this.baseReward("202");
-        this.baseReward("202");
-        this.baseReward("202");
-        this.baseReward("202");
-        this.baseReward("202");
+        this.runAction3("{\"huodong\":{\"hd266Get\":[]},\"rsn\":\"%s\"}");
+        for(int i = 1; i <= 5; i++){
+            this.baseReward("206");     //国力
+        }
+
+        for(int i = 1; i <= 14; i++){
+            this.baseReward("211");     //国力
+        }
+
+//        this.baseReward("201");  // 元宝
+
     }
 }

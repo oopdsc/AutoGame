@@ -63,6 +63,9 @@ public class QinmiPlayer extends BasePlayer {
         for(int i = 1; i <= 8; i++){
             this.baseReward("205"); //qin mi
             this.baseReward("206"); //guoli
+            this.baseReward("219"); //tili
+            this.baseReward("227"); //jingli
+
         }
 
         for(int i = 1; i <= 14; i++){

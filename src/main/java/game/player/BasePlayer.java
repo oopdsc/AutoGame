@@ -80,8 +80,12 @@ public class BasePlayer {
 
     public void silu() {
 
-        String body = "{\"silkroad\":{\"rootPlay\":{\"gid\":" + data.silu + "}},\"rsn\":\"" + getRsn() + "\"}";
-        this.execute(baseUrl, body);
+//        if(!"ssqwerty".equals(this.data.username)){
+            String body = "{\"silkroad\":{\"rootPlay\":{\"gid\":" + (data.silu + 30) + "}},\"rsn\":\"" + getRsn() + "\"}";
+            this.execute(baseUrl, body);
+//        }
+
+
     }
 
     public void taofa() {
@@ -341,6 +345,7 @@ public class BasePlayer {
 //        {"huodong":{"hd270Rwd":{"id":41}},"rsn":"7xxysocsvsy"}   //郭嘉
 //        {"huodong":{"hd270Rwd":{"id":38}},"rsn":"9ririjbjbm"}     //诸葛亮
 //        {\"huodong\":{\"hd272Rwd\":{\"id\":55}},\"rsn\":\"%s\"}
+//        {"huodong":{"hd271Rwd":{"id":35}},"rsn":"9rbmcmssbm"}  //赵云
     }
 
     public void yardward() {
@@ -445,16 +450,16 @@ public class BasePlayer {
     }
 
     public void cookOne() {
-        int num = 1;
-        int cookid = 207;
+//        int num = 1;
+//        int cookid = 207;
         if (data.cookid > 0) {
-            String body2 = "{\"courtyard\":{\"cpScore\":{\"total\":3,\"num\":" + num + ",\"cpid\":" + cookid + "}},\"rsn\":\"" + getRsn() + "\"}";
+            String body2 = "{\"courtyard\":{\"cpScore\":{\"total\":3,\"num\":" + data.cooknum + ",\"cpid\":" + data.cookid + "}},\"rsn\":\"" + getRsn() + "\"}";
             this.runAction4(body2);
 
-            body2 = "{\"courtyard\":{\"cpScore\":{\"total\":6,\"num\":" + num + ",\"cpid\":" + cookid + "}},\"rsn\":\"" + getRsn() + "\"}";
+            body2 = "{\"courtyard\":{\"cpScore\":{\"total\":6,\"num\":" + data.cooknum  + ",\"cpid\":" + data.cookid + "}},\"rsn\":\"" + getRsn() + "\"}";
             this.runAction4(body2);
 
-            body2 = "{\"courtyard\":{\"madeMenu\":{\"id\":3,\"num\":" + num + ",\"cpid\":" + cookid + "}},\"rsn\":\"" + getRsn() + "\"}";
+            body2 = "{\"courtyard\":{\"madeMenu\":{\"id\":3,\"num\":" + data.cooknum  + ",\"cpid\":" + data.cookid + "}},\"rsn\":\"" + getRsn() + "\"}";
             this.runAction2(body2);
         }
     }
@@ -545,6 +550,7 @@ public class BasePlayer {
 
     public void interanlYamen(ResponseEntity<String> resp) {
         int index = 1;
+        int shopTime = 0;
         Object fstate = JsonPath.parse(resp.getBody()).read("$.a.yamen.fight.fstate");
 
         while (!"0".equals(fstate.toString())) {
@@ -552,9 +558,12 @@ public class BasePlayer {
             DocumentContext dc = JsonPath.parse(resp.getBody());
             int fherosnum = dc.read("$.a.yamen.fight.fheros.length()");
 
-            String shop = "$.a.yamen.fight.shop[0].id";
-            Object shopid = dc.read(shop);
-            this.runAction3("{\"yamen\":{\"seladd\":{\"id\":" + Integer.valueOf(shopid.toString()) + "}},\"rsn\":\"%s\"}");
+            if(data.yamenShop || shopTime == 0){
+                shopTime++;
+                String shop = "$.a.yamen.fight.shop[0].id";
+                Object shopid = dc.read(shop);
+                this.runAction3("{\"yamen\":{\"seladd\":{\"id\":" + Integer.valueOf(shopid.toString()) + "}},\"rsn\":\"%s\"}");
+            }
 
             int hid = 0;
             int senior = 0;
@@ -707,8 +716,8 @@ public class BasePlayer {
             this.execute(baseUrl, body);
         }
 
-        String body = "{\"rsn\":\"" + getRsn() + "\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":30}}}";
-        this.execute(baseUrl, body);
+        String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":15,\"fuid\":7006984}}}";
+        this.runAction2(body);
     }
 
     public void gold2() {
@@ -803,9 +812,6 @@ public class BasePlayer {
         this.runAction3("{\"courtyard\":{\"openFarm\":{\"id\":3}},\"rsn\":\"%s\"}");
     }
 
-
-
-
     //打boss
     public void pvb(int hid){
         this.runAction3("{\"user\":{\"pvb\":{\"id\":"+hid+"}},\"rsn\":\"%s\"}");
@@ -826,25 +832,27 @@ public class BasePlayer {
     }
 
     public void son_allDone() {
-        String all = this.getAllinfo();
-        DocumentContext dc = JsonPath.parse(all);
-        List<Object> sons = dc.read("$.a.son.sonList[?(@.state==3)].id");
-        if (sons.size() > 0) {
-            sons.stream().forEach( son -> {
-                this.son_keju(Integer.valueOf(son.toString()).intValue());
-            });
-        }
+        if(data.sonFood){
+            String all = this.getAllinfo();
+            DocumentContext dc = JsonPath.parse(all);
+            List<Object> sons = dc.read("$.a.son.sonList[?(@.state==3)].id");
+            if (sons.size() > 0) {
+                sons.stream().forEach( son -> {
+                    this.son_keju(Integer.valueOf(son.toString()).intValue());
+                });
+            }
 
-        List<Object> sons2 = dc.read("$.a.son.sonList[?(@.state==0)].id");
-        if (sons2.size() > 0) {
-            sons2.stream().forEach( son -> {
-                this.son_name(Integer.valueOf(son.toString()).intValue());
-            });
+            List<Object> sons2 = dc.read("$.a.son.sonList[?(@.state==0)].id");
+            if (sons2.size() > 0) {
+                sons2.stream().forEach( son -> {
+                    this.son_name(Integer.valueOf(son.toString()).intValue());
+                });
+            }
         }
     }
 
     public void baseReward(String rwdId){
-        this.runAction3("{\"huodong\":{\"hd"+rwdId+"Rwd\":[]},\"rsn\":\"%s\"}");
+        this.runAction1("{\"huodong\":{\"hd"+rwdId+"Rwd\":[]},\"rsn\":\"%s\"}");
     }
 
 

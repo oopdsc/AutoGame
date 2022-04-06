@@ -30,13 +30,47 @@ class QinmiPlayerTest {
     }
 
     @Test
-    void singleCook() {
-        runner.single(GameRunner.RUNNER, d -> d.username.equals("wang25687"), p -> {
+    void allUseCook() {
+        runner.all1( p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 5; i++){
+            qp.useCook();
+        });
+
+        System.out.println("done");
+    }
+
+
+
+    @Test
+    void singleCook() {
+        runner.single(GameRunner.HUODONG, d -> d.username.equals("wang25687"), p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 4; i++){
                 qp.cook();
             }
         });
+    }
+
+
+    @Test
+    void useSingleItem() {
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.processSingle(GameRunner.HUODONG, p -> {
+//            for(int i = 1; i <= 10000; i++){
+//                p.qinmi11();
+//            }
+
+            for(int i = 1; i <= 300; i++){
+                p.qinmi12();
+            }
+//
+//            for(int i = 1; i <= 200; i++){
+//                p.qinmi13();
+//            }
+        });
+        sw.stop();
+        System.out.println("done " + sw.getTotalTimeSeconds() );
     }
 
     /**
@@ -123,8 +157,8 @@ class QinmiPlayerTest {
      */
     @Test
     public void sonFood2(){
-        int num = 5;
-        int id = 1253;
+        int num = 42;
+        int id = 1332;
         runner.single("huodong.json", p -> {
             p.son2();
             for(int i = 1; i <= num; i++){
@@ -150,11 +184,11 @@ class QinmiPlayerTest {
     @Test
     void clubQinmireward(){
         String all1 = runner.all1( p -> {
-            GameRunner.sleepInMillis(runner.rd.nextInt(1000));
+//            GameRunner.sleepInMillis(runner.rd.nextInt(1000));
             QinmiPlayer dp = new QinmiPlayer(p);
             dp.clubQinmi();
         });
-        GameRunner.sleep(600);
+//        GameRunner.sleep(600);
         System.out.println(all1);
     }
 
@@ -169,6 +203,91 @@ class QinmiPlayerTest {
         });
 
         GameRunner.sleep(20);
+        System.out.println("done");
+    }
+
+    @Test
+    public void xunfang_test(){
+        runner.all1(p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 25; i++){
+                qp.xunfun();
+                qp.xunfunRecover();
+            }
+            qp.xunfun();
+
+        }, p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 25; i++){
+                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+                qp.xunfunRecover();
+            }
+            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+
+        }, p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 25; i++){
+                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+                qp.xunfunRecover();
+            }
+            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+
+        });
+        System.out.println("done");
+    }
+
+
+    @Test
+    public void sjxo_test(){
+        runner.all1(p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 20; i++){
+                qp.xo();
+                qp.runAction1("{\"wife\":{\"weige\":[]},\"rsn\":\"%s\"}");
+            }
+            qp.xo();
+
+        }, p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 10; i++){
+                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+                qp.runAction1("{\"wife\":{\"weige\":[]},\"rsn\":\"%s\"}");
+            }
+            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+
+        }, p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 10; i++){
+                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+                qp.runAction1("{\"wife\":{\"weige\":[]},\"rsn\":\"%s\"}");
+            }
+            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+
+        });
         System.out.println("done");
     }
 

@@ -41,6 +41,8 @@ class RewardPlayerTest {
         }
     }
 
+
+
     public void rewardLianmengBang(RewardPlayer p){
 
         for (int i = 1; i <= 18; i++) {
@@ -59,5 +61,27 @@ class RewardPlayerTest {
 
         p.rewardKillXiongnu();
     }
+
+    @Test
+    void reward_kuayamen_test()  {
+        runner.all1(px -> {
+            RewardPlayer p = new RewardPlayer(px);
+            p.reward_kuayamen();
+        });
+
+        GameRunner.sleep(5);
+    }
+
+    @Test
+    void reward_kua_qinmi_test()  {
+        runner.all1(px -> {
+            RewardPlayer p = new RewardPlayer(px);
+            p.reward_kua_qinmi();
+        });
+
+        GameRunner.sleep(5);
+    }
+
+
 
 }

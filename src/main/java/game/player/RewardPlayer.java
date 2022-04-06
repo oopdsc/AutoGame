@@ -77,6 +77,9 @@ public class RewardPlayer extends BasePlayer {
         this.baseReward("227");
     }
 
+    public void reward_kua_qinmi(){
+        this.baseReward("314");
+    }
 
 
 
@@ -111,6 +114,10 @@ public class RewardPlayer extends BasePlayer {
             sleepInMillis(500);
             this.runAction3("{\"huodong2\":{\"hd997getSignRwd\":{\"id\":" + i + "}},\"rsn\":\"%s\"}");
         }
+    }
+
+    public void reward_kuayamen(){
+        this.runAction2("{\"kuayamen\":{\"getSevRwd\":[]},\"rsn\":\"%s\"}");
     }
 
 

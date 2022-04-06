@@ -24,6 +24,35 @@ class GameRunnerTest {
     DefaultGameRunner runner = new DefaultGameRunner();
 
     @Test
+    void runner2(){
+        runner.singleDahao(
+                p -> {
+                    p.sjxo();
+                    p.gold();
+                    p.gold2();
+
+                    p.silu();
+                    p.taofa();
+
+                    p.hunt();
+
+                    p.yardward();
+                    p.buyZhongzi();
+
+                    p.harvest();
+                    p.plant();
+                    p.school();
+
+                    p.son();
+
+                    p.xunfun();
+                    p.zhengwu();
+                    p.jingying();
+                }
+        );
+    }
+
+    @Test
     void runner1(){
         String all1 = runner.all1( p -> {
             p.runAction2("{\"rsn\":\"%s\",\"item\":{\"useforhero\":{\"count\":30,\"heroid\":41,\"id\":53}}}");
@@ -85,6 +114,20 @@ class GameRunnerTest {
         );
 
         GameRunner.sleep(3);
+    }
+
+    @Test
+    public void mengzhan(){
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.all1( p -> {
+
+            p.mengzhan();
+
+        });
+
+        sw.stop();
+        System.out.println("Done, time :" + sw.getTotalTimeSeconds());
     }
 
     @Test

@@ -83,6 +83,21 @@ public class FlagController {
         return String.valueOf(Flags.zidbuy);
     }
 
+    @ApiOperation(value="获取种树种子ID", tags = {"系统参数"})
+    @GetMapping("/zid")
+    @ResponseBody
+    public String zid(){
+        return String.valueOf(Flags.zid);
+    }
+
+    @ApiOperation(value="更新种树种子ID", tags = {"系统参数"})
+    @PostMapping("/updateZid")
+    @ResponseBody
+    public String updateZid(@RequestBody String zid){
+        Flags.zid = Integer.valueOf(zid).intValue();
+        return String.valueOf(Flags.zid);
+    }
+
     @ApiOperation(value="获取购买种子数量", tags = {"系统参数"})
     @GetMapping("/zidCount")
     @ResponseBody
@@ -111,6 +126,36 @@ public class FlagController {
     public String updatecook(@RequestBody String cook){
         Flags.cook = Integer.valueOf(cook).intValue();
         return String.valueOf(Flags.cook);
+    }
+
+    @ApiOperation(value="做菜编号", tags = {"系统参数"})
+    @GetMapping("/cookid")
+    @ResponseBody
+    public String cookid(){
+        return String.valueOf(Flags.cookid);
+    }
+
+    @ApiOperation(value="更新做菜编号", tags = {"系统参数"})
+    @PostMapping("/updatecookid")
+    @ResponseBody
+    public String updatecookid(@RequestBody String cookid){
+        Flags.cookid = Integer.valueOf(cookid).intValue();
+        return String.valueOf(Flags.cookid);
+    }
+
+    @ApiOperation(value="衙门BUFF", tags = {"系统参数"})
+    @GetMapping("/yamenShop")
+    @ResponseBody
+    public String yamenShop(){
+        return String.valueOf(Flags.yamenShop);
+    }
+
+    @ApiOperation(value="更新衙门BUFF", tags = {"系统参数"})
+    @PostMapping("/updateyamenShop")
+    @ResponseBody
+    public String updateyamenShop(){
+        Flags.yamenShop = !Flags.yamenShop;
+        return String.valueOf(Flags.yamenShop);
     }
 
     @ApiOperation(value="大号任务运行中", tags = {"系统参数"})

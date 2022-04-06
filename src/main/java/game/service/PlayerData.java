@@ -6,11 +6,14 @@ public class PlayerData {
     public String username = "";
     public String openid = "";
     public String openkey = "";
-    public int silu = 40;
-    public int taofa = 40;
-    public int zid = 28;
+    public int silu = 50;
+    public int taofa = 50;
+
+    public int zid = Flags.zid;
     public int zidbuy = Flags.zidbuy;
     public int zidCount = Flags.zidCount;
+    public int cookid = Flags.cookid;
+    public int cooknum = Flags.cooknum;
 
     public int shopnum = 0;
     public int vipLv = 0;
@@ -23,13 +26,15 @@ public class PlayerData {
     public int[] mengguid = {0};
     public int[] geerdan = {0};
     public int hitBoss = 0;
+    public boolean sonFood = true;
 
-    public int[] mzid = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    public boolean yamen = Flags.yamen;
 
-    public int cookid = 207;
-    public int cooknum = 1;
+    public boolean yamenShop = Flags.yamenShop;
 
-    public static Integer[] commonSchool = {55, 36, 38, 41, 1, 2, 8, 13, 23, 26, 10, 11, 12, 6, 20, 16, 24, 33,34, 35,  37,   39, 40,  28};
+    public int[] mzid = {1,2,6,8,10,11,12,13,16,20,23,24,35,38,41,55};
+
+    public static Integer[] commonSchool = {55, 35, 38, 41, 1, 2, 6, 8, 10, 11, 12, 13, 16, 20, 23, 24, 26, 33,34, 36, 37, 39, 40, 28};
     public int deskNum = 5;
     public Integer[] schoolHero = {};
     public Integer[] noschoolHero = {};
@@ -46,8 +51,6 @@ public class PlayerData {
 
     //军机
     public boolean buyItem0 = false;
-
-    public boolean yamen = false;
 
     public int cpid = 0;
 

@@ -39,10 +39,12 @@ public class GetInfoPlayer extends BasePlayer {
 
     public void getAll(String folder){
         String resp = this.getAllinfo();
+//        this.getBeastInfo(resp, folder);
         this.getCash(resp, folder);
 //        this.hero(resp, folder);
 //        this.getCourtyardInfo(false, folder);
 //        System.out.println("done : " + folder);
+
     }
 
 
@@ -66,11 +68,12 @@ public class GetInfoPlayer extends BasePlayer {
         List<Object> meili1 = dc.read("$.a.item.itemList[?(@.id==93)].count");
         List<Object> meili2 = dc.read("$.a.item.itemList[?(@.id==94)].count");
 
-        Integer desk = dc.read("$.a.school.base.desk", Integer.class);
+        List<Integer> lv1 = dc.read("$.a.item.itemList[?(@.id==160)].count");
+        List<Integer> lv2 = dc.read("$.a.item.itemList[?(@.id==161)].count");
+        List<Integer> lv3 = dc.read("$.a.item.itemList[?(@.id==162)].count");
 
-        logger.info("cash1 {}", dc.read("$.a.user.user.cash").toString());
+        Integer desk = dc.read("$.a.school.base.desk", Integer.class);
         String cash = dc.read("$.a.user.user.cash").toString();
-        logger.info("cash2 {}", cash);
 
         List<Object> jinguoling = dc.read("$.a.item.itemList[?(@.id==138)].count");
         Integer x1 = 0;
@@ -80,6 +83,12 @@ public class GetInfoPlayer extends BasePlayer {
             x1  = Integer.valueOf(jinguoling.get(0).toString());
         }
 
+//        if(Integer.valueOf(cash).intValue() > 10000 && Integer.valueOf(desk).intValue() <= 18){
+//            logger.info(this.data.username);
+//            HuodongPlayer hp = new HuodongPlayer(this);
+//            hp.wabao();
+
+
         List<Object> rr = Arrays.asList(
                 getFromList(book1),
                 getFromList(book2),
@@ -88,20 +97,26 @@ public class GetInfoPlayer extends BasePlayer {
                 getFromList(book),
                 getFromList(sbook),
                 getFromList(bbook),
-                qinmi1 == null || qinmi1.size() == 0 ? 0 : qinmi1.get(0),
-                getFromList(qinmi2),
+//                qinmi1 == null || qinmi1.size() == 0 ? 0 : qinmi1.get(0),
+//                getFromList(qinmi2),
                 getFromList(meili1),
                 getFromList(meili2),
-                cash,
-                desk,
-                x1);
+//                getFromList(lv1),
+//                getFromList(lv2),
+//                getFromList(lv3),
+//                cash,
+//                desk,
+                x1
+        );
         String content = Strings.join(rr, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/Items-20220122.txt"), this.getData().username + "," + content + "\n", true);
+            FileUtils.write(new File("./"+ folder +"/Items-20220330.txt"), this.getData().username + "," + content + "\n", true);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+//        }
     }
 
 
@@ -154,18 +169,6 @@ public class GetInfoPlayer extends BasePlayer {
 
 //            System.out.println(heros2.get(i).get("id") + "|" + heros2.get(i).get("level") + ":" + ((Map)heros2.get(i).get("zz")).get("e1"));
             topheros2.put(zz, heros2.get(i).get("id") + HeroData.heroname.get(Integer.valueOf(heros2.get(i).get("id").toString())) + "-" + lv + ":" + zz);
-
-
-
-
-
-
-//            if(lv >= 400 && zz >= 480){
-//
-//            }else{
-//                heros.add(HeroData.heroname.get(Integer.valueOf(heros2.get(i).get("id").toString())) + "-" + lv + ":" + zz);
-//            }
-
         }
         topheros2.keySet().stream().sorted((y, x) -> {
             return (x < y) ? -1 : ((x == y) ? 0 : 1);
@@ -280,45 +283,49 @@ public class GetInfoPlayer extends BasePlayer {
 //        Map<Integer, Object> topheros2 = new HashMap<>();
 
         boolean hasMachao = false;
-//        for(int i = 0; i < heros2.size(); i++){
-//            Hero hero = new Hero();
-//            Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
-//
-//            Integer lv = Integer.valueOf(heros2.get(i).get("level").toString());
-//            Integer zz = Integer.valueOf(((Map)heros2.get(i).get("zz")).get("e1").toString());
-//
-//            hero.lv = lv.intValue();
-//            hero.zz = zz.intValue();
-//            hero.name = HeroData.heroname.get(id);
-//            hero.id = id;
-//            heros.add(hero);
-////            topheros2.put(zz, id + HeroData.heroname.get(id) + "-" + lv + ":" + zz);
-//
-////            if(id.intValue() == 36){
-////                hasMachao = true;
-////            }
-//        }
+        for(int i = 0; i < heros2.size(); i++){
+            Hero hero = new Hero();
+            Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
 
-        heros.sort((y, x) -> {
-            return (x.zz < y.zz) ? -1 : ((x.zz == y.zz) ? 0 : 1);
-        });
+            Integer lv = Integer.valueOf(heros2.get(i).get("level").toString());
+            Integer zz = Integer.valueOf(((Map)heros2.get(i).get("zz")).get("e1").toString());
 
-        Integer bmap = dc.read("$.a.user.guide.bmap");
+            hero.lv = lv.intValue();
+            hero.zz = zz.intValue();
+            hero.name = HeroData.heroname.get(id);
+            hero.id = id;
+            heros.add(hero);
+//            topheros2.put(zz, id + HeroData.heroname.get(id) + "-" + lv + ":" + zz);
 
-        Object zhiliAttr = dc.read("$.a.user.ep.e2");
-
-        Object allAttr = dc.read("$.a.user.old_ep.ep");
-
-        List<Object> rr = Arrays.asList(data.silu, zhiliAttr.toString(), bmap);
-        String content1 = Strings.join(heros, ',');
-        String content2 = Strings.join(rr, ',');
-
-        try {
-//            FileUtils.write(new File("./"+ folder +"/hero.txt"), this.getData().username + "," + content1 + "\r", true);
-            FileUtils.write(new File("./"+ folder +"/attr.txt"), this.getData().username + "," + content2 + "\r", true);
-        } catch (IOException e) {
-            e.printStackTrace();
+            if(id.intValue() == 35){
+                hasMachao = true;
+            }
         }
+
+        if(!hasMachao){
+            this.runAction0("{\"huodong\":{\"hd271Rwd\":{\"id\":35}},\"rsn\":\"%s\"}");
+        }
+//
+//        heros.sort((y, x) -> {
+//            return (x.zz < y.zz) ? -1 : ((x.zz == y.zz) ? 0 : 1);
+//        });
+//
+//        Integer bmap = dc.read("$.a.user.guide.bmap");
+//
+//        Object zhiliAttr = dc.read("$.a.user.ep.e2");
+//
+//        Object allAttr = dc.read("$.a.user.old_ep.ep");
+//
+//        List<Object> rr = Arrays.asList(data.silu, zhiliAttr.toString(), bmap);
+//        String content1 = Strings.join(heros, ',');
+//        String content2 = Strings.join(rr, ',');
+//
+//        try {
+////            FileUtils.write(new File("./"+ folder +"/hero.txt"), this.getData().username + "," + content1 + "\r", true);
+//            FileUtils.write(new File("./"+ folder +"/attr.txt"), this.getData().username + "," + content2 + "\r", true);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void getCaoxueInfo(){
@@ -380,7 +387,7 @@ public class GetInfoPlayer extends BasePlayer {
         String content = Strings.join(rr, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/beast.txt"), this.getData().username + "," + content + "\r", true);
+            FileUtils.write(new File("./"+ folder +"/beast-20220317.txt"), this.getData().username + "," + content + "\r", true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -503,7 +510,7 @@ public class GetInfoPlayer extends BasePlayer {
         for(int i = 0; i < 100; i++){
             Map<String, Object> m = lists.get(i);
             try {
-                FileUtils.write(new File("./loverank-20210114.txt"), m.get("name") + "," + m.get("num") + "\r", true);
+                FileUtils.write(new File("./loverank-20210401.txt"), m.get("name") + "," + m.get("num") + "\r", true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -513,4 +520,66 @@ public class GetInfoPlayer extends BasePlayer {
     }
 
 
+    public void hero_lvup(int heroid){
+
+        String resp = this.getAllinfo();
+        Configuration conf = Configuration.defaultConfiguration();
+        Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf2).parse(resp);
+
+        List<Map<String, Object>> heros2 = dc.read("$.a.hero.heroList");
+
+        List<Integer> lv1 = dc.read("$.a.item.itemList[?(@.id==160)].count");
+        List<Integer> lv2 = dc.read("$.a.item.itemList[?(@.id==161)].count");
+        List<Integer> lv3 = dc.read("$.a.item.itemList[?(@.id==162)].count");
+
+        for(int i = 0; i < heros2.size(); i++){
+            Hero hero = new Hero();
+            Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
+
+            Integer lv = Integer.valueOf(heros2.get(i).get("level").toString());
+            Integer zz = Integer.valueOf(((Map)heros2.get(i).get("zz")).get("e1").toString());
+
+            if(id.intValue() == heroid){
+                hero.lv = lv.intValue();
+                hero.zz = zz.intValue();
+                hero.name = HeroData.heroname.get(id);
+                hero.id = id;
+
+                HeroPlayer hp = new HeroPlayer(this);
+
+                if(hero.lv < 200){
+                    hp.lv_item_300();
+                }else if(hero.lv < 250){
+                    hp.lv_item_300_from_200();
+                }else if(hero.lv < 300){
+                    hp.lv_item_300_from_250();
+                }
+                hp.hero_up(hero.id, hero.lv);
+            }
+        }
+    }
+
+
+    public void hero_pkskill_lvup(int heroid){
+
+        String resp = this.getAllinfo();
+        Configuration conf = Configuration.defaultConfiguration();
+        Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf2).parse(resp);
+
+        List<Integer> lv1 = dc.read("$.a.hero.heroList[?(@.id=="+heroid+")].pkskill[?(@.id==1)].level");
+        List<Integer> lv2 = dc.read("$.a.hero.heroList[?(@.id=="+heroid+")].pkskill[?(@.id==2)].level");
+
+        int lv1i = Integer.valueOf(getFromList(lv1).toString()).intValue();
+        int lv2i = Integer.valueOf(getFromList(lv2).toString()).intValue();
+
+        HeroPlayer hp = new HeroPlayer(this);
+        for(int i = 1; i <= 100 - lv1i; i++){
+            hp.pkskill1up(heroid);
+        }
+        for(int i = 1; i <= 100 - lv2i; i++){
+            hp.pkskill2up(heroid);
+        }
+    }
 }

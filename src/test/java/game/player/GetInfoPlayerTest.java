@@ -20,38 +20,17 @@ class GetInfoPlayerTest {
     @Test
     void getAll() {
 
-        Future<String> fDAHAO = es.submit(() -> {
-
-            runner.singleDahao(p -> {
-                GetInfoPlayer gp = new GetInfoPlayer(p);
-                gp.getAll(DAHAO);
-            });
-            return "dahao";
-        } );
-
-        Future<String> fXIAOHAO1 = es.submit(() -> {
-
-            runner.singleXiaohao1(p -> {
-                GetInfoPlayer gp = new GetInfoPlayer(p);
-                gp.getAll(XIAOHAO1);
-            });
-            return "XIAOHAO1";
-        } );
-
-        Future<String> fXIAOHAO2 = es.submit(() -> {
-
-            runner.singleXiaohao2(p -> {
-                GetInfoPlayer gp = new GetInfoPlayer(p);
-                gp.getAll(XIAOHAO2);
-            });
-            return "XIAOHAO2";
-        } );
-
-        try {
-            System.out.println(fDAHAO.get() + fXIAOHAO1.get() + fXIAOHAO2.get());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        String all1 = runner.all1( p -> {
+            GetInfoPlayer gp = new GetInfoPlayer(p);
+            gp.getAll(DAHAO);
+        }, p-> {
+            GetInfoPlayer gp = new GetInfoPlayer(p);
+            gp.getAll(XIAOHAO1);
+        }, p -> {
+            GetInfoPlayer gp = new GetInfoPlayer(p);
+            gp.getAll(XIAOHAO2);
+        });
+        System.out.println(all1);
 
     }
 
@@ -69,4 +48,52 @@ class GetInfoPlayerTest {
         });
 
     }
+
+
+    @Test
+    void openMail() {
+        String all1 = runner.all1( p -> {
+            GetInfoPlayer gp = new GetInfoPlayer(p);
+            gp.openAllmail();
+        });
+        System.out.println(all1);
+
+    }
+
+
+    @Test
+    void hero_lvup_test() {
+        runner.single("huodong.json", p ->{
+            GetInfoPlayer gp = new GetInfoPlayer(p);
+            gp.hero_lvup(44);
+        });
+
+    }
+
+    @Test
+    void hero_lvup_all_test() {
+        runner.all1(p ->{
+            GetInfoPlayer gp = new GetInfoPlayer(p);
+            gp.hero_lvup(1);
+        });
+
+    }
+
+    @Test
+    void hero_pkskill_lvup_test() {
+        runner.single("huodong.json", p ->{
+            GetInfoPlayer gp = new GetInfoPlayer(p);
+            gp.hero_pkskill_lvup(1);
+        });
+    }
+
+    @Test
+    void hero_pkskill_lvup_all_test() {
+        runner.all1(p ->{
+            GetInfoPlayer gp = new GetInfoPlayer(p);
+            gp.hero_pkskill_lvup(8);
+        });
+    }
+
+
 }

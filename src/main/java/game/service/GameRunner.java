@@ -3,6 +3,7 @@ package game.service;
 import com.alibaba.fastjson.JSONObject;
 import game.config.Flags;
 import game.player.BasePlayer;
+import game.player.Double11Player;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,7 @@ import reactor.core.scheduler.Schedulers;
 
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -47,9 +45,9 @@ public interface GameRunner<T extends BasePlayer> {
 
     static Resource getResource(String file){
 
-        return new ClassPathResource(file);
+//        return new ClassPathResource(file);
 
-//        return new FileSystemResource("/usr/games/" + file);
+        return new FileSystemResource("/usr/games/" + file);
 //        return new FileSystemResource("D:/Work/reactor/src/main/resources/" + file);
     }
 
@@ -61,29 +59,46 @@ public interface GameRunner<T extends BasePlayer> {
         es.submit(() -> this.singleXiaohao2(consumer));
     }
 
-    default String all1(Consumer<T> consumer){
+    default String all1(Consumer<T> consumer1, Consumer<T> consumer2, Consumer<T> consumer3){
         Future<String> dahao = es.submit(() -> {
-
-            this.singleDahao(consumer);
+            if(Objects.nonNull(consumer1)){
+                this.singleDahao(p -> {
+                    consumer1.accept(p);
+                });
+            }
             return "dahao";
         } );
 
-
         Future<String> xiaohao1 =  es.submit(() -> {
-            this.singleXiaohao1(consumer);
+            if(Objects.nonNull(consumer2)){
+                this.singleXiaohao1(p -> {
+                    consumer2.accept(p);
+                });
+            }
             return "Xiaohao1";
         });
 
         Future<String> xiaohao2 = es.submit(() -> {
-            this.singleXiaohao2(consumer);
+            if(Objects.nonNull(consumer3)){
+                this.singleXiaohao2(p -> {
+                    consumer3.accept(p);
+                });
+            }
             return "Xiaohao2";
         });
 
         try {
-            return dahao.get() + xiaohao1.get() + xiaohao2.get();
+            return
+                    dahao.get() +
+                    xiaohao1.get() +
+                            xiaohao2.get();
         } catch (Exception e) {
             return "not all done";
         }
+    }
+
+    default String all1(Consumer<T> consumer){
+        return this.all1(consumer, consumer, consumer);
 
     }
 
@@ -299,7 +314,7 @@ public interface GameRunner<T extends BasePlayer> {
             String players = FileUtils.readFileToString(playerData.getFile(), Charset.defaultCharset());
 
             List<PlayerData> datas = JSONObject.parseArray(players, PlayerData.class)
-//                    .subList(45, 88)
+//                    .subList(43, 86)
                     ;
 
 //            System.out.println(datas.size());

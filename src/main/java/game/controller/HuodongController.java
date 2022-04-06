@@ -65,6 +65,23 @@ public class HuodongController {
     }
 
 
+    @ApiOperation(value="巢穴", tags = {"巢穴活动"})
+    @GetMapping("/caoxue")
+    @ResponseBody
+    public String caoxue() {
+        this.base(hp -> {hp.caoxueAll();});
+        return "done";
+    }
+
+    @ApiOperation(value="巢穴活动奖励", tags = {"巢穴活动"})
+    @GetMapping("/caoxueReward")
+    @ResponseBody
+    public String caoxueReward() {
+        this.base(hp -> {hp.caoxueReward();});
+        return "done";
+    }
+
+
 
 
 

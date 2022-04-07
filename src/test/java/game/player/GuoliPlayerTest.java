@@ -16,10 +16,16 @@ class GuoliPlayerTest {
     public void addGuoli(){
         String all1 = runner.all1( p -> {
             GuoliPlayer gp = new GuoliPlayer(p);
-//            gp.silu();
+//            gp.silu(20);
             gp.addGuoli();
-
-
+        }, p -> {
+            GuoliPlayer gp = new GuoliPlayer(p);
+//            gp.silu(30);
+            gp.addGuoli();
+        }, p -> {
+            GuoliPlayer gp = new GuoliPlayer(p);
+//            gp.silu(10);
+            gp.addGuoli();
         });
         System.out.println(all1);
     }

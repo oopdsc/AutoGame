@@ -16,13 +16,26 @@ public class QinmiController {
     DefaultGameRunner runner = new DefaultGameRunner();
 
     @ApiOperation(value="用玉米", tags = {"亲密榜"})
-    @GetMapping("/usercook")
+    @GetMapping("/usecook")
     @ResponseBody
-    public String usercook() {
+    public String usecook() {
 
         runner.all( p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            qp.useCook();
+            qp.useCook(3);
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="用一次玉米", tags = {"亲密榜"})
+    @GetMapping("/usecookOnce")
+    @ResponseBody
+    public String usecookOnce() {
+
+        runner.all( p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            qp.useCook(1);
         });
 
         return "done";

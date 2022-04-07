@@ -29,21 +29,21 @@ public class QinmiPlayer extends BasePlayer {
 
 
     //使用爆米花
-    public void useCook(int roleid) {
+    public void useCookAction(int roleid) {
         String body2 = "{\"rsn\":\"%s\",\"item\":{\"userYard\":{\"count\":1,\"roleid\":" + roleid + ",\"id\":207}}}";
         this.runAction1(body2);
     }
 
-    public void useCook(){
+    public void useCook(int num){
         ResponseEntity<String> res = this.runAction3("{\"rsn\":\"%s\",\"guide\":{\"login\":{\"platform\":\"qiangwanzdhgios\",\"ug\":\"\"}}}");
 
         DocumentContext dc = JsonPath.parse(res.getBody());
 
         List<Object> wifeId = dc.read("$.a.wife.wifeList[?(@.banish==0)].id");
         wifeId.stream().forEach(id -> {
-            this.useCook(Integer.valueOf(id.toString()).intValue());
-            this.useCook(Integer.valueOf(id.toString()).intValue());
-            this.useCook(Integer.valueOf(id.toString()).intValue());
+            for(int i = 1; i <= num; i++){
+                this.useCookAction(Integer.valueOf(id.toString()).intValue());
+            }
         });
     }
 

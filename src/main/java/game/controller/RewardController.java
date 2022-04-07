@@ -129,7 +129,7 @@ public class RewardController {
     @GetMapping("/rewardZhuangban")
     @ResponseBody
     public String rewardZhuangban() {
-        return this.reward(10, rp -> rp.rewardZhuangban());
+        return this.reward(1, rp -> rp.rewardZhuangban());
     }
 
 //    @ApiOperation(value = "巢穴活动", tags = {"奖励"})

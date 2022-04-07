@@ -46,7 +46,6 @@ public interface GameRunner<T extends BasePlayer> {
     static Resource getResource(String file){
 
 //        return new ClassPathResource(file);
-
         return new FileSystemResource("/usr/games/" + file);
 //        return new FileSystemResource("D:/Work/reactor/src/main/resources/" + file);
     }

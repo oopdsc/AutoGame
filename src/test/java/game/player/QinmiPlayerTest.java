@@ -33,7 +33,7 @@ class QinmiPlayerTest {
     void allUseCook() {
         runner.all1( p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            qp.useCook();
+            qp.useCook(3);
         });
 
         System.out.println("done");

@@ -47,11 +47,11 @@ public class HeroPlayer extends BasePlayer {
     }
 
     public void lv_up(int heroid){
-        this.runAction3("{\"hero\":{\"upgradeTen\":{\"id\":"+heroid+"}},\"rsn\":\"%s\"}");
+        this.runAction1("{\"hero\":{\"upgradeTen\":{\"id\":"+heroid+"}},\"rsn\":\"%s\"}");
     }
 
     public void senior_up(int heroid){
-        this.runAction3("{\"hero\":{\"upsenior\":{\"id\":"+heroid+"}},\"rsn\":\"%s\"}");
+        this.runAction1("{\"hero\":{\"upsenior\":{\"id\":"+heroid+"}},\"rsn\":\"%s\"}");
     }
 
     public void lv_item_300_from_200(){

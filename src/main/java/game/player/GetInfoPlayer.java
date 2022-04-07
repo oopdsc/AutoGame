@@ -40,8 +40,8 @@ public class GetInfoPlayer extends BasePlayer {
     public void getAll(String folder){
         String resp = this.getAllinfo();
 //        this.getBeastInfo(resp, folder);
-        this.getCash(resp, folder);
-//        this.hero(resp, folder);
+//        this.getCash(resp, folder);
+        this.hero(resp, folder);
 //        this.getCourtyardInfo(false, folder);
 //        System.out.println("done : " + folder);
 
@@ -282,7 +282,9 @@ public class GetInfoPlayer extends BasePlayer {
         List<Map<String, Object>> heros2 = dc.read("$.a.hero.heroList");
 //        Map<Integer, Object> topheros2 = new HashMap<>();
 
-        boolean hasMachao = false;
+        boolean has33 = false;
+        boolean has34 = false;
+        boolean has37 = false;
         for(int i = 0; i < heros2.size(); i++){
             Hero hero = new Hero();
             Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
@@ -297,13 +299,26 @@ public class GetInfoPlayer extends BasePlayer {
             heros.add(hero);
 //            topheros2.put(zz, id + HeroData.heroname.get(id) + "-" + lv + ":" + zz);
 
-            if(id.intValue() == 35){
-                hasMachao = true;
+            if(id.intValue() == 33){
+                has33 = true;
             }
+            if(id.intValue() == 34){
+                has34 = true;
+            }
+            if(id.intValue() == 37){
+                has37 = true;
+            }
+
         }
 
-        if(!hasMachao){
-            this.runAction0("{\"huodong\":{\"hd271Rwd\":{\"id\":35}},\"rsn\":\"%s\"}");
+        if(!has33){
+            this.runAction1("{\"huodong\":{\"hd271Rwd\":{\"id\":33}},\"rsn\":\"%s\"}");
+        }
+        if(!has34){
+            this.runAction1("{\"huodong\":{\"hd271Rwd\":{\"id\":34}},\"rsn\":\"%s\"}");
+        }
+        if(!has37){
+            this.runAction1("{\"huodong\":{\"hd271Rwd\":{\"id\":37}},\"rsn\":\"%s\"}");
         }
 //
 //        heros.sort((y, x) -> {
@@ -536,7 +551,6 @@ public class GetInfoPlayer extends BasePlayer {
         for(int i = 0; i < heros2.size(); i++){
             Hero hero = new Hero();
             Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
-
             Integer lv = Integer.valueOf(heros2.get(i).get("level").toString());
             Integer zz = Integer.valueOf(((Map)heros2.get(i).get("zz")).get("e1").toString());
 

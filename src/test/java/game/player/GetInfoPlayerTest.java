@@ -60,7 +60,6 @@ class GetInfoPlayerTest {
 
     }
 
-
     @Test
     void hero_lvup_test() {
         runner.single("huodong.json", p ->{
@@ -74,9 +73,16 @@ class GetInfoPlayerTest {
     void hero_lvup_all_test() {
         runner.all1(p ->{
             GetInfoPlayer gp = new GetInfoPlayer(p);
-            gp.hero_lvup(1);
+            gp.hero_lvup(10);
         });
+    }
 
+    @Test
+    void hero_lvup_all_test2() {
+        runner.all1(p ->{
+            GetInfoPlayer gp = new GetInfoPlayer(p);
+            gp.hero_lvup(41);
+        });
     }
 
     @Test

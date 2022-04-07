@@ -81,11 +81,16 @@ public class BasePlayer {
     public void silu() {
 
 //        if(!"ssqwerty".equals(this.data.username)){
-            String body = "{\"silkroad\":{\"rootPlay\":{\"gid\":" + (data.silu + 30) + "}},\"rsn\":\"" + getRsn() + "\"}";
+            String body = "{\"silkroad\":{\"rootPlay\":{\"gid\":" + data.silu + "}},\"rsn\":\"" + getRsn() + "\"}";
             this.execute(baseUrl, body);
 //        }
 
 
+    }
+
+    public void silu(int silu) {
+        String body = "{\"silkroad\":{\"rootPlay\":{\"gid\":" + (data.silu +silu) + "}},\"rsn\":\"" + getRsn() + "\"}";
+        this.execute(baseUrl, body);
     }
 
     public void taofa() {

@@ -28,6 +28,71 @@ public class GuoliController {
         return "done";
     }
 
+    @ApiOperation(value="加武力", tags = {"国力榜"})
+    @GetMapping("/addWuli")
+    @ResponseBody
+    public String addWuli() {
+
+        runner.all( p -> {
+            GuoliPlayer gp = new GuoliPlayer(p);
+            gp.addWuli();
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="加智力", tags = {"国力榜"})
+    @GetMapping("/addZhili")
+    @ResponseBody
+    public String addZhili() {
+
+        runner.all( p -> {
+            GuoliPlayer gp = new GuoliPlayer(p);
+            gp.addZhili();
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="加政治", tags = {"国力榜"})
+    @GetMapping("/addZhengzhi")
+    @ResponseBody
+    public String addZhengzhi() {
+
+        runner.all( p -> {
+            GuoliPlayer gp = new GuoliPlayer(p);
+            gp.addZhengzhi();
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="加魅力", tags = {"国力榜"})
+    @GetMapping("/addMeili")
+    @ResponseBody
+    public String addMeili() {
+
+        runner.all( p -> {
+            GuoliPlayer gp = new GuoliPlayer(p);
+            gp.addMeili();
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="加全属性", tags = {"国力榜"})
+    @GetMapping("/addQuan")
+    @ResponseBody
+    public String addQuan() {
+
+        runner.all( p -> {
+            GuoliPlayer gp = new GuoliPlayer(p);
+            gp.addQuan();
+        });
+
+        return "done";
+    }
+
 
 }
 

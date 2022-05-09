@@ -27,11 +27,13 @@ public class HuodongPlayer extends BasePlayer {
     public void danzhu(){
         this.runAction3("{\"huodong2\":{\"hd962Info\":[]},\"rsn\":\"%s\"}");
 
-        this.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":10}},\"rsn\":\"%s\"}");
+//        this.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":10}},\"rsn\":\"%s\"}");
+        for(int i = 1; i <= 9; i++){
+            this.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":1}},\"rsn\":\"%s\"}");
+        }
 
-        this.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":1}},\"rsn\":\"%s\"}");
 
-        this.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":1}},\"rsn\":\"%s\"}");
+//        this.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":1}},\"rsn\":\"%s\"}");
     }
 
     /**
@@ -62,6 +64,23 @@ public class HuodongPlayer extends BasePlayer {
         }
     }
 
+    public void zizhifanli(){
+        this.runAction2("{\"huodong\":{\"hd715Rwd\":[]},\"rsn\":\"%s\"}");
+    }
+
+    public void lishanXunli_daily(){
+        this.runAction2("{\"huodong2\":{\"hd708Task\":{\"id\":1}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"huodong2\":{\"hd708Task\":{\"id\":2}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"huodong2\":{\"hd708Task\":{\"id\":3}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"huodong2\":{\"hd708Task\":{\"id\":4}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"huodong2\":{\"hd708Task\":{\"id\":7}},\"rsn\":\"%s\"}");
+    }
+
+    public void lishanXunli_xunli(){
+        this.runAction2("{\"huodong2\":{\"hd708Play\":{\"num\":10}},\"rsn\":\"%s\"}");
+    }
+
+
     /**
      * 吃鸡活动
      */
@@ -83,8 +102,8 @@ public class HuodongPlayer extends BasePlayer {
     public void chijiReward(){
         String body2 = "{\"huodong\":{\"hd282exchange\":{\"id\":5}},\"rsn\":\"%s\"}";
         //"{\"huodong\":{\"hd282exchange\":{\"id\":3}},\"rsn\":\"%s\"}";
-        for(int i = 1; i <= 10; i++){
-            this.runAction3(body2);
+        for(int i = 1; i <= 3; i++){
+            this.runAction2(body2);
         }
     }
 
@@ -126,7 +145,7 @@ public class HuodongPlayer extends BasePlayer {
      * 种树活动奖励
      */
     public void zhongshuReward() {
-        this.runAction3("{\"huodong\":{\"hd437exchange\":{\"id\":9}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"huodong\":{\"hd437exchange\":{\"id\":9}},\"rsn\":\"%s\"}");
 
     }
 
@@ -134,7 +153,7 @@ public class HuodongPlayer extends BasePlayer {
      * 赛马
      * @param hid
      */
-    public void saima(int hid) {
+    public void saimaCreate(int hid) {
         String resp = this.runAction3("{\"huodong\":{\"hd685Info\":[]},\"rsn\":\"%s\"}").getBody();
 
         Object clubid = JsonPath.read(resp, "$.a.mjdshuodong.user.my_club_id");
@@ -143,6 +162,12 @@ public class HuodongPlayer extends BasePlayer {
         runAction3("{\"huodong\":{\"hd685startGame\":{\"startGame\":" + new Date().getTime() / 1000 + "}},\"rsn\":\"%s\"}");
         sleep(60);
         runAction3("{\"huodong\":{\"hd685endGame\":{\"club_id\":"+clubid.toString()+",\"hid\":" + hid + ",\"daoju\":[{\"count\":30,\"kind\":11,\"id\":793}]}},\"rsn\":\"%s\"}");
+    }
+
+    public void saima_reward(){
+        for(int i = 1; i <= 15; i++){
+            this.runAction1("{\"huodong\":{\"hd685exchange\":{\"num\":1,\"id\":6}},\"rsn\":\"%s\"}");
+        }
     }
 
     /**
@@ -232,8 +257,8 @@ public class HuodongPlayer extends BasePlayer {
         }
     }
 
-    public void saima(){
-        this.runAction3("{\"huodong\":{\"hd685createClub\":{\"name\":\""+rd.nextInt(7) + "2" + rd.nextInt(8) + "3" + rd.nextInt(9) +"\",\"rand\":1}},\"rsn\":\"%s\"}");
+    public void saimaCreate(){
+        this.runAction3("{\"huodong\":{\"hd685createClub\":{\"name\":\"X"+rd.nextInt(7) + "2" + rd.nextInt(8) + "3" + rd.nextInt(9) +"\",\"rand\":1}},\"rsn\":\"%s\"}");
     }
 
     //7008920
@@ -310,6 +335,19 @@ public class HuodongPlayer extends BasePlayer {
 
 
 
+    }
+
+    public void reward_ganen(){
+        for(int i = 1; i <= 7; i++) {
+            if(i == 3){
+                this.runAction3("{\"huodong2\":{\"hd997option\":{\"id\":" + i + ",\"itemid\":4}},\"rsn\":\"%s\"}");
+            }else{
+                this.runAction3("{\"huodong2\":{\"hd997option\":{\"id\":" + i + ",\"itemid\":1}},\"rsn\":\"%s\"}");
+            }
+
+            sleepInMillis(500);
+            this.runAction3("{\"huodong2\":{\"hd997getSignRwd\":{\"id\":" + i + "}},\"rsn\":\"%s\"}");
+        }
     }
 
 }

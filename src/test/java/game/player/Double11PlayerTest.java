@@ -11,14 +11,19 @@ class Double11PlayerTest {
 
     @Test
     void buyItems() {
-        runner.all1(p -> {
+        runner.all1(
+                p -> {
             Double11Player hp = new Double11Player(p);
             hp.buyJinguoIn11();
-//            hp.buyQinmi();
+            hp.buyQinmi();
+            hp.buyQinmi();
             hp.buyMeili();
 
-            hp.runAction1("{\"huodong2\":{\"hd238Get\":[]},\"rsn\":\"%s\"}");
-            hp.runAction1("{\"huodong\":{\"hd546buy\":{\"id\":1}},\"rsn\":\"%s\"}");
+
+//            hp.buyMeili();
+
+//            hp.runAction1("{\"huodong2\":{\"hd238Get\":[]},\"rsn\":\"%s\"}");
+//            hp.runAction1("{\"huodong\":{\"hd546buy\":{\"id\":1}},\"rsn\":\"%s\"}");
 
 //            HuodongPlayer hp2 = new HuodongPlayer(p);
 //            hp2.cangjian();
@@ -27,6 +32,20 @@ class Double11PlayerTest {
 //            yp.reward_KuafuYamen();
 
 
+        }, p-> {
+            Double11Player hp = new Double11Player(p);
+            hp.buyJinguoIn11();
+            hp.buyMeili();
+                    hp.buyQinmi();
+                    hp.buyMeili();
+        },
+//                null, null,
+    p-> {
+            Double11Player hp = new Double11Player(p);
+            hp.buyJinguoIn11();
+            hp.buyMeili();
+        hp.buyQinmi();
+        hp.buyMeili();
         });
         System.out.println("done");
     }

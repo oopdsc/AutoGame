@@ -41,13 +41,24 @@ public class MeiliPlayer extends BasePlayer {
         this.runAction3("{\"huodong2\":{\"hd954play\":{\"num\":1}},\"rsn\":\"%s\"}");
     }
 
+    /**
+     * 1 - 小药丸
+     * 2 - 中药丸
+     * 3 - 大药丸
+     * 9 - 孔雀
+     * 10 - 灵蛇
+     * 11 - 白熊
+     * 12 - 斗牛
+     * @param id
+     */
     public void buyBeast(int id) {
+
         this.runAction3("{\"rsn\":\"%s\",\"beast\":{\"buy\":{\"id\":" + id + "}}}");
     }
 
     /**
      * @param itemid  1 : 小经验；2 : 中经验； 3 ： 大经验
-     * @param beastid 1 ： 狐狸； 2 ： 猴子
+     * @param beastid 1 ： 狐狸； 2 ： 猴子    8： 斗牛
      */
     public void upLvBeast(int itemid, int beastid) {
 //        {"rsn":"8avijeeaak","beast":{"upLv":{"type":1,"item_id":2,"id":1}}}
@@ -74,9 +85,9 @@ public class MeiliPlayer extends BasePlayer {
 
         this.meili21();
 
-        this.runAction3("{\"huodong2\":{\"hd954GetTaskRwd\":[]},\"rsn\":\"%s\"}");
+        this.runAction1("{\"huodong2\":{\"hd954GetTaskRwd\":[]},\"rsn\":\"%s\"}");
 //
-        this.runAction3("{\"huodong2\":{\"hd954play\":{\"num\":1}},\"rsn\":\"%s\"}");
+        this.runAction1("{\"huodong2\":{\"hd954play\":{\"num\":1}},\"rsn\":\"%s\"}");
     }
 
     public void meili_reward(){

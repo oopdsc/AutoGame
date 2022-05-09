@@ -39,6 +39,7 @@ public class BasePlayer {
     public BasePlayer(PlayerData data) {
         this.data = data;
         headers = new HttpHeaders();
+//        User-Agent: appstoreQWNEW/1.0.2.1 CFNetwork/1197 Darwin/20.0.0
         headers.set("User-Agent", "appstoreQWNEW/1.0.2.1 CFNetwork/1197 Darwin/20.0.0");
         headers.set("Content-Type", "application/x-www-form-urlencoded");
     }
@@ -51,7 +52,7 @@ public class BasePlayer {
             String body = "{\"rsn\":\"" + getRsn() + "\",\"login\":{\"loginAccount\":{\"platform\":\"qiangwanzdhgios\"," +
                     "\"openid\":\"" + data.openid + "\",\"openkey\":\"" + data.openkey + "\"}}}";
 
-            ResponseEntity<String> response2 = this.executeSleep("http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.351&uid=&token=&platform=qiangwanzdhgios&lang=zh-cn", body, 1);
+            ResponseEntity<String> response2 = this.executeSleep("http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.380&uid=&token=&platform=qiangwanzdhgios&lang=zh-cn", body, 1);
 
             body = response2.getBody();
 
@@ -62,12 +63,12 @@ public class BasePlayer {
                 String token = JsonPath.parse(body).read("$.a.loginMod.loginAccount.token", String.class);
                 this.data.uid = uid;
                 this.data.token = token;
-                this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.351&uid=" + uid + "&token=" + token + "&platform=qiangwanzdhgios&lang=zh-cn";
+                this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.380&uid=" + uid + "&token=" + token + "&platform=qiangwanzdhgios&lang=zh-cn";
             } catch (Exception ex) {
                 logger.error("Login failed for {}", data.username);
             }
         } else {
-            this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.351&uid=" + data.uid + "&token=" + data.token + "&platform=qiangwanzdhgios&lang=zh-cn";
+            this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.380&uid=" + data.uid + "&token=" + data.token + "&platform=qiangwanzdhgios&lang=zh-cn";
         }
 
 
@@ -268,18 +269,21 @@ public class BasePlayer {
 
 
     public void useXoItems() {
-        this.runAction3("{\"wife\":{\"weige\":[]},\"rsn\":\"%s\"}");
+        this.runAction1("{\"wife\":{\"weige\":[]},\"rsn\":\"%s\"}");
     }
 
-    public void xo() {
-        String body1 = "{\"wife\":{\"yjxo\":[]},\"rsn\":\"" + getRsn() + "\"}";
-        this.execute(baseUrl, body1);
+    public void yjxo() {
+//        String body1 = "{\"wife\":{\"yjxo\":[]},\"rsn\":\"" + getRsn() + "\"}";
+//        this.execute(baseUrl, body1);
+
+        String body1 = "{\"wife\":{\"yjxo\":[]},\"rsn\":\"%s\"}";
+        this.runAction1(body1);
     }
 
     public void sjxo() {
-        for (int i = 1; i <= 3; i++) {
-            String body1 = "{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}";
-            this.runAction3(body1);
+        String body1 = "{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}";
+        for (int i = 1; i <= 4; i++) {
+            this.runAction1(body1);
         }
     }
 
@@ -296,14 +300,15 @@ public class BasePlayer {
 
     //one key
     public void xunfun() {
-        String body1 = "{\"rsn\":\"" + getRsn() + "\",\"xunfang\":{\"xunfan\":{\"type\":1}}}";
-        this.execute(baseUrl, body1);
+//        String body1 = "{\"rsn\":\"" + getRsn() + "\",\"xunfang\":{\"xunfan\":{\"type\":1}}}";
+//        this.execute(baseUrl, body1);
+        this.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":1}}}");
     }
 
     //single xunfun
     public void xunfun2() {
-        for (int i = 1; i <= 3; i++) {
-            this.runAction3("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+        for (int i = 1; i <= 4; i++) {
+            this.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
         }
     }
 
@@ -556,6 +561,8 @@ public class BasePlayer {
     public void interanlYamen(ResponseEntity<String> resp) {
         int index = 1;
         int shopTime = 0;
+
+        logger.info(resp.getBody());
         Object fstate = JsonPath.parse(resp.getBody()).read("$.a.yamen.fight.fstate");
 
         while (!"0".equals(fstate.toString())) {
@@ -721,7 +728,11 @@ public class BasePlayer {
             this.execute(baseUrl, body);
         }
 
-        String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":15,\"fuid\":7006984}}}";
+        //快活帝 - 联盟亲密
+//        String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":15,\"fuid\":7006984}}}";
+
+        //精诚帝 - 联盟经验
+        String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":5,\"fuid\":7006984}}}";
         this.runAction2(body);
     }
 

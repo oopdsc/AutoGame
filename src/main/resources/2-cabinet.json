@@ -1,0 +1,76 @@
+[
+
+  {
+    "username": "18612160829",
+    "openid": "2587970_ios",
+    "openkey": "517a191aebf30aab78f46f2394f662a4",
+    "cabinetIndex" : 0,
+    "cabinetHeros" : [8,23,42,12,20]
+  },
+  {
+    "username": "15504973518",
+    "openid": "2577582_ios",
+    "openkey": "c6a93831e818775f401736ef17b9b73b",
+    "cabinetIndex" : 1,
+    "cabinetHeros" : [41, 55, 2, 44, 8]
+
+  },
+  {
+    "username": "13812788376",
+    "openid": "2568415_ios",
+    "openkey": "0996a5b69f1b3a444d44de316af74e6d",
+    "cabinetIndex" : 2,
+    "cabinetHeros" : [12,35,24,63,39]
+
+  },
+  {
+    "username": "457181660",
+    "openid": "2586827_ios",
+    "openkey": "d24fcba5f37b74a9e46d2bf619921a13",
+    "cabinetIndex" : 3,
+    "cabinetHeros" : [24,26,23,66,1]
+  },
+  {
+    "username": "z7211191",
+    "openid": "2568394_ios",
+    "openkey": "ad19219f6bc716d22f94b6195593ee58",
+    "cabinetIndex" : 4,
+    "cabinetHeros" : [28,10,43,8,1]
+  },
+  {
+    "username": "15686784340",
+    "openid": "2585111_ios",
+    "openkey": "9bfe04856b258614d86863cb243e72cf",
+    "cabinetIndex" : 5,
+    "cabinetHeros" : [34,16,20,35,2]
+  },
+  {
+    "username": "shinecy1126",
+    "openid": "2567577_ios",
+    "openkey": "ed0fa55e91a748c73b83608b9233ab4f",
+    "cabinetIndex" :6,
+    "cabinetHeros" : [45,46,36,16,35]
+  },
+  {
+    "username": "lonely7201984",
+    "openid": "2587595_ios",
+    "openkey": "9681c2926adb8b31e31a559c2f5204d7",
+    "cabinetIndex" : 7,
+    "cabinetHeros" : [38,40,36,55,24]
+  },
+  {
+    "username": "liu271",
+    "openid": "2545181_ios",
+    "openkey": "0ff051255f1042d466a37983e278d8b2",
+    "cabinetIndex" :8,
+    "cabinetHeros" : [40,16,20,44,24]
+  },
+  {
+    "username": "muyang1",
+    "openid": "3455308_ios",
+    "openkey": "77bcb9f7c37d639ba12a3681bfbe7baa",
+    "cabinetIndex" : 9,
+    "cabinetHeros" : [1,2,6,10,36]
+  }
+
+]

@@ -47,7 +47,7 @@ public class DahaoAt130Task {
                             p.son();
 
                             p.xunfun();
-                            p.zhengwu();
+                            p.zhengwu1();
                             p.jingying();
 
                             for(int i = 1; i <= Flags.cook; i++){

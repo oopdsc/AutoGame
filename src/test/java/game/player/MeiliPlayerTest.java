@@ -17,7 +17,7 @@ class MeiliPlayerTest {
     @Test
     public void alluseMeiliItems1() {
 
-        int num = 21;
+        int num = 25;
         StopWatch sw = new StopWatch();
         sw.start();
         runner.all1(p -> {
@@ -37,7 +37,7 @@ class MeiliPlayerTest {
     void meili1() {
         StopWatch sw = new StopWatch();
         sw.start();
-        int num = 1000;
+        int num = 500;
         runner.single(GameRunner.HUODONG, p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
             for(int i = 1; i <= num; i++){
@@ -55,7 +55,7 @@ class MeiliPlayerTest {
     void meili2() {
         StopWatch sw = new StopWatch();
         sw.start();
-        int num = 1000;
+        int num = 500;
         runner.single(GameRunner.HUODONG, p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
             for(int i = 1; i <= num; i++){
@@ -89,8 +89,8 @@ class MeiliPlayerTest {
             MeiliPlayer mp = new MeiliPlayer(p);
             mp.meili_reward();
 
-            Double11Player dp = new Double11Player(p);
-            dp.sishanWeek();
+//            Double11Player dp = new Double11Player(p);
+//            dp.sishanWeek();
         });
         System.out.println(all1);
     }

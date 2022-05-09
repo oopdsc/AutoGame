@@ -4,12 +4,6 @@ import game.active.DefaultGameRunner;
 import game.service.GameRunner;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.util.Random;
-
-import static game.service.GameRunner.*;
-import static org.junit.jupiter.api.Assertions.*;
-
 class HuodongPlayerTest {
 
     DefaultGameRunner runner = new DefaultGameRunner();
@@ -32,10 +26,10 @@ class HuodongPlayerTest {
 
     @Test
     void zaji() {
-        runner.all1(p -> {
+        runner.all1(null, null, p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.zajiActive();
-            hp.zajiReward();
+//            hp.zajiReward();
         });
     }
 
@@ -52,9 +46,12 @@ class HuodongPlayerTest {
         runner.all1(p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.zhongshuReward();
+            hp.chijiReward();
+            hp.lishanXunli_daily();
+            hp.lishanXunli_xunli();
 
-            RewardPlayer rp = new RewardPlayer(p);
-            rp.rewardZhuangban();
+//            RewardPlayer rp = new RewardPlayer(p);
+//            rp.rewardZhuangban();
         });
     }
 
@@ -79,11 +76,11 @@ class HuodongPlayerTest {
     }
 
     @Test
-    void saima(){
-        runner.single("huodong.json", p -> {
+    void saimaCreate(){
+        runner.single("gold.json", p -> {
             System.out.println(p.data.uid);
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.saima();
+            hp.saimaCreate();
 //            hp.runAction1("{\"huodong\":{\"hd685chageRand\":{\"rand\":1}},\"rsn\":\"%s\"}");
         });
         System.out.println("done");
@@ -94,7 +91,19 @@ class HuodongPlayerTest {
         runner.all1(p -> {
             GameRunner.sleepInMillis(runner.rd.nextInt(30));
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.saima(2);
+            hp.saimaCreate(6);
+
+            hp.zhongshuReward();
+        });
+        System.out.println("done");
+    }
+
+    @Test
+    void saima_reward_test(){
+        runner.all1(p -> {
+//            GameRunner.sleepInMillis(runner.rd.nextInt(30));
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.saima_reward();
         });
         System.out.println("done");
     }
@@ -194,7 +203,7 @@ class HuodongPlayerTest {
         runner.all1(p -> {
 
             HuodongPlayer hp = new HuodongPlayer(p);
-
+//            hp.bu
 
 
         });
@@ -229,5 +238,48 @@ class HuodongPlayerTest {
             hp.wabao();
         });
         System.out.println("done");
+    }
+
+    /**
+     * 五一活动
+     */
+    @Test
+    void wuyi(){
+        runner.all1(p -> {
+//            p.runAction1("{\"hd988\":{\"play\":{\"count\":5}},\"rsn\":\"%s\"}");
+//
+//            p.runAction1("{\"huodong2\":{\"hd989Select\":{\"selects\":\"84_1,81_1,381_1,76_1\",\"id\":1}},\"rsn\":\"%s\"}");
+//            p.runAction1("{\"huodong2\":{\"hd989Pickup\":{\"id\":1}},\"rsn\":\"%s\"}");
+//
+//            p.runAction1("{\"huodong2\":{\"hd989Select\":{\"selects\":\"83_1,106_1,107_1,123_1\",\"id\":2}},\"rsn\":\"%s\"}");
+//            p.runAction1("{\"huodong2\":{\"hd989Pickup\":{\"id\":2}},\"rsn\":\"%s\"}");
+//
+//            p.runAction1("{\"huodong2\":{\"hd989Select\":{\"selects\":\"86_1,125_1,382_1,90_1\",\"id\":3}},\"rsn\":\"%s\"}");
+//            p.runAction1("{\"huodong2\":{\"hd989Pickup\":{\"id\":3}},\"rsn\":\"%s\"}");
+//
+//            p.runAction1("{\"huodong2\":{\"hd989Select\":{\"selects\":\"254_1,935_1,387_1,255_1\",\"id\":4}},\"rsn\":\"%s\"}");
+//            p.runAction1("{\"huodong2\":{\"hd989Pickup\":{\"id\":4}},\"rsn\":\"%s\"}");
+//
+//            p.runAction1("{\"huodong2\":{\"hd989Select\":{\"selects\":\"138_1,383_1,148_1,78_1\",\"id\":5}},\"rsn\":\"%s\"}");
+            p.runAction1("{\"huodong2\":{\"hd989Pickup\":{\"id\":5}},\"rsn\":\"%s\"}");
+
+
+            p.runAction2("{\"huodong\":{\"hd456exchange\":{\"id\":9}},\"rsn\":\"%s\"}");
+
+            p.runAction2("{\"huodong\":{\"hd456exchange\":{\"id\":9}},\"rsn\":\"%s\"}");
+
+            RewardPlayer rp = new RewardPlayer(p);
+
+//            for(int i = 1; i <= 15; i++){
+//                rp.rewardGuoli();
+//                rp.rewardYinliang();
+//            }
+
+
+            rp.reward_kua_guoli();
+
+
+
+        });
     }
 }

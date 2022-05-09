@@ -31,7 +31,7 @@ public class RewardController {
     @GetMapping("/rewardShibing")
     @ResponseBody
     public String rewardShibing() {
-        return this.reward(10, rp -> rp.rewardShibing());
+        return this.reward(15, rp -> rp.rewardShibing());
     }
 
     @ApiOperation(value = "元宝消耗", tags = {"奖励"})
@@ -87,7 +87,7 @@ public class RewardController {
     @GetMapping("/rewardLianmengBoss")
     @ResponseBody
     public String rewardLianmengBoss() {
-        return this.reward(10, rp -> rp.rewardLianmengBoss());
+        return this.reward(18, rp -> rp.rewardLianmengBoss());
     }
 
     @ApiOperation(value = "击杀匈奴王", tags = {"奖励"})

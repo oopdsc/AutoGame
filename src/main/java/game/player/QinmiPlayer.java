@@ -57,20 +57,23 @@ public class QinmiPlayer extends BasePlayer {
     }
 
     public void clubQinmi(){
-        for(int i = 1; i <= 4; i++){
+        for(int i = 1; i <= 3; i++){
             this.baseReward("221"); //meili
-        }
-        for(int i = 1; i <= 8; i++){
-            this.baseReward("205"); //qin mi
+            this.baseReward("206"); //guoli
             this.baseReward("206"); //guoli
             this.baseReward("219"); //tili
             this.baseReward("227"); //jingli
-
+            this.baseReward("201"); //yuanbao
+        }
+        for(int i = 1; i <= 10; i++){
+            this.baseReward("205"); //qin mi
         }
 
         for(int i = 1; i <= 14; i++){
             this.baseReward("226");//liangshi
         }
+
+
 
 
 

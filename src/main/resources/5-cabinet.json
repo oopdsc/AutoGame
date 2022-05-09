@@ -1,0 +1,76 @@
+[
+
+  {
+    "username": "muyang2",
+    "openid": "3455487_ios",
+    "openkey": "cd8b712bfc18488db0f5378008b0e1b5",
+    "cabinetIndex" : 0,
+    "cabinetHeros" : [23,26,11,24,28]
+  },
+  {
+    "username": "1358177 yubei",
+    "openid": "3131684_ios",
+    "openkey": "ba47bf7302008ecb5f67cdfcc0b7252d",
+    "cabinetIndex" : 1,
+    "cabinetHeros" : [12,23,8,28,11]
+
+  },
+  {
+    "username": "1770994 yubeiyi",
+    "openid": "3243291_ios",
+    "openkey": "cd4ee37f6e249b48e1759afe8d8cf027",
+    "cabinetIndex" : 2,
+    "cabinetHeros" : [34,2,35,20,39]
+
+  },
+  {
+    "username": "1861216 jia",
+    "openid": "2895170_ios",
+    "openkey": "95dda9a62e7ea606f35b8f715dcc8b57",
+    "cabinetIndex" : 3,
+    "cabinetHeros" : [28,11,26,23,24]
+  },
+  {
+    "username": "12160829 yi",
+    "openid": "2898497_ios",
+    "openkey": "2975ff7f6bc497c0992ab5a8c280cd47",
+    "cabinetIndex" : 4,
+    "cabinetHeros" : [34,1,16,37,23]
+  },
+  {
+    "username": "15686784340",
+    "openid": "2585111_ios",
+    "openkey": "9bfe04856b258614d86863cb243e72cf",
+    "cabinetIndex" : 5,
+    "cabinetHeros" : [28,12,11,26,8]
+  },
+  {
+    "username": "shinecy1126",
+    "openid": "2567577_ios",
+    "openkey": "ed0fa55e91a748c73b83608b9233ab4f",
+    "cabinetIndex" :6,
+    "cabinetHeros" : [1,10,8,26,55]
+  },
+  {
+    "username": "lonely7201984",
+    "openid": "2587595_ios",
+    "openkey": "9681c2926adb8b31e31a559c2f5204d7",
+    "cabinetIndex" : 7,
+    "cabinetHeros" : [8,12,16,26,11]
+  },
+  {
+    "username": "liu271",
+    "openid": "2545181_ios",
+    "openkey": "0ff051255f1042d466a37983e278d8b2",
+    "cabinetIndex" :8,
+    "cabinetHeros" : [1, 2, 33, 34, 35]
+  },
+  {
+    "username": "134886 bing",
+    "openid": "2889065_ios",
+    "openkey": "73533a19cdff0bc5dea7f0f791b72701",
+    "cabinetIndex" : 9,
+    "cabinetHeros" : [11,59,26,28,12]
+  }
+
+]

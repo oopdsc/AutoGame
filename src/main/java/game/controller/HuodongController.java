@@ -24,6 +24,14 @@ public class HuodongController {
         return "done";
     }
 
+    @ApiOperation(value="册封大典", tags = {"其他活动"})
+    @GetMapping("/cefeng")
+    @ResponseBody
+    public String cefeng() {
+        this.base(hp -> {hp.cefeng();});
+        return "done";
+    }
+
     @ApiOperation(value="吃鸡奖励", tags = {"吃鸡活动"})
     @GetMapping("/chijiReward")
     @ResponseBody

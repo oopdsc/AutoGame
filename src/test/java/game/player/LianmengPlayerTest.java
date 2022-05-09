@@ -17,4 +17,12 @@ class LianmengPlayerTest {
             lp.club();
         });
     }
+
+    @Test
+    void club2() {
+        runner.single(GameRunner.GOLD, p -> {
+            LianmengPlayer lp = new LianmengPlayer(p);
+            lp.dayHighGongxian();
+        });
+    }
 }

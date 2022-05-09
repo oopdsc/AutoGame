@@ -3,10 +3,7 @@ package game;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import game.active.DefaultGameRunner;
-import game.player.GetInfoPlayer;
-import game.player.HeroPlayer;
-import game.player.MeiliPlayer;
-import game.player.ZizhiPlayer;
+import game.player.*;
 import game.service.GameRunner;
 import game.service.PlayerData;
 import org.apache.commons.io.FileUtils;
@@ -15,6 +12,7 @@ import org.springframework.util.StopWatch;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import static game.service.GameRunner.*;
@@ -55,8 +53,12 @@ class GameRunnerTest {
     @Test
     void runner1(){
         String all1 = runner.all1( p -> {
-            p.runAction2("{\"rsn\":\"%s\",\"item\":{\"useforhero\":{\"count\":30,\"heroid\":41,\"id\":53}}}");
-            p.runAction2("{\"rsn\":\"%s\",\"item\":{\"useforhero\":{\"count\":30,\"heroid\":38,\"id\":33}}}");
+            for(int i = 1; i <= 12; i++){
+                p.runAction2("{\"huodong2\":{\"hd962Start\":{\"num\":1}},\"rsn\":\"%s\"}");
+            }
+
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.zajiActive();
         });
         System.out.println(all1);
     }
@@ -86,37 +88,6 @@ class GameRunnerTest {
     }
 
     @Test
-    void getInfo() {
-//        FileUtils.write(new File("./courtyard.txt"), "username,lv,mc,sp,little tree zz,little tree,middle tree zz,middle tree,yumi zz,yumi", true);
-        new GameRunner<GetInfoPlayer>() {
-
-            @Override
-            public GetInfoPlayer login(PlayerData data) {
-                GetInfoPlayer p = new GetInfoPlayer(data);
-                p.login();
-                return p;
-            }
-        }.processSingle(
-                RUNNER,
-//                GOLD,
-                d -> d.huodong,
-                p -> {
-//                    p.levelUp();
-//                    p.getCourtyardInfo(true);
-//                    p.getCourtyardInfo(false);
-                    sleep(20);
-//                    p.getBeastInfo();
-//                    p.getMayunlv();
-//                    p.getCash();
-//                    p.loveRankInfo();
-//                    p.openAllmail();
-                }
-        );
-
-        GameRunner.sleep(3);
-    }
-
-    @Test
     public void mengzhan(){
         StopWatch sw = new StopWatch();
         sw.start();
@@ -138,6 +109,21 @@ class GameRunnerTest {
 
             p.schoolOne();
 
+        });
+
+        sw.stop();
+        System.out.println("Done, time :" + sw.getTotalTimeSeconds());
+    }
+
+    @Test
+    public void yamen_test(){
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.all1(p -> {
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.lishanXunli_daily();
+            hp.zizhifanli();
+            p.yamen3();
         });
 
         sw.stop();
@@ -194,5 +180,35 @@ class GameRunnerTest {
 
         sw.stop();
         System.out.println("Done, time :" + sw.getTotalTimeSeconds());
+    }
+
+    @Test
+    public void getRsn_test(){
+//        for(int i = 1 ; i <= 9; i++){
+//            for(int j = 1; j <= 5; j++){
+//                logger.info(GameRunner.getRsn(i, j));
+//            }
+//        }
+
+
+//        7cclllopodg
+//        7ccxlllopxg
+        logger.info(GameRunner.getRsn(7, 1));
+    }
+
+    @Test
+    public void getDate_test(){
+        long ts = (new Date().getTime() / 10000) % 100000000;
+
+        long ltime = ts << 1;
+
+
+        Date x = new Date();
+//        x.setDate(13);
+//        long ts2 = (x.getTime() / 10000) % 100000000;
+//        long ltime2 = ts2 << 1;
+        String x1 = String.valueOf(x.getTime()).substring(2, 10);
+
+        logger.info("{} : {}", ltime, x1);
     }
 }

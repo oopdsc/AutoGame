@@ -16,23 +16,55 @@ public class ChongbangTask {
 
     DefaultGameRunner runner = new DefaultGameRunner();
 
-    @Scheduled(cron = "10 50 21 * * ?")
+    @Scheduled(cron = "10 59 21 * * ?")
     public void chongbang2() throws IOException {
         System.out.println("hello");
     }
     //child 冲榜
-//    @Scheduled(cron = "10 59 21 * * ?")
+    @Scheduled(cron = "31 59 21 * * ?")
     public void chongbang() throws IOException {
         StopWatch sw = new StopWatch();
         sw.start();
         runner.single(GameRunner.HUODONG, p -> {
-            MeiliPlayer mp = new MeiliPlayer(p);
-            for(int i = 1; i <= 13; i++){
-                mp.upLvBeast2(1, 8);
-                mp.upLvBeast2(2, 8);
-                mp.upLvBeast2(3, 8);
+//            MeiliPlayer mp = new MeiliPlayer(p);
+//            for(int i = 1; i <= 13; i++){
+//                mp.upLvBeast2(1, 8);
+//                mp.upLvBeast2(2, 8);
+//                mp.upLvBeast2(3, 8);
+//            }
+
+            p.son2();
+            for(int i = 1; i <= 42; i++){
+                p.sonFood2(1334);
+                p.sonFood2(1351);
+                p.son2();
             }
 
+        });
+        sw.stop();
+        System.out.println("Done, time :" + sw.getTotalTimeSeconds());
+    }
+
+//    @Scheduled(cron = "27 59 21 * * ?")
+    public void clubHighGongXian(){
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.single("club2.json", p -> {
+            LianmengPlayer lp = new LianmengPlayer(p);
+            lp.dayHighGongxian();
+
+        });
+        sw.stop();
+        System.out.println("Done, time :" + sw.getTotalTimeSeconds());
+    }
+
+//    @Scheduled(cron = "45 58 21 * * ?")
+    public void club(){
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.single("club.json", p -> {
+            LianmengPlayer lp = new LianmengPlayer(p);
+            lp.club();
         });
         sw.stop();
         System.out.println("Done, time :" + sw.getTotalTimeSeconds());
@@ -60,7 +92,7 @@ public class ChongbangTask {
 
 
 
-    @Scheduled(cron = "0 57 21 * * ?")
+//    @Scheduled(cron = "0 57 21 * * ?")
     public void zizhi() {
         runner.processSingle(GameRunner.HUODONG, p -> {
                 ZizhiPlayer zp = new ZizhiPlayer(p);

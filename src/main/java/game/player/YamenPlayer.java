@@ -219,4 +219,18 @@ public class YamenPlayer extends BasePlayer {
         this.runAction2("{\"kuayamen\":{\"getSevRwd\":[]},\"rsn\":\"%s\"}");
     }
 
+/**
+ id=84717
+ uid=7008211
+
+ id=84838
+ uid=7008779
+ */
+
+    public void tiaozhan(int id, int hid, int fuid){
+//        {"yamen":{"tiaozhan":{"id":79858,"hid":9,"fuid":7009025}},"rsn":"8aermovjmm"}
+        ResponseEntity<String> resp = this.runAction2("{\"yamen\":{\"tiaozhan\":{\"id\":"+id+",\"hid\":"+hid+",\"fuid\":"+fuid+"}},\"rsn\":\"%s\"}");
+        this.interanlYamen2(resp);
+        logger.info("resp : {}", resp);
+    }
 }

@@ -14,13 +14,24 @@ class RewardPlayerTest {
     DefaultGameRunner runner = new DefaultGameRunner();
 
     @Test
-    void reward1() throws IOException {
-        runner.processSingle(RUNNER, px -> {
+    void reward1() {
+        runner.all1(px -> {
             RewardPlayer p = new RewardPlayer(px);
 
 //            this.rewardLianmengBang(p);
 
-            p.reward_ganen();
+            for(int i = 1; i <= 7; i++){
+                p.rewardGuoli();
+                p.rewardLiangshi();
+                p.rewardLiangshi();
+                p.rewardQinmi();
+                p.rewardZhengzai();
+            }
+            p.rewardZhengzai();
+            p.rewardZhuangban();
+//            p.rewardYinliang();
+
+//            p.reward_ganen();
 
         });
 
@@ -82,6 +93,25 @@ class RewardPlayerTest {
         GameRunner.sleep(5);
     }
 
+    @Test
+    void reward_kua_meili_test()  {
+        runner.all1(px -> {
+            RewardPlayer p = new RewardPlayer(px);
+            p.reward_kua_meili();
+        });
+
+        GameRunner.sleep(5);
+    }
+
+    @Test
+    void reward_kua_guoli_test()  {
+        runner.all1(px -> {
+            RewardPlayer p = new RewardPlayer(px);
+            p.reward_kua_guoli();
+        });
+
+        GameRunner.sleep(5);
+    }
 
 
 }

@@ -41,10 +41,15 @@ public class GetInfoPlayer extends BasePlayer {
         String resp = this.getAllinfo();
 //        this.getBeastInfo(resp, folder);
 //        this.getCash(resp, folder);
-        this.hero(resp, folder);
+//        this.getBook(resp, folder);
+//        this.getClub(resp, folder);
+//        this.getQinmi(resp, folder);
+//        this.hero(resp, folder);
 //        this.getCourtyardInfo(false, folder);
 //        System.out.println("done : " + folder);
+        this.getMisc(resp, folder);
 
+        this.listHero(resp, folder);
     }
 
 
@@ -119,6 +124,38 @@ public class GetInfoPlayer extends BasePlayer {
 //        }
     }
 
+    public void getBook(String res, String folder){
+        this.getItems(res, folder, "book_20220423.txt" ,61,62,63,64,77,81,83);
+    }
+
+    public void getQinmi(String res, String folder){
+        this.getItems(res, folder, "qinmi_20220428.txt" ,91, 92, 106);
+    }
+
+    public void getMeili(String res, String folder){
+        this.getItems(res, folder, "meili_20220414.txt" ,93, 94);
+    }
+
+    public void getClub(String res, String folder){
+        this.getItems(res, folder, "club.txt", 128, 132, 135);
+    }
+
+    public void getItems(String res, String folder, String file, int ... items){
+        DocumentContext dc = JsonPath.parse(res);
+
+        LinkedList<Object> sum = new LinkedList<>();
+        for(int item : items){
+            List<Integer> itemCount = dc.read("$.a.item.itemList[?(@.id=="+item+")].count");
+            sum.addLast(getFromList(itemCount));
+        }
+        String content = Strings.join(sum, ',');
+
+        try {
+            FileUtils.write(new File("./"+ folder +"/" + file), this.getData().username + "," + content + "\n", true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Object getFromList(List list){
         return list == null || list.size() == 0 ? 0 : list.get(0);
@@ -402,7 +439,7 @@ public class GetInfoPlayer extends BasePlayer {
         String content = Strings.join(rr, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/beast-20220317.txt"), this.getData().username + "," + content + "\r", true);
+            FileUtils.write(new File("./"+ folder +"/beast-20220411.txt"), this.getData().username + "," + content + "\r", true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -525,7 +562,7 @@ public class GetInfoPlayer extends BasePlayer {
         for(int i = 0; i < 100; i++){
             Map<String, Object> m = lists.get(i);
             try {
-                FileUtils.write(new File("./loverank-20210401.txt"), m.get("name") + "," + m.get("num") + "\r", true);
+                FileUtils.write(new File("./loverank-20210428.txt"), m.get("name") + "," + m.get("num") + "\r", true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -544,9 +581,9 @@ public class GetInfoPlayer extends BasePlayer {
 
         List<Map<String, Object>> heros2 = dc.read("$.a.hero.heroList");
 
-        List<Integer> lv1 = dc.read("$.a.item.itemList[?(@.id==160)].count");
-        List<Integer> lv2 = dc.read("$.a.item.itemList[?(@.id==161)].count");
-        List<Integer> lv3 = dc.read("$.a.item.itemList[?(@.id==162)].count");
+//        List<Integer> lv1 = dc.read("$.a.item.itemList[?(@.id==160)].count");
+//        List<Integer> lv2 = dc.read("$.a.item.itemList[?(@.id==161)].count");
+//        List<Integer> lv3 = dc.read("$.a.item.itemList[?(@.id==162)].count");
 
         for(int i = 0; i < heros2.size(); i++){
             Hero hero = new Hero();
@@ -595,5 +632,197 @@ public class GetInfoPlayer extends BasePlayer {
         for(int i = 1; i <= 100 - lv2i; i++){
             hp.pkskill2up(heroid);
         }
+    }
+
+    public void getZhuangban(String folder){
+        String resp = this.runAction1("{\"user\":{\"getuback\":[]},\"rsn\":\"%s\"}").getBody();
+        Configuration conf = Configuration.defaultConfiguration();
+        Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf2).parse(resp);
+
+        List<Map<String, Object>> changjings = dc.read("$.a.user.changjing.list");
+        int [] zhuangban = {3, 9};
+        LinkedList<Object> sum = new LinkedList<>();
+        for(int i = 0; i < changjings.size(); i++){
+            Integer id = Integer.valueOf(changjings.get(i).get("id").toString());
+            if(id == 3 || id == 9){
+                sum.addLast(id);
+            }
+        }
+
+        String content = Strings.join(sum, ',');
+
+        try {
+            FileUtils.write(new File("./"+ folder +"/zhuangban.txt"), this.getData().username + "," + content + "\n", true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void listHero(String resp, String folder){
+        List<Hero> heros = this.hero(resp);
+        StringBuilder sb = new StringBuilder("");
+        for(Hero hero : heros){
+            sb.append(this.data.getUsername() + ",");
+            sb.append(hero.toCsv()).append("\n");
+        }
+
+        try {
+            FileUtils.write(new File("./"+ folder +"/zz-20220508.txt"),
+                     sb.toString(), true);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getMisc(String resp, String folder){
+        List<Object> skins = this.getZhugeliangSkin(resp);
+        List<Object> jinguolings = this.getJinguoling(resp);
+        List<Object> zhuangbans = this.getZhuangban();
+
+        List<Object> clubItems = this.getItemLists(resp, 128, 132, 135);
+
+        List<Object> books = this.getItemLists(resp, 61, 62, 63, 64, 77, 81, 83);
+
+        List<Object> qinmi = this.getItemLists(resp, 91, 92, 106);
+
+        List<Object> meili = this.getItemLists(resp, 93, 94);
+
+        List<Object> all = new LinkedList<>();
+        all.addAll(skins);
+        all.addAll(jinguolings);
+        all.addAll(zhuangbans);
+        all.addAll(clubItems);
+        all.addAll(books);
+        all.addAll(qinmi);
+        all.addAll(meili);
+
+        String content = Strings.join(all, ',');
+
+        try {
+            FileUtils.write(new File("./"+ folder +"/misc-20220508.txt"), this.getData().username + "," + content + "\n", true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Object> getZhuangban(){
+        String resp = this.runAction1("{\"user\":{\"getuback\":[]},\"rsn\":\"%s\"}").getBody();
+        Configuration conf = Configuration.defaultConfiguration();
+        Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf2).parse(resp);
+
+        List<Map<String, Object>> changjings = dc.read("$.a.user.changjing.list");
+        int [] zhuangban = {3, 9};
+        LinkedList<Object> sum = new LinkedList<>();
+        boolean hasSchool = false;
+        boolean hasJingguo = false;
+        for(int i = 0; i < changjings.size(); i++){
+            Integer id = Integer.valueOf(changjings.get(i).get("id").toString());
+            if(id == 3){
+                hasSchool = true;
+            }else if(id == 9){
+                hasJingguo = true;
+            }
+        }
+        if(hasSchool){
+            sum.addLast("书院");
+        }else{
+            sum.addLast("无书院");
+        }
+        if(hasJingguo){
+            sum.addLast("巾帼");
+        }else{
+            sum.addLast("无巾帼");
+        }
+        return sum;
+    }
+
+    public List<Object> getZhugeliangSkin(String res) {
+        Configuration conf = Configuration.defaultConfiguration();
+        Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf2).parse(res);
+
+        LinkedList<Object> sum = new LinkedList<>();
+
+        List<Map<String, Object>> dresslist = dc.read("$.a.hero.skin.dressList");
+        boolean hasSkin = false;
+        if(Objects.nonNull(dresslist)){
+            for(int i = 0; i < dresslist.size(); i++) {
+                Integer id = Integer.valueOf(dresslist.get(i).get("id").toString());
+                if(38 == id.intValue()){
+                    hasSkin = true;
+
+                }
+            }
+        }
+
+        if(hasSkin){
+            sum.addLast("skin");
+        }else{
+            sum.addLast("no skin");
+        }
+
+        Integer desk = dc.read("$.a.school.base.desk", Integer.class);
+        String cash = dc.read("$.a.user.user.cash").toString();
+        Integer bmap = dc.read("$.a.user.guide.bmap");
+
+        sum.addLast(desk);
+        sum.addLast(cash);
+        sum.addLast(bmap);
+        return sum;
+    }
+
+    public List<Object> getJinguoling(String res) {
+        return this.getItemLists(res, 138, 254);
+    }
+
+    public List<Object> getItemLists(String res, int ... items){
+        DocumentContext dc = JsonPath.parse(res);
+
+        LinkedList<Object> sum = new LinkedList<>();
+        for(int item : items){
+            List<Integer> itemCount = dc.read("$.a.item.itemList[?(@.id=="+item+")].count");
+            sum.addLast(getFromList(itemCount));
+        }
+        return sum;
+    }
+
+    public List<Hero> hero(String res) {
+        Configuration conf = Configuration.defaultConfiguration();
+        conf = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf).parse(res);
+
+        List<Map<String, Object>> heros2 = dc.read("$.a.hero.heroList");
+
+        ArrayList<Hero> sum = new ArrayList<>(heros2.size());
+
+        for (int i = 0; i < heros2.size(); i++) {
+            Hero hero = new Hero();
+            Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
+            Integer lv = Integer.valueOf(heros2.get(i).get("level").toString());
+            Integer aepE1 = Integer.valueOf(((Map) heros2.get(i).get("aep")).get("e1").toString());
+            Integer zz = Integer.valueOf(((Map) heros2.get(i).get("zz")).get("e1").toString());
+            Integer zz2 = Integer.valueOf(((Map) heros2.get(i).get("zz")).get("e2").toString());
+            Integer zz3 = Integer.valueOf(((Map) heros2.get(i).get("zz")).get("e3").toString());
+            Integer zz4 = Integer.valueOf(((Map) heros2.get(i).get("zz")).get("e4").toString());
+            Integer zzexp = Integer.valueOf(heros2.get(i).get("zzexp").toString());
+            hero.id = id;
+            hero.name = HeroData.heroname.get(id);
+            hero.lv = lv;
+            hero.zz = zz;
+            hero.aepE1 = aepE1;
+            hero.totalZz = zz + zz2 + zz3 + zz4;
+            hero.zzexp = zzexp;
+
+            hero.allzz1 = zz + zzexp / 200;
+            sum.add(i, hero);
+        }
+        sum.sort((a, b) ->{
+            return (a.id < b.id) ? -1 : ((a.id == b.id) ? 0 : 1);
+        });
+
+        return sum;
     }
 }

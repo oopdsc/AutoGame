@@ -6,8 +6,6 @@ import game.service.GameRunner;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StopWatch;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class QinmiPlayerTest {
 
     DefaultGameRunner runner = new DefaultGameRunner();
@@ -56,18 +54,21 @@ class QinmiPlayerTest {
     void useSingleItem() {
         StopWatch sw = new StopWatch();
         sw.start();
+        int qinmi1 = 0;
+        int qinmi2 = 0;
+        int qinmi3 = 10;
         runner.processSingle(GameRunner.HUODONG, p -> {
-//            for(int i = 1; i <= 10000; i++){
-//                p.qinmi11();
-//            }
+            for(int i = 1; i <= qinmi1; i++){
+                p.qinmi11();
+            }
 
-            for(int i = 1; i <= 300; i++){
+            for(int i = 1; i <= qinmi2; i++){
                 p.qinmi12();
             }
-//
-//            for(int i = 1; i <= 200; i++){
-//                p.qinmi13();
-//            }
+
+            for(int i = 1; i <= qinmi3; i++){
+                p.qinmi13();
+            }
         });
         sw.stop();
         System.out.println("done " + sw.getTotalTimeSeconds() );
@@ -128,7 +129,7 @@ class QinmiPlayerTest {
      * @param num
      */
     public void alluseQinmiItems1(int num) {
-        runner.multi(GameRunner.RUNNER, d -> d.huodong, p -> {
+        runner.multi("clubQinmi.json", d -> d.huodong, p -> {
             for(int i = 1; i <= num; i++){
                 p.qinmi11();
             }
@@ -162,7 +163,8 @@ class QinmiPlayerTest {
         runner.single("huodong.json", p -> {
             p.son2();
             for(int i = 1; i <= num; i++){
-                p.sonFood2(id);
+                p.sonFood2(1334);
+                p.sonFood2(1351);
                 p.son2();
             }
         });
@@ -194,10 +196,28 @@ class QinmiPlayerTest {
 
     @Test
     public void xiaohaoQinmi(){
-        runner.processMulti("huodong.json", p -> {
+//        runner.processMulti("clubQinmi.json", p -> {
+        runner.processSingle("clubQinmi.json", p -> {
             GameRunner.sleepInMillis(runner.rd.nextInt(1000));
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 400; i++){
+            for(int i = 1; i <= 500; i++){
+                qp.qinmi11();
+            }
+            for(int i = 1; i <= 500; i++){
+                qp.qinmi12();
+            }
+        });
+
+        GameRunner.sleep(20);
+        System.out.println("done");
+    }
+
+    @Test
+    public void xiaohaoQinmi2(){
+        runner.processMulti("clubQinmi2.json", p -> {
+            GameRunner.sleepInMillis(runner.rd.nextInt(1000));
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 500; i++){
                 qp.qinmi12();
             }
         });
@@ -210,7 +230,8 @@ class QinmiPlayerTest {
     public void xunfang_test(){
         runner.all1(p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 25; i++){
+
+            for(int i = 1; i <= 10; i++){
                 qp.xunfun();
                 qp.xunfunRecover();
             }
@@ -218,31 +239,19 @@ class QinmiPlayerTest {
 
         }, p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 25; i++){
-                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            for(int i = 1; i <= 10; i++){
+                qp.xunfun2();
                 qp.xunfunRecover();
             }
-            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            qp.xunfun2();
 
         }, p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 25; i++){
-                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-                qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            for(int i = 1; i <= 10; i++){
+                qp.xunfun2();
                 qp.xunfunRecover();
             }
-            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
-            qp.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"xunfan\":{\"type\":0}}}");
+            qp.xunfun2();
 
         });
         System.out.println("done");
@@ -254,38 +263,26 @@ class QinmiPlayerTest {
         runner.all1(p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
             for(int i = 1; i <= 20; i++){
-                qp.xo();
-                qp.runAction1("{\"wife\":{\"weige\":[]},\"rsn\":\"%s\"}");
+                qp.yjxo();
+                qp.useXoItems();
             }
-            qp.xo();
+            qp.yjxo();
 
         }, p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 10; i++){
-                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-                qp.runAction1("{\"wife\":{\"weige\":[]},\"rsn\":\"%s\"}");
+            for(int i = 1; i <= 20; i++){
+                qp.sjxo();
+                qp.useXoItems();
             }
-            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+            qp.sjxo();
 
         }, p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 10; i++){
-                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-                qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-                qp.runAction1("{\"wife\":{\"weige\":[]},\"rsn\":\"%s\"}");
+            for(int i = 1; i <= 20; i++){
+                qp.sjxo();
+                qp.useXoItems();
             }
-            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
-            qp.runAction1("{\"wife\":{\"sjxo\":[]},\"rsn\":\"%s\"}");
+            qp.sjxo();
 
         });
         System.out.println("done");

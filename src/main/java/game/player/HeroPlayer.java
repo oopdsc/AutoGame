@@ -28,6 +28,11 @@ public class HeroPlayer extends BasePlayer {
         this.runAction1("{\"hero\":{\"uppkskill\":{\"sid\":2,\"id\":"+heroid+"}},\"rsn\":\"%s\"}");
     }
 
+    public void useSkin(){
+        //关银屏 月夕花晨
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"useSkin\":{\"id\":2204}}}");
+    }
+
     public void hero_up(int heroid, int currentLv){
         if(currentLv >= 300){
             return;
@@ -55,46 +60,46 @@ public class HeroPlayer extends BasePlayer {
     }
 
     public void lv_item_300_from_200(){
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":15,\"id\":163}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":15,\"id\":164}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":15,\"id\":165}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":15,\"id\":163}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":15,\"id\":164}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":15,\"id\":165}}}");
 
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":166}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":167}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":168}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":166}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":167}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":168}}}");
 
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":169}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":170}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":171}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":169}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":170}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":171}}}");
     }
 
     public void lv_item_300_from_250(){
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":12,\"id\":163}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":12,\"id\":164}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":12,\"id\":165}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":12,\"id\":163}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":12,\"id\":164}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":12,\"id\":165}}}");
 
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":4,\"id\":166}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":4,\"id\":167}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":4,\"id\":168}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":4,\"id\":166}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":4,\"id\":167}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":4,\"id\":168}}}");
 
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":169}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":170}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":171}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":169}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":170}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":171}}}");
     }
 
     //from 0
     public void lv_item_300(){
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":16,\"id\":163}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":16,\"id\":164}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":16,\"id\":165}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":16,\"id\":163}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":16,\"id\":164}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":16,\"id\":165}}}");
 
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":166}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":167}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":168}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":166}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":167}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":5,\"id\":168}}}");
 
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":169}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":170}}}");
-        this.runAction3("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":171}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":169}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":170}}}");
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":1,\"id\":171}}}");
     }
 
     public void item_350(){

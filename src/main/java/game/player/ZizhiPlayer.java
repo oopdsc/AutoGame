@@ -110,17 +110,36 @@ public class ZizhiPlayer extends BasePlayer {
         this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":"+sid+",\"num\":1,\"id\":"+hid+"}},\"rsn\":\"%s\"}");
     }
 
+    public void maYunlv7zhiJuanzhou(){
+        this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":127,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
+    }
+
+    public void maYunlv5zhiBook(){
+        this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":1,\"sid\":128,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
+    }
+
     public void reward(){
         this.runAction3("{\"huodong\":{\"hd266Get\":[]},\"rsn\":\"%s\"}");
-        for(int i = 1; i <= 5; i++){
+        for(int i = 1; i <= 12; i++){
             this.baseReward("206");     //国力
         }
 
         for(int i = 1; i <= 14; i++){
-            this.baseReward("211");     //国力
+            this.baseReward("211");     //shcool
         }
 
-//        this.baseReward("201");  // 元宝
+        for(int i = 1 ; i <= 5; i++){
+            this.baseReward("201");  // 元宝
+        }
 
+        for(int i = 1 ; i <= 12; i++){
+            this.baseReward("204");  // 卷轴
+        }
+
+
+    }
+
+    public void hanlinLvUp(){
+        this.runAction0("{\"rsn\":\"%s\",\"hanlin\":{\"upskill\":[]}}");
     }
 }

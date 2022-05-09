@@ -1,5 +1,6 @@
 package game.player;
 
+import game.service.GameRunner;
 import game.service.PlayerData;
 
 import static game.service.GameRunner.sleepInMillis;
@@ -45,8 +46,16 @@ public class RewardPlayer extends BasePlayer {
         this.baseReward("210");
     }
 
+    public void rewardSchool(){
+        this.baseReward("211");
+    }
+
     public void rewardKillXiongnu(){
         this.baseReward("215");
+    }
+
+    public void rewardZhengzai(){
+        this.baseReward("218");
     }
 
     public void rewardTilidan(){
@@ -81,6 +90,10 @@ public class RewardPlayer extends BasePlayer {
         this.baseReward("314");
     }
 
+    public void reward_kua_meili(){
+        this.runAction2("{\"huodong2\":{\"hd954GetSevRwd\":[]},\"rsn\":\"%s\"}");
+    }
+
 
 
 
@@ -89,7 +102,12 @@ public class RewardPlayer extends BasePlayer {
     }
 
     public void reward_kua_guoli(){
-        this.runAction3("{\"huodong\":{\"hd313Get\":[]},\"rsn\":\"%s\"}");
+        this.runAction2("{\"huodong\":{\"hd313Get\":[]},\"rsn\":\"%s\"}");
+        for(int i = 1; i <= 15; i++){
+            this.rewardYinliang();
+            this.rewardGuoli();
+        }
+
     }
 
     public void reward_bolanshitu(){
@@ -108,13 +126,7 @@ public class RewardPlayer extends BasePlayer {
         this.runAction3("{\"huodong2\":{\"hd961PickDailyTaskRwd\":{\"id\":14}},\"rsn\":\"%s\"}");
     }
 
-    public void reward_ganen(){
-        for(int i = 1; i <= 7; i++) {
-            this.runAction3("{\"huodong2\":{\"hd997option\":{\"id\":" + i + ",\"itemid\":1}},\"rsn\":\"%s\"}");
-            sleepInMillis(500);
-            this.runAction3("{\"huodong2\":{\"hd997getSignRwd\":{\"id\":" + i + "}},\"rsn\":\"%s\"}");
-        }
-    }
+
 
     public void reward_kuayamen(){
         this.runAction2("{\"kuayamen\":{\"getSevRwd\":[]},\"rsn\":\"%s\"}");

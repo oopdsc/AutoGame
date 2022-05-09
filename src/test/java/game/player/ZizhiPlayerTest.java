@@ -19,21 +19,43 @@ class ZizhiPlayerTest {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
 //                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
 //                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
+                    for(int i = 1; i <=2; i++){
+                        zp.useBook(2, 1);
+                        zp.useBook(2, 2);
+                        zp.useBook(2, 8);
+                        zp.useBook(3, 38);
+                        zp.useBook(3, 41);
+                        zp.useBook(62, 33);
+                        zp.useBook(62, 34);
+                        zp.useBook(62, 35);
+                        zp.useBook(62, 36);
+                        zp.useBook(62, 37);
+                    }
 
-                    zp.useBook(2, 1);
-                    zp.useBook(2, 2);
-                    zp.useBook(2, 8);
-                    zp.useBook(63, 38);
-//                    zp.useBook(63, 38);
-//                    zp.useBook(63, 38);
-                }, null, p -> {
-                    ZizhiPlayer zp = new ZizhiPlayer(p);
+                    HuodongPlayer hp = new HuodongPlayer(p);
+                    hp.reward_ganen();
 
-                    zp.useBook(2, 1);
-                    zp.useBook(2, 2);
-                    zp.useBook(2, 8);
-                    zp.useBook(63, 38);
-                });
+                }
+//                , p -> {
+//                    ZizhiPlayer zp = new ZizhiPlayer(p);
+//
+//                    zp.useBook(2, 1);
+//                    zp.useBook(2, 2);
+//                    zp.useBook(2, 8);
+//
+//                    zp.useBook(63, 38);
+//
+//
+//                }
+//                , p -> {
+//                    ZizhiPlayer zp = new ZizhiPlayer(p);
+//
+//                    zp.useBook(2, 1);
+//                    zp.useBook(2, 2);
+//                    zp.useBook(2, 8);
+//                    zp.useBook(63, 38);
+//                }
+                );
         System.out.println("done");
     }
 
@@ -45,7 +67,7 @@ class ZizhiPlayerTest {
                 p -> {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
 
-                    for(int i = 1; i <= 1000; i++){
+                    for(int i = 1; i <= 1; i++){
                         zp.useJuanzhou0(127, 55);
                     }
         });

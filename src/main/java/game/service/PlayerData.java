@@ -26,15 +26,16 @@ public class PlayerData {
     public int[] mengguid = {0};
     public int[] geerdan = {0};
     public int hitBoss = 0;
+
     public boolean sonFood = true;
 
     public boolean yamen = Flags.yamen;
 
     public boolean yamenShop = Flags.yamenShop;
 
-    public int[] mzid = {1,2,6,8,10,11,12,13,16,20,23,24,35,38,41,55};
+    public int[] mzid = {1,2,6,8,10,11,12,13,16,20,23,24,33, 34, 35, 37, 38, 39, 40, 41,55};
 
-    public static Integer[] commonSchool = {55, 35, 38, 41, 1, 2, 6, 8, 10, 11, 12, 13, 16, 20, 23, 24, 26, 33,34, 36, 37, 39, 40, 28};
+    public static Integer[] commonSchool = {55, 33,34, 35, 36, 37, 38, 39, 40, 41, 11, 12, 13, 16, 20, 23, 24, 26, 8, 10, 1, 2, 6, 28};
     public int deskNum = 5;
     public Integer[] schoolHero = {};
     public Integer[] noschoolHero = {};
@@ -63,6 +64,9 @@ public class PlayerData {
     public boolean huodong = false;
 
     public boolean housemake = false;
+
+    public int cabinetIndex = 0;
+    public int[] cabinetHeros = {};
 
     public String getUsername() {
         return username;

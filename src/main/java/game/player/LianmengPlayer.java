@@ -19,6 +19,12 @@ public class LianmengPlayer extends BasePlayer {
     //{"club":{"clubApply":{"cid":70003}},"rsn":"8makkraejme"}
 //    {"club":{"dayGongXian":{"dcid":3}},"rsn":"2awyynhnnh"}
 //{"club":{"outClub":[]},"rsn":"6xwgguwpwsx"}
+//      128  普通联盟令
+//    131   追杀令
+//    132   高级联盟令
+//    135   联盟令碎片
+//    {"rsn":"6wllsylgby","item":{"hecheng":{"count":1,"id":128}}}  合成普通联盟令
+
 
     public void club(){
         this.applyClub();
@@ -34,6 +40,10 @@ public class LianmengPlayer extends BasePlayer {
     public void dayGongxian() {
         String body = "{\"club\":{\"dayGongXian\":{\"dcid\":3}},\"rsn\":\"" + getRsn() + "\"}";
         this.execute(baseUrl, body);
+    }
+
+    public void dayHighGongxian() {
+        this.runAction0("{\"club\":{\"dayGongXian\":{\"dcid\":5}},\"rsn\":\"%s\"}");
     }
 
     public void outClub() {

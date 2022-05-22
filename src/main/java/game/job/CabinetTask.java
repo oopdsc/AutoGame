@@ -23,7 +23,7 @@ public class CabinetTask {
     DefaultGameRunner runner = new DefaultGameRunner();
 
     //晚上派军机
-    @Scheduled(cron = "0 59 21 * * ?")
+    @Scheduled(cron = "0 58 21 * * ?")
     public void cabinet() {
         LocalDate ld = LocalDate.now();
         int dayInWeek = ld.getDayOfWeek().getValue();

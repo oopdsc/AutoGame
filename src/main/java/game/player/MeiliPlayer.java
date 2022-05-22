@@ -74,6 +74,7 @@ public class MeiliPlayer extends BasePlayer {
 //        {"rsn":"9zzcmmmziti","beast":{"upLv":{"type":2,"item_id":1,"id":8}}}
     }
 
+    //跨服魅力活动中的炮击
     public void pao(){
         this.runAction0("{\"huodong2\":{\"hd954Paoji\":{\"uid\":7000673,\"num\":1}},\"rsn\":\"%s\"}");
     }

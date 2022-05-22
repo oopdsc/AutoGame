@@ -668,7 +668,7 @@ public class GetInfoPlayer extends BasePlayer {
         }
 
         try {
-            FileUtils.write(new File("./"+ folder +"/zz-20220508.txt"),
+            FileUtils.write(new File("./"+ folder +"/zz-20220521.txt"),
                      sb.toString(), true);
 
         } catch (IOException e) {
@@ -701,7 +701,7 @@ public class GetInfoPlayer extends BasePlayer {
         String content = Strings.join(all, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/misc-20220508.txt"), this.getData().username + "," + content + "\n", true);
+            FileUtils.write(new File("./"+ folder +"/misc-20220521.txt"), this.getData().username + "," + content + "\n", true);
         } catch (IOException e) {
             e.printStackTrace();
         }

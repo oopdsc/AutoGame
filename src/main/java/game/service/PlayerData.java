@@ -33,10 +33,17 @@ public class PlayerData {
 
     public boolean yamenShop = Flags.yamenShop;
 
-    public int[] mzid = {1,2,6,8,10,11,12,13,16,20,23,24,33, 34, 35, 37, 38, 39, 40, 41,55};
+//    public int[] mzid = {1,2,6,8,10,11,12,13,16,20,23,24,33, 34, 35, 37, 38, 39, 40, 41, 55};
 
-    public static Integer[] commonSchool = {55, 33,34, 35, 36, 37, 38, 39, 40, 41, 11, 12, 13, 16, 20, 23, 24, 26, 8, 10, 1, 2, 6, 28};
-    public int deskNum = 5;
+    public int[] mzid = {55, 33,34, 35, 37, 38, 39, 40, 41, 44, 6, 10, 11, 12, 16, 20, 24};
+
+    public static Integer[] commonSchool = {55, 33,34, 35, 36, 37, 38, 39, 40, 41,
+            44,
+            6, 10, 11, 12, 16, 20, 24,
+            23, 26,
+            8, 1, 13, 2,
+            28};
+    public int deskNum = 10;
     public Integer[] schoolHero = {};
     public Integer[] noschoolHero = {};
 
@@ -47,7 +54,7 @@ public class PlayerData {
     public int buyItem2 = 0;
     public int buyItem1 = 0;
 
-    public int buyXiongnu1 = 5;
+    public int buyXiongnu1 = 10;
     public boolean buyXiongnu2 = false;
 
     //军机

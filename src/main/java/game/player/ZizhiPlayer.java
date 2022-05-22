@@ -110,11 +110,30 @@ public class ZizhiPlayer extends BasePlayer {
         this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":"+sid+",\"num\":1,\"id\":"+hid+"}},\"rsn\":\"%s\"}");
     }
 
+    public void guanYinpin7MeiJuanzhou(){
+//        {"hero":{"upzzskill":{"type":2,"sid":1601,"num":1,"id":51}},"rsn":"4ffcchaxaav"}
+        this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":1601,\"num\":1,\"id\":51}},\"rsn\":\"%s\"}");
+    }
+
+    /**
+     * 卷轴加马云绿自带7星智力技能
+     */
     public void maYunlv7zhiJuanzhou(){
         this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":127,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
     }
+    /**
+     * 卷轴加装扮技能 - 剑舞红妆
+     */
+    public void maYunlv7zhiZhuangbanJuanzhou(){
+        //    {"hero":{"upzzskill":{"type":2,"sid":1611,"num":100,"id":55}},"rsn":"7yyccsxpldv"}
+        this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":1611,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
+    }
 
+    /**
+     * 用黄书加马云绿5星智力技能
+     */
     public void maYunlv5zhiBook(){
+//        {"hero":{"upzzskill":{"type":1,"sid":128,"num":1,"id":55}},"rsn":"2mxymxwwqyx"}
         this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":1,\"sid\":128,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
     }
 

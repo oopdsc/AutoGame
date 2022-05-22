@@ -88,6 +88,16 @@ class RewardPlayerTest {
         runner.all1(px -> {
             RewardPlayer p = new RewardPlayer(px);
             p.reward_kua_qinmi();
+
+//            for(int i = 1; i <= 7; i++){
+//                p.rewardQinmi();
+//                p.rewardLiangshi();
+//                p.rewardLiangshi();
+//                p.rewardZhengzai();
+//            }
+//            p.reward
+                    HuodongPlayer hp = new HuodongPlayer(px);
+            hp.chijiReward();
         });
 
         GameRunner.sleep(5);

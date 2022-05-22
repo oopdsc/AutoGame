@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
+import static game.service.GameRunner.getRsn;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ZizhiPlayerTest {
@@ -19,21 +20,25 @@ class ZizhiPlayerTest {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
 //                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
 //                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
-                    for(int i = 1; i <=2; i++){
-                        zp.useBook(2, 1);
-                        zp.useBook(2, 2);
-                        zp.useBook(2, 8);
-                        zp.useBook(3, 38);
-                        zp.useBook(3, 41);
-                        zp.useBook(62, 33);
-                        zp.useBook(62, 34);
-                        zp.useBook(62, 35);
-                        zp.useBook(62, 36);
-                        zp.useBook(62, 37);
+                    for(int i = 1; i <=1; i++){
+//                        zp.useBook(2, 1);
+//                        zp.useBook(2, 2);
+//                        zp.useBook(2, 8);
+//                        zp.useBook(3, 38);
+//                        zp.useBook(3, 41);
+//                        zp.useBook(62, 33);
+//                        zp.useBook(62, 34);
+//                        zp.useBook(62, 35);
+//                        zp.useBook(62, 36);
+//                        zp.useBook(62, 37);
+
+//                        zp.useBook(62, 37);
+                        zp.useBook(3, 40);
                     }
 
-                    HuodongPlayer hp = new HuodongPlayer(p);
-                    hp.reward_ganen();
+                    String body = "{\"club\":{\"kuaPKAdd\":{\"hid\":1}},\"rsn\":\"%s\"}";
+                    zp.runAction1(body);
+
 
                 }
 //                , p -> {

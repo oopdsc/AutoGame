@@ -70,6 +70,9 @@ class HuodongPlayerTest {
         runner.all1(px -> {
             HuodongPlayer p = new HuodongPlayer(px);
             p.danzhu();
+
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.reward_kuayamen();
         });
 
         GameRunner.sleep(5);
@@ -200,12 +203,15 @@ class HuodongPlayerTest {
 
     @Test
     void double11(){
-        runner.all1(p -> {
+        runner.single(GameRunner.HUODONG, p -> {
 
             HuodongPlayer hp = new HuodongPlayer(p);
 //            hp.bu
-
-
+            hp.buySchool();
+            hp.buySchool();
+            hp.buySchool();
+            hp.buySchool();
+            hp.xiaohaoFanli();
         });
         System.out.println("done");
     }

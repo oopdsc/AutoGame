@@ -27,8 +27,8 @@ public class HuodongPlayer extends BasePlayer {
     public void danzhu(){
         this.runAction3("{\"huodong2\":{\"hd962Info\":[]},\"rsn\":\"%s\"}");
 
-//        this.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":10}},\"rsn\":\"%s\"}");
-        for(int i = 1; i <= 9; i++){
+        this.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":10}},\"rsn\":\"%s\"}");
+        for(int i = 1; i <= 2; i++){
             this.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":1}},\"rsn\":\"%s\"}");
         }
 
@@ -102,7 +102,7 @@ public class HuodongPlayer extends BasePlayer {
     public void chijiReward(){
         String body2 = "{\"huodong\":{\"hd282exchange\":{\"id\":5}},\"rsn\":\"%s\"}";
         //"{\"huodong\":{\"hd282exchange\":{\"id\":3}},\"rsn\":\"%s\"}";
-        for(int i = 1; i <= 3; i++){
+        for(int i = 1; i <= 4; i++){
             this.runAction2(body2);
         }
     }
@@ -242,17 +242,17 @@ public class HuodongPlayer extends BasePlayer {
             this.runAction2("{\"huodong2\":{\"hd966RwdBox\":{\"id\":3}},\"rsn\":\"%s\"}");
             this.runAction2("{\"huodong2\":{\"hd966RwdRank\":[]},\"rsn\":\"%s\"}");
 
-            int tim3 = retainInt / 625 > 8 ? 8 : retainInt / 625;
-            for(int i = 1; i <= tim3; i++){
+//            int tim3 = retainInt / 625 > 8 ? 8 : retainInt / 625;
+            for(int i = 1; i <= 8; i++){
                 this.runAction2("{\"huodong2\":{\"hd966Exchange\":{\"id\":3}},\"rsn\":\"%s\"}");
             }
-            retainInt = retainInt - 625 * tim3;
-            if(retainInt > 0){
-                int tim9 = retainInt / 50 > 100 ? 100 : retainInt / 50;
-                for(int i = 1; i <= tim9 ; i++){
-                    this.runAction2("{\"huodong2\":{\"hd966Exchange\":{\"id\":9}},\"rsn\":\"%s\"}");
-                }
-            }
+//            retainInt = retainInt - 625 * tim3;
+//            if(retainInt > 0){
+//                int tim9 = retainInt / 50 > 100 ? 100 : retainInt / 50;
+//                for(int i = 1; i <= tim9 ; i++){
+//                    this.runAction2("{\"huodong2\":{\"hd966Exchange\":{\"id\":9}},\"rsn\":\"%s\"}");
+//                }
+//            }
 
         }
     }
@@ -293,6 +293,20 @@ public class HuodongPlayer extends BasePlayer {
             this.runAction1("{\"huodong2\":{\"hd776Play\":{\"type\":4}},\"rsn\":\"%s\"}");
         }
     }
+
+    /**
+     * 小号返利
+     */
+    public void xiaohaoFanli(){
+
+        for(int i = 1; i <= 6; i++){
+//            this.runAction2("{\"huodong\":{\"hd331Get\":[]},\"rsn\":\"%s\"}");
+            this.runAction1("{\"huodong\":{\"hd331Rwd\":[]},\"rsn\":\"%s\"}");
+            this.runAction1("{\"huodong\":{\"hd201Rwd\":[]},\"rsn\":\"%s\"}");
+        }
+
+    }
+
 
     public void wabao(){
 

@@ -295,7 +295,7 @@ public class BasePlayer {
     }
 
     public void xunfunRecover() {
-        this.runAction3("{\"rsn\":\"%s\",\"xunfang\":{\"recover\":[]}}");
+        this.runAction1("{\"rsn\":\"%s\",\"xunfang\":{\"recover\":[]}}");
     }
 
     //one key
@@ -495,7 +495,7 @@ public class BasePlayer {
     }
 
     public void buySchool(){
-        this.runAction3("{\"rsn\":\"%s\",\"school\":{\"buydesk\":[]}}");
+        this.runAction1("{\"rsn\":\"%s\",\"school\":{\"buydesk\":[]}}");
     }
 
     //酒店的卷轴残卷
@@ -504,6 +504,9 @@ public class BasePlayer {
             String body1 = "{\"boite\":{\"shopChange\":{\"id\":10}},\"rsn\":\"" + getRsn() + "\"}";
             for (int i = 1; i <= data.shopnum; i++) {
                 this.execute(baseUrl, body1);
+            }
+            for(int i = 2; i <= 9; i++){
+                this.runAction1("{\"boite\":{\"shopChange\":{\"id\":"+i+"}},\"rsn\":\"%s\"}");
             }
         }
 
@@ -628,6 +631,10 @@ public class BasePlayer {
             this.runAction3("{\"club\":{\"householdMake\":{\"id\":2,\"heroid\":58}},\"rsn\":\"%s\"}");
         }
 
+        //五虎建城门
+        for(int i = 33; i <= 37; i++){
+            this.runAction3("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"s\"}");
+        }
     }
 
     public void openboss() {
@@ -728,11 +735,11 @@ public class BasePlayer {
             this.execute(baseUrl, body);
         }
 
-        //快活帝 - 联盟亲密
-//        String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":15,\"fuid\":7006984}}}";
+//        快活帝 - 联盟亲密
+        String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":15,\"fuid\":7006984}}}";
 
         //精诚帝 - 联盟经验
-        String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":5,\"fuid\":7006984}}}";
+//        String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":5,\"fuid\":7006984}}}";
         this.runAction2(body);
     }
 

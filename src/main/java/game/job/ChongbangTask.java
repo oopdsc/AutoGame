@@ -26,13 +26,6 @@ public class ChongbangTask {
         StopWatch sw = new StopWatch();
         sw.start();
         runner.single(GameRunner.HUODONG, p -> {
-//            MeiliPlayer mp = new MeiliPlayer(p);
-//            for(int i = 1; i <= 13; i++){
-//                mp.upLvBeast2(1, 8);
-//                mp.upLvBeast2(2, 8);
-//                mp.upLvBeast2(3, 8);
-//            }
-
             p.son2();
             for(int i = 1; i <= 42; i++){
                 p.sonFood2(1334);
@@ -44,6 +37,21 @@ public class ChongbangTask {
         sw.stop();
         System.out.println("Done, time :" + sw.getTotalTimeSeconds());
     }
+
+    @Scheduled(cron = "0 59 23 * * ?")
+    public void double11() throws IOException {
+        runner.single(GameRunner.HUODONG, p -> {
+
+            HuodongPlayer hp = new HuodongPlayer(p);
+//            hp.bu
+            hp.buySchool();
+            hp.buySchool();
+            hp.buySchool();
+            hp.buySchool();
+            hp.xiaohaoFanli();
+        });
+    }
+
 
 //    @Scheduled(cron = "27 59 21 * * ?")
     public void clubHighGongXian(){
@@ -88,6 +96,23 @@ public class ChongbangTask {
         });
 
         System.out.println("qinmi done");
+    }
+
+//    @Scheduled(cron = "30 59 21 * * ?")
+    public void beast() {
+        System.out.println("beast start...");
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.single(GameRunner.HUODONG, p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= 6; i++){
+                mp.upLvBeast2(1, 8);
+                mp.upLvBeast2(2, 8);
+                mp.upLvBeast2(3, 8);
+            }
+        });
+        sw.stop();
+        System.out.println("Done, time :" + sw.getTotalTimeSeconds());
     }
 
 

@@ -211,4 +211,14 @@ class GameRunnerTest {
 
         logger.info("{} : {}", ltime, x1);
     }
+
+    @Test
+    public void gold() {
+        StopWatch sw = new StopWatch();
+        sw.start();
+        runner.single(GameRunner.HUODONG, p -> {
+            p.hitboss();
+        });
+    }
+
 }

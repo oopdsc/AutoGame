@@ -67,6 +67,81 @@ public class MeiliController {
         return "done";
     }
 
+    @ApiOperation(value="买珍兽大经验", tags = {"珍兽榜"})
+    @GetMapping("/buyBigExp")
+    @ResponseBody
+    public String buyBigExp() {
+
+        runner.all( p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= 10; i++){
+                mp.buyBeast(3);
+            }
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="买孔雀", tags = {"珍兽榜"})
+    @GetMapping("/buyKongque")
+    @ResponseBody
+    public String buyKongque() {
+
+        runner.all( p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= 10; i++){
+                mp.buyBeast(9);
+            }
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="买灵蛇", tags = {"珍兽榜"})
+    @GetMapping("/buyLingshe")
+    @ResponseBody
+    public String buyLingshe() {
+
+        runner.all( p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= 10; i++){
+                mp.buyBeast(10);
+            }
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="买白熊", tags = {"珍兽榜"})
+    @GetMapping("/buyBaixiong")
+    @ResponseBody
+    public String buyBaixiong() {
+
+        runner.all( p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= 10; i++){
+                mp.buyBeast(11);
+            }
+        });
+
+        return "done";
+    }
+
+    @ApiOperation(value="买斗牛", tags = {"珍兽榜"})
+    @GetMapping("/buyDouniu")
+    @ResponseBody
+    public String buyDouniu() {
+
+        runner.all( p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= 10; i++){
+                mp.buyBeast(12);
+            }
+        });
+
+        return "done";
+    }
+
 
 }
 

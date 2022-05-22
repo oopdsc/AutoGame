@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class LianmengPlayerTest {
 
     DefaultGameRunner runner = new DefaultGameRunner();
-
+//、、24300   48600   6000
+//    27800+24300  52100  54110
     @Test
     void club() {
         runner.single(GameRunner.GOLD, p -> {

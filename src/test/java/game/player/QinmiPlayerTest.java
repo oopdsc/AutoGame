@@ -32,6 +32,9 @@ class QinmiPlayerTest {
         runner.all1( p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
             qp.useCook(3);
+
+
+
         });
 
         System.out.println("done");
@@ -229,25 +232,35 @@ class QinmiPlayerTest {
     @Test
     public void xunfang_test(){
         runner.all1(p -> {
+
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.reward_kua_zizhi();
+
             QinmiPlayer qp = new QinmiPlayer(p);
 
-            for(int i = 1; i <= 10; i++){
+            for(int i = 1; i <= 50; i++){
                 qp.xunfun();
                 qp.xunfunRecover();
             }
             qp.xunfun();
 
         }, p -> {
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.reward_kua_zizhi();
+
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 10; i++){
+            for(int i = 1; i <= 20; i++){
                 qp.xunfun2();
                 qp.xunfunRecover();
             }
             qp.xunfun2();
 
         }, p -> {
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.reward_kua_zizhi();
+
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 10; i++){
+            for(int i = 1; i <= 20; i++){
                 qp.xunfun2();
                 qp.xunfunRecover();
             }

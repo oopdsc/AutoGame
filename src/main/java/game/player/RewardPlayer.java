@@ -87,7 +87,8 @@ public class RewardPlayer extends BasePlayer {
     }
 
     public void reward_kua_qinmi(){
-        this.baseReward("314");
+//        this.baseReward("314");
+        this.runAction1("{\"huodong\":{\"hd314Get\":[]},\"rsn\":\"%s\"}");
     }
 
     public void reward_kua_meili(){
@@ -108,6 +109,10 @@ public class RewardPlayer extends BasePlayer {
             this.rewardGuoli();
         }
 
+    }
+
+    public void reward_kua_zizhi(){
+        this.runAction2("{\"huodong\":{\"hd266Get\":[]},\"rsn\":\"%s\"}");
     }
 
     public void reward_bolanshitu(){

@@ -76,7 +76,7 @@ public class DahaoAt130Task {
                             doAt3(p);
                         }else if(h == 7){
                             doAt7(p);
-                        } else if(h == 10){
+                        } else if(h == 8){
                             doAt10(p);
                         } else if(h == 12){
                             doAt12(p);

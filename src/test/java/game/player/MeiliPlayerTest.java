@@ -32,16 +32,21 @@ class MeiliPlayerTest {
 
     /**
      * 担任用魅力道具1。个人魅力用
+     * WANG7777
      */
     @Test
     void meili1() {
         StopWatch sw = new StopWatch();
         sw.start();
-        int num = 500;
+        int num = 700;
         runner.single(GameRunner.HUODONG, p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
+//            for(int i = 1; i <= num; i++){
+//                mp.meili1();
+//            }
+
             for(int i = 1; i <= num; i++){
-                mp.meili1();
+                mp.meili2();
             }
         });
         sw.stop();
@@ -50,15 +55,17 @@ class MeiliPlayerTest {
 
     /**
      * 担任用魅力道具2。个人魅力用
+     *
      */
     @Test
     void meili2() {
         StopWatch sw = new StopWatch();
         sw.start();
-        int num = 500;
-        runner.single(GameRunner.HUODONG, p -> {
+        int num = 3;
+        runner.single("huodong2.json", p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
             for(int i = 1; i <= num; i++){
+//                mp.meili1();
                 mp.meili2();
             }
         });
@@ -116,7 +123,10 @@ class MeiliPlayerTest {
 
     @Test
     void kua_meili(){
-        String all1 = runner.all1( p -> {
+        String all1 = runner.all1( null, p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            mp.kua_meili();
+        }, p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
             mp.kua_meili();
         });
@@ -124,4 +134,11 @@ class MeiliPlayerTest {
     }
 
 
+    @Test
+    void buyBeast() {
+        runner.single(GameRunner.HUODONG, p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            mp.buyBeast(3);
+        });
+    }
 }

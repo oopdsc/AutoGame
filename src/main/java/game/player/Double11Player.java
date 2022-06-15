@@ -24,6 +24,10 @@ public class Double11Player extends BasePlayer {
         this.runAction3("{\"huodong2\":{\"hd246Buy\":{\"type\":1,\"count\":1,\"id\":12}},\"rsn\":\"%s\"}");
     }
 
+    public void buyZhuangbanBu(){
+        this.runAction3("{\"huodong2\":{\"hd246Buy\":{\"type\":2,\"count\":1,\"id\":5}},\"rsn\":\"%s\"}");
+    }
+
     public void sishantiaozhan(){
         for(int i = 1; i  <= 5; i++){
             this.runAction3("{\"huodong\":{\"hd496TaskDaily\":{\"id\":"+i+"}},\"rsn\":\"%s\"}");

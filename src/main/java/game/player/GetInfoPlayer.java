@@ -47,7 +47,7 @@ public class GetInfoPlayer extends BasePlayer {
 //        this.hero(resp, folder);
 //        this.getCourtyardInfo(false, folder);
 //        System.out.println("done : " + folder);
-        this.getMisc(resp, folder);
+//        this.getMisc(resp, folder);
 
         this.listHero(resp, folder);
     }
@@ -169,11 +169,18 @@ public class GetInfoPlayer extends BasePlayer {
         List<Object> mails = dc.read("$.a.mail.mailList[?(@.rts==0 && @.mtype == '1')].id");
 
         mails.stream().forEach(mail -> {
-            String body2 = "{\"rsn\":\"" + getRsn() +"\",\"mail\":{\"openMails\":{\"mid\":"+mail+"}}}";
-            this.execute(baseUrl, body2).getBody();
+            String body2 = "{\"rsn\":\"%s\",\"mail\":{\"openMails\":{\"mid\":"+mail+"}}}";
+            this.runAction1(body2);
 
-            String body3 = "{\"rsn\":\"" + getRsn() +"\",\"mail\":{\"redMails\":{\"mid\":"+mail+"}}}";
-            this.execute(baseUrl, body3).getBody();
+            String body3 = "{\"rsn\":\"%s\",\"mail\":{\"redMails\":{\"mid\":"+mail+"}}}";
+            this.runAction1(body3);
+        });
+
+        mails = dc.read("$.a.mail.mailList[?(@.rts==0 && @.mtype == '0')].id");
+
+        mails.stream().forEach(mail -> {
+            String body2 = "{\"rsn\":\"%s\",\"mail\":{\"openMails\":{\"mid\":"+mail+"}}}";
+            this.runAction1(body2);
         });
 
 
@@ -550,6 +557,19 @@ public class GetInfoPlayer extends BasePlayer {
 
     }
 
+    public void getFzMainScoreInfo(){
+        ResponseEntity<String> resp =  this.runAction3("{\"rsn\":\"%s\",\"league\":{\"fzMain\":[]}}");
+        String res = resp.getBody();
+        Configuration conf = Configuration.defaultConfiguration();
+        Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf2).parse(res);
+        Object book1 = dc.read("$.u.league.fzSeatList[0].score");
+
+        Integer x1 = Integer.valueOf(book1.toString());
+
+        logger.info("{} score : {}", this.data.uid, x1);
+    }
+
     public void loveRankInfo(){
         String body = this.runAction3("{\"rsn\":\"%s\",\"ranking\":{\"paihang\":{\"type\":3}}}").getBody();
 
@@ -668,7 +688,7 @@ public class GetInfoPlayer extends BasePlayer {
         }
 
         try {
-            FileUtils.write(new File("./"+ folder +"/zz-20220521.txt"),
+            FileUtils.write(new File("./"+ folder +"/zz-20220614.txt"),
                      sb.toString(), true);
 
         } catch (IOException e) {
@@ -689,6 +709,10 @@ public class GetInfoPlayer extends BasePlayer {
 
         List<Object> meili = this.getItemLists(resp, 93, 94);
 
+        List<Object> jiulou = this.getJiulou();
+
+        List<Object> lianmeng = this.getLianmeng();
+
         List<Object> all = new LinkedList<>();
         all.addAll(skins);
         all.addAll(jinguolings);
@@ -697,14 +721,39 @@ public class GetInfoPlayer extends BasePlayer {
         all.addAll(books);
         all.addAll(qinmi);
         all.addAll(meili);
+        all.addAll(jiulou);
+        all.addAll(lianmeng);
 
         String content = Strings.join(all, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/misc-20220521.txt"), this.getData().username + "," + content + "\n", true);
+            FileUtils.write(new File("./"+ folder +"/misc-20220614.txt"), this.getData().username + "," + content + "\n", true);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private List<Object> getLianmeng() {
+        String resp = this.runAction1("{\"club\":{\"clubInfo\":[]},\"rsn\":\"%s\"}").getBody();
+        Configuration conf = Configuration.defaultConfiguration();
+        Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf2).parse(resp);
+        LinkedList<Object> sum = new LinkedList<>();
+
+        Object lv1 = dc.read("$.a.club.memberInfo.leftgx");
+        sum.add(lv1);
+        return sum;
+    }
+
+    private List<Object> getJiulou() {
+        String resp = this.runAction1("{\"boite\":{\"jlInfo\":[]},\"rsn\":\"%s\"}").getBody();
+        Configuration conf = Configuration.defaultConfiguration();
+        Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf2).parse(resp);
+        LinkedList<Object> sum = new LinkedList<>();
+        Object lv1 = dc.read("$.a.boite.jlShop.score");
+        sum.add(lv1);
+        return sum;
     }
 
     public List<Object> getZhuangban(){

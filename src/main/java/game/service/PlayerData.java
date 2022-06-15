@@ -20,7 +20,7 @@ public class PlayerData {
 
     public int wifeId = 1;
 
-    public int[] hunt = {0, 0, 0};
+    public int[] hunt = {33, 38, 41};
 
     public int[] heroid = {0};
     public int[] mengguid = {0};
@@ -33,17 +33,15 @@ public class PlayerData {
 
     public boolean yamenShop = Flags.yamenShop;
 
-//    public int[] mzid = {1,2,6,8,10,11,12,13,16,20,23,24,33, 34, 35, 37, 38, 39, 40, 41, 55};
-
-    public int[] mzid = {55, 33,34, 35, 37, 38, 39, 40, 41, 44, 6, 10, 11, 12, 16, 20, 24};
+    public int[] mzid = {2, 1, 55, 33,34, 35, 37, 38, 39, 40, 41, 44, 23, 6, 16, 28};
 
     public static Integer[] commonSchool = {55, 33,34, 35, 36, 37, 38, 39, 40, 41,
-            44,
-            6, 10, 11, 12, 16, 20, 24,
-            23, 26,
-            8, 1, 13, 2,
-            28};
-    public int deskNum = 10;
+            1, 44, 23, 6, 28, 2, 16,
+              11, 12, 20, 24,
+             26,
+            8,  13, 10
+            };
+    public int deskNum = 20;
     public Integer[] schoolHero = {};
     public Integer[] noschoolHero = {};
 

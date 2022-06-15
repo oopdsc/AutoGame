@@ -15,11 +15,12 @@ public class ZizhiPlayer extends BasePlayer {
     }
 
     public static int SID_5WULI = 5;
-//    public static int SID_3WULI = 5;
+    public static int SID_3WULI = 3;
 //    public static int SID_5ZHILI = 5;
 
     public static int SID_5ZHILI_JiaRenTieJi = 128;
     public static int SID_7ZHILI_JiangWu = 1611;
+    public static int SID_4WULI_WUHU = 62;
 
     public void zizhiReward(){
         //School
@@ -147,13 +148,13 @@ public class ZizhiPlayer extends BasePlayer {
             this.baseReward("211");     //shcool
         }
 
-        for(int i = 1 ; i <= 5; i++){
-            this.baseReward("201");  // 元宝
-        }
+//        for(int i = 1 ; i <= 5; i++){
+//            this.baseReward("201");  // 元宝
+//        }
 
-        for(int i = 1 ; i <= 12; i++){
-            this.baseReward("204");  // 卷轴
-        }
+//        for(int i = 1 ; i <= 12; i++){
+//            this.baseReward("204");  // 卷轴
+//        }
 
 
     }

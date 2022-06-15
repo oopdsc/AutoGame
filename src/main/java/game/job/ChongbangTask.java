@@ -16,20 +16,28 @@ public class ChongbangTask {
 
     DefaultGameRunner runner = new DefaultGameRunner();
 
-    @Scheduled(cron = "10 59 21 * * ?")
+//    @Scheduled(cron = "10 46 21 * * ?")
+    public void chongbang3() throws IOException {
+        runner.single(GameRunner.HUODONG, p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            mp.buyBeast(3);
+        });
+    }
+
+//    @Scheduled(cron = "10 59 21 * * ?")
     public void chongbang2() throws IOException {
         System.out.println("hello");
     }
-    //child 冲榜
-    @Scheduled(cron = "31 59 21 * * ?")
+//    child 冲榜
+//    @Scheduled(cron = "25 59 21 * * ?")
     public void chongbang() throws IOException {
         StopWatch sw = new StopWatch();
         sw.start();
         runner.single(GameRunner.HUODONG, p -> {
             p.son2();
             for(int i = 1; i <= 42; i++){
-                p.sonFood2(1334);
-                p.sonFood2(1351);
+                p.sonFood2(1354);
+                p.sonFood2(1372);
                 p.son2();
             }
 
@@ -38,7 +46,7 @@ public class ChongbangTask {
         System.out.println("Done, time :" + sw.getTotalTimeSeconds());
     }
 
-    @Scheduled(cron = "0 59 23 * * ?")
+//    @Scheduled(cron = "0 59 23 * * ?")
     public void double11() throws IOException {
         runner.single(GameRunner.HUODONG, p -> {
 
@@ -57,7 +65,7 @@ public class ChongbangTask {
     public void clubHighGongXian(){
         StopWatch sw = new StopWatch();
         sw.start();
-        runner.single("club2.json", p -> {
+        runner.single("club.json", p -> {
             LianmengPlayer lp = new LianmengPlayer(p);
             lp.dayHighGongxian();
 
@@ -72,7 +80,7 @@ public class ChongbangTask {
         sw.start();
         runner.single("club.json", p -> {
             LianmengPlayer lp = new LianmengPlayer(p);
-            lp.club();
+            lp.dayHighGongxian();
         });
         sw.stop();
         System.out.println("Done, time :" + sw.getTotalTimeSeconds());
@@ -98,6 +106,18 @@ public class ChongbangTask {
         System.out.println("qinmi done");
     }
 
+//    @Scheduled(cron = "0 56 21 * * ?")
+    public void meili() {
+        runner.processSingle(GameRunner.HUODONG, p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= 2000; i++){
+                mp.meili2();
+            }
+        });
+
+        System.out.println("meili done");
+    }
+
 //    @Scheduled(cron = "30 59 21 * * ?")
     public void beast() {
         System.out.println("beast start...");
@@ -106,9 +126,9 @@ public class ChongbangTask {
         runner.single(GameRunner.HUODONG, p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
             for(int i = 1; i <= 6; i++){
-                mp.upLvBeast2(1, 8);
-                mp.upLvBeast2(2, 8);
-                mp.upLvBeast2(3, 8);
+                mp.upLvBeast2(1, 6);
+                mp.upLvBeast2(2, 6);
+                mp.upLvBeast2(3, 6);
             }
         });
         sw.stop();

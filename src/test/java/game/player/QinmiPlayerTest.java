@@ -200,13 +200,13 @@ class QinmiPlayerTest {
     @Test
     public void xiaohaoQinmi(){
 //        runner.processMulti("clubQinmi.json", p -> {
-        runner.processSingle("clubQinmi.json", p -> {
+        runner.processSingle(GameRunner.HUODONG, p -> {
             GameRunner.sleepInMillis(runner.rd.nextInt(1000));
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 500; i++){
+            for(int i = 1; i <= 5000; i++){
                 qp.qinmi11();
             }
-            for(int i = 1; i <= 500; i++){
+            for(int i = 1; i <= 2000; i++){
                 qp.qinmi12();
             }
         });
@@ -275,7 +275,7 @@ class QinmiPlayerTest {
     public void sjxo_test(){
         runner.all1(p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 20; i++){
+            for(int i = 1; i <= 50; i++){
                 qp.yjxo();
                 qp.useXoItems();
             }

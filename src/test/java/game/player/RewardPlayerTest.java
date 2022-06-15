@@ -1,6 +1,8 @@
 package game.player;
 
 import game.active.DefaultGameRunner;
+import game.command.BaseCommand;
+import game.command.RewardCommand;
 import game.player.RewardPlayer;
 import game.service.GameRunner;
 import org.junit.jupiter.api.Test;
@@ -20,15 +22,47 @@ class RewardPlayerTest {
 
 //            this.rewardLianmengBang(p);
 
-            for(int i = 1; i <= 7; i++){
+//            for(int i = 1; i <= 4; i++){
+//                p.rewardMeili();
+//                p.rewardQinmi();
+//                p.rewardYinliang();
+//                p.rewardYinliang();
+//            }
+//
+//
+//            for(int i = 1; i <= 7; i++){
+//                p.rewardYinliang();
+////                p.rewardHuolidan();
+//                p.rewardGuoli();
+//                p.rewardGuoli();
+//
+////                p.rewardZhengzai();
+//            }
+//            p.rewardZhengzai();
+//            p.rewardZhuangban();
+//            p.reward_kua_guoli();
+//            for(int i = 1; i <= 6; i++){
+//                p.rewardYuanbao();
+//            }
+            p.reward_kua_qinmi();
+
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.chijiReward();
+            p.rewardLiangshi();
+            p.rewardLiangshi();
+            p.rewardZhengzai();
+            p.rewardZhengzai();
+            for(int i = 1; i <= 6; i++){
+                p.rewardQinmi();
                 p.rewardGuoli();
                 p.rewardLiangshi();
                 p.rewardLiangshi();
-                p.rewardQinmi();
+                p.rewardZhengzai();
                 p.rewardZhengzai();
             }
-            p.rewardZhengzai();
-            p.rewardZhuangban();
+
+
+
 //            p.rewardYinliang();
 
 //            p.reward_ganen();
@@ -75,9 +109,16 @@ class RewardPlayerTest {
 
     @Test
     void reward_kuayamen_test()  {
-        runner.all1(px -> {
-            RewardPlayer p = new RewardPlayer(px);
-            p.reward_kuayamen();
+        runner.all1(p -> {
+            for(int i = 33; i <= 37; i++){
+                p.runAction1(BaseCommand.houseMake(12, i));
+            }
+            for(int i = 38; i <= 41; i++){
+                p.runAction1(BaseCommand.houseMake(11, i));
+            }
+//            p.runAction2(RewardCommand.getKuaYamenReward());
+//            p.runAction2(BaseCommand.mengzhan(36));
+
         });
 
         GameRunner.sleep(5);

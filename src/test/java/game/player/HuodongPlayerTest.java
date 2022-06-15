@@ -4,6 +4,8 @@ import game.active.DefaultGameRunner;
 import game.service.GameRunner;
 import org.junit.jupiter.api.Test;
 
+import java.util.function.Consumer;
+
 class HuodongPlayerTest {
 
     DefaultGameRunner runner = new DefaultGameRunner();
@@ -13,6 +15,7 @@ class HuodongPlayerTest {
         runner.all1(p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.chiji();
+            hp.zhongshuhuodong();
         });
     }
 
@@ -43,15 +46,69 @@ class HuodongPlayerTest {
 
     @Test
     void zhongshuReward() {
+
+//        Consumer<T> consumer =
+
         runner.all1(p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.zhongshuReward();
-            hp.chijiReward();
+            hp.chiji();
+//            hp.zhongshuReward();
+//            hp.chijiReward();
             hp.lishanXunli_daily();
             hp.lishanXunli_xunli();
 
+            for(int i = 33; i <= 37; i++){
+                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            }
+            for(int i = 38; i <= 41; i++){
+                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":11,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            }
+
 //            RewardPlayer rp = new RewardPlayer(p);
-//            rp.rewardZhuangban();
+            hp.runAction3("{\"huodong2\":{\"hd238Get\":[]},\"rsn\":\"%s\"}");
+
+        }, p -> {
+            HuodongPlayer hp = new HuodongPlayer(p);
+//            hp.zhongshuReward();
+//            hp.chijiReward();
+            hp.lishanXunli_daily();
+            hp.lishanXunli_xunli();
+
+            hp.chiji();
+
+            for(int i = 33; i <= 37; i++){
+                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            }
+            for(int i = 38; i <= 41; i++){
+                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":11,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            }
+
+//            RewardPlayer rp = new RewardPlayer(p);
+            hp.runAction3("{\"huodong2\":{\"hd238Get\":[]},\"rsn\":\"%s\"}");
+
+            QinmiPlayer qp = new QinmiPlayer(p);
+            qp.useCook(3);
+        }, p -> {
+            HuodongPlayer hp = new HuodongPlayer(p);
+
+            hp.chiji();
+//            hp.zhongshuReward();
+//            hp.chijiReward();
+            hp.lishanXunli_daily();
+            hp.lishanXunli_xunli();
+
+            for(int i = 33; i <= 37; i++){
+                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            }
+            for(int i = 38; i <= 41; i++){
+                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":11,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            }
+
+//            RewardPlayer rp = new RewardPlayer(p);
+            hp.runAction3("{\"huodong2\":{\"hd238Get\":[]},\"rsn\":\"%s\"}");
+
+            QinmiPlayer qp = new QinmiPlayer(p);
+            qp.useCook(3);
         });
     }
 
@@ -87,6 +144,7 @@ class HuodongPlayerTest {
 //            hp.runAction1("{\"huodong\":{\"hd685chageRand\":{\"rand\":1}},\"rsn\":\"%s\"}");
         });
         System.out.println("done");
+
     }
 
     @Test
@@ -94,11 +152,24 @@ class HuodongPlayerTest {
         runner.all1(p -> {
             GameRunner.sleepInMillis(runner.rd.nextInt(30));
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.saimaCreate(6);
+            hp.saimaCreate(41);
 
-            hp.zhongshuReward();
+            hp.cuju();
+
+//            for (int i = 1; i <= 20; i++) {
+//                hp.runAction2("{\"huodong\":{\"hd456play\":{\"id\":361}},\"rsn\":\"%s\"}");
+//            }
+//            for(int i = 33; i <= 37; i++){
+//                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+//            }
+
+//            String body = "{\"club\":{\"kuaPKAdd\":{\"hid\":35}},\"rsn\":\"%s\"}";
+//            hp.runAction1(body);
+
         });
         System.out.println("done");
+
+
     }
 
     @Test
@@ -107,6 +178,9 @@ class HuodongPlayerTest {
 //            GameRunner.sleepInMillis(runner.rd.nextInt(30));
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.saima_reward();
+
+            hp.cujuReward();
+
         });
         System.out.println("done");
     }
@@ -115,6 +189,7 @@ class HuodongPlayerTest {
 
     @Test
     void joinsaima(){
+
         runner.all1(p -> {
             GameRunner.sleepInMillis(runner.rd.nextInt(100));
             HuodongPlayer hp = new HuodongPlayer(p);
@@ -209,9 +284,14 @@ class HuodongPlayerTest {
 //            hp.bu
             hp.buySchool();
             hp.buySchool();
-            hp.buySchool();
-            hp.buySchool();
+//            hp.buySchool();
+//            hp.buySchool();
             hp.xiaohaoFanli();
+            RewardPlayer rp = new RewardPlayer(p);
+            for(int i = 1; i <= 5; i++){
+                rp.rewardYuanbao();
+            }
+
         });
         System.out.println("done");
     }
@@ -228,7 +308,7 @@ class HuodongPlayerTest {
 
     @Test
     void wabao2(){
-        runner.single("huodong.json", p -> {
+        runner.single("huodong2.json", p -> {
 
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.wabao();
@@ -287,5 +367,33 @@ class HuodongPlayerTest {
 
 
         });
+    }
+
+    @Test
+    void cuju() {
+        runner.all1(p -> {
+
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.cuju();
+
+            hp.saimaCreate(34);
+
+
+
+//            hp.zajiActive();
+//            for(int i = 33; i <= 37; i++){
+//                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+//            }
+        });
+        System.out.println("done");
+    }
+
+    @Test
+    void buyHighZaji() {
+        runner.single("goldhuodong.json", p -> {
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.buyHighZaji();
+        });
+        System.out.println("done");
     }
 }

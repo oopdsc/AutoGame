@@ -20,6 +20,10 @@ class ZizhiPlayerTest {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
 //                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
 //                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
+                    for(int i = 33; i <= 37; i++){
+                        zp.useBook(ZizhiPlayer.SID_4WULI_WUHU, i);
+                    }
+
                     for(int i = 1; i <=1; i++){
 //                        zp.useBook(2, 1);
 //                        zp.useBook(2, 2);
@@ -33,33 +37,9 @@ class ZizhiPlayerTest {
 //                        zp.useBook(62, 37);
 
 //                        zp.useBook(62, 37);
-                        zp.useBook(3, 40);
+//                        zp.useBook(3, 40);
                     }
-
-                    String body = "{\"club\":{\"kuaPKAdd\":{\"hid\":1}},\"rsn\":\"%s\"}";
-                    zp.runAction1(body);
-
-
                 }
-//                , p -> {
-//                    ZizhiPlayer zp = new ZizhiPlayer(p);
-//
-//                    zp.useBook(2, 1);
-//                    zp.useBook(2, 2);
-//                    zp.useBook(2, 8);
-//
-//                    zp.useBook(63, 38);
-//
-//
-//                }
-//                , p -> {
-//                    ZizhiPlayer zp = new ZizhiPlayer(p);
-//
-//                    zp.useBook(2, 1);
-//                    zp.useBook(2, 2);
-//                    zp.useBook(2, 8);
-//                    zp.useBook(63, 38);
-//                }
                 );
         System.out.println("done");
     }

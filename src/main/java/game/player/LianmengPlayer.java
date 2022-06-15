@@ -1,5 +1,6 @@
 package game.player;
 
+import game.command.ShopCommand;
 import game.service.PlayerData;
 
 import static game.service.GameRunner.getRsn;
@@ -49,6 +50,14 @@ public class LianmengPlayer extends BasePlayer {
     public void outClub() {
         String body = "{\"club\":{\"outClub\":[]},\"rsn\":\"" + getRsn() + "\"}";
         this.execute(baseUrl, body);
+    }
+
+    public void buyItems(){
+        for(int i = 1; i <= 12; i++){
+            this.runAction2(ShopCommand.ShopClubItems);
+        }
+        this.runAction2(ShopCommand.hechengClubNormalItem);
+        this.runAction2(ShopCommand.hechengClubHighItem);
     }
 
 

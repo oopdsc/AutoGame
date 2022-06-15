@@ -1,6 +1,7 @@
 package game.player;
 
 import game.active.DefaultGameRunner;
+import game.config.Flags;
 import game.service.GameRunner;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,8 @@ class YamenPlayerTest {
     void chushi() {
         runner.single(GameRunner.HUODONG, p -> {
             YamenPlayer yp = new YamenPlayer(p);
-            for(int i = 1; i <= 5; i++){
+            Flags.yamenShop = true;
+            for(int i = 1; i <= 10; i++){
                 yp.chushi_One();
             }
 

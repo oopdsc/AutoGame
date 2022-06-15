@@ -313,24 +313,24 @@ public class BasePlayer {
     }
 
     public void son() {
-        String body1 = "{\"rsn\":\"" + getRsn() + "\",\"son\":{\"allplay\":[]}}";
-        this.execute(baseUrl, body1);
+        String body1 = "{\"rsn\":\"%s\",\"son\":{\"allplay\":[]}}";
+        this.runAction1(body1);
 
     }
 
     public void sonFood(int id) {
-        String body1 = "{\"rsn\":\"" + getRsn() + "\",\"son\":{\"onfood\":{\"id\":" + id + "}}}";
-        this.execute(baseUrl, body1);
+        String body1 = "{\"rsn\":\"%s\",\"son\":{\"onfood\":{\"id\":" + id + "}}}";
+        this.runAction1(body1);
     }
 
     public void son2() {
-        String body1 = "{\"rsn\":\"" + getRsn() + "\",\"son\":{\"allplay\":[]}}";
-        this.executeNoSleep(baseUrl, body1);
+        String body1 = "{\"rsn\":\"%s\",\"son\":{\"allplay\":[]}}";
+        this.runAction0(body1);
     }
 
     public void sonFood2(int id) {
-        String body1 = "{\"rsn\":\"" + getRsn() + "\",\"son\":{\"onfood\":{\"id\":" + id + "}}}";
-        this.executeNoSleep(baseUrl, body1);
+        String body1 = "{\"rsn\":\"%s\",\"son\":{\"onfood\":{\"id\":" + id + "}}}";
+        this.runAction0(body1);
     }
 
     //{"rsn":"9rjnrjcjim","son":{"onfood":{"id":1198}}}
@@ -633,7 +633,10 @@ public class BasePlayer {
 
         //五虎建城门
         for(int i = 33; i <= 37; i++){
-            this.runAction3("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"s\"}");
+            this.runAction3("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+        }
+        for(int i = 38; i <= 41; i++){
+            this.runAction2("{\"club\":{\"householdMake\":{\"id\":11,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
         }
     }
 

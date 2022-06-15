@@ -22,6 +22,10 @@ class GameRunnerTest {
     DefaultGameRunner runner = new DefaultGameRunner();
 
     @Test
+    void foo(){
+        System.out.println(31/2);
+    }
+    @Test
     void runner2(){
         runner.singleDahao(
                 p -> {

@@ -26,10 +26,10 @@ class GetInfoPlayerTest {
     @Test
     void getAll() throws IOException {
 
-        FileUtils.write(new File("./"+ DAHAO +"/misc-20220521.txt"),
+        FileUtils.write(new File("./"+ DAHAO +"/misc-20220614.txt"),
                 "名字,皮肤,书桌,钱,关卡,巾帼令,将臣布匹,书院装扮,巾帼装扮,联盟碎片,联盟道具,联盟高级道具," +
                         "武力卷轴,智力卷轴,政治卷轴,魅力卷轴,卷轴,小黄书,大黄书," +
-                        "亲密1,亲密2,亲密包,魅力1,魅力2\n", false);
+                        "亲密1,亲密2,亲密包,魅力1,魅力2,酒楼,联盟\n", false);
 //        FileUtils.write(new File("./"+ XIAOHAO1 +"/misc-20220430.txt"),
 //                "名字,皮肤,书桌,钱,关卡,巾帼令,将臣布匹,书院装扮,巾帼装扮," +
 //                        "武力卷轴,智力卷轴,政治卷轴,魅力卷轴,卷轴,小黄书,大黄书," +
@@ -39,7 +39,7 @@ class GetInfoPlayerTest {
 //                        "武力卷轴,智力卷轴,政治卷轴,魅力卷轴,卷轴,小黄书,大黄书," +
 //                        "亲密1,亲密2,亲密包,魅力1,魅力2\n", false);
 
-        FileUtils.write(new File("./"+ DAHAO +"/zz-20220521.txt"), "profile,姓名,id,等级,武力,战力,满武力,书籍经验,总资质\n");
+        FileUtils.write(new File("./"+ DAHAO +"/zz-20220614.txt"), "profile,姓名,id,等级,武力,战力,满武力,书籍经验,总资质\n");
 //        FileUtils.write(new File("./"+ XIAOHAO1 +"/zz-20220428.txt"), "profile,姓名,id,等级,武力,战力,满武力,书籍经验,总资质\n");
 //        FileUtils.write(new File("./"+ XIAOHAO2 +"/zz-20220428.txt"), "profile,姓名,id,等级,武力,战力,满武力,书籍经验,总资质\n");
 
@@ -96,13 +96,7 @@ class GetInfoPlayerTest {
 
         String all1 = runner.all1( p -> {
             GetInfoPlayer gp = new GetInfoPlayer(p);
-            gp.getZhuangban(DAHAO);
-        }, p-> {
-            GetInfoPlayer gp = new GetInfoPlayer(p);
-            gp.getZhuangban(XIAOHAO1);
-        }, p -> {
-            GetInfoPlayer gp = new GetInfoPlayer(p);
-            gp.getZhuangban(XIAOHAO2);
+            gp.getFzMainScoreInfo();
         });
         System.out.println(all1);
 
@@ -136,9 +130,10 @@ class GetInfoPlayerTest {
 
     @Test
     void openMail() {
-//        String all1 = runner.all1( p -> {
-        runner.processSingle(HUODONG, p-> {
+        String all1 = runner.all1( p -> {
+//        runner.processSingle(HUODONG, p-> {
             GetInfoPlayer gp = new GetInfoPlayer(p);
+            p.householdMake();
             gp.openAllmail();
         });
 //        System.out.println(all1);
@@ -219,7 +214,20 @@ class GetInfoPlayerTest {
     void hero_pkskill_lvup_all_test() {
         runner.all1(p ->{
             GetInfoPlayer gp = new GetInfoPlayer(p);
-            gp.hero_pkskill_lvup(8);
+//            gp.hero_pkskill_lvup(33);
+//            gp.hero_pkskill_lvup(34);
+//            gp.hero_pkskill_lvup(35);
+//            gp.hero_pkskill_lvup(36);
+//            gp.hero_pkskill_lvup(37);
+//            gp.hero_pkskill_lvup(39);
+//            gp.hero_pkskill_lvup(40);
+
+            for(int i = 33; i <= 37; i++){
+                gp.runAction2("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            }
+            for(int i = 38; i <= 41; i++){
+                gp.runAction2("{\"club\":{\"householdMake\":{\"id\":11,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            }
         });
     }
 

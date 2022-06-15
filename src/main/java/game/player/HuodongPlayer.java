@@ -90,9 +90,10 @@ public class HuodongPlayer extends BasePlayer {
         String body2 = "{\"huodong\":{\"hd282play\":{\"id\":271}},\"rsn\":\"%s\"}";
         //"{\"huodong\":{\"hd282play\":{\"id\":272}},\"rsn\":\"%s\"}";
 
-        for (int i = 1; i <= 20; i++) {
-            this.runAction3(body1);
-            this.runAction3(body2);
+        for (int i = 1; i <= 30; i++) {
+            this.runAction2(body2);
+            this.runAction2(body2);
+            this.runAction2(body1);
         }
     }
 
@@ -116,6 +117,13 @@ public class HuodongPlayer extends BasePlayer {
             this.runAction3("{\"huodong\":{\"hd456play\":{\"id\":361}},\"rsn\":\"%s\"}");
         }
 
+    }
+
+    public void buyHighZaji(){
+        for(int i = 1; i <= 10; i++){
+            this.runAction3("{\"huodong\":{\"hd456buy\":{\"id\":1}},\"rsn\":\"%s\"}");
+            this.runAction2("{\"huodong\":{\"hd456buy\":{\"id\":2}},\"rsn\":\"%s\"}");
+        }
     }
 
     /**
@@ -258,7 +266,7 @@ public class HuodongPlayer extends BasePlayer {
     }
 
     public void saimaCreate(){
-        this.runAction3("{\"huodong\":{\"hd685createClub\":{\"name\":\"X"+rd.nextInt(7) + "2" + rd.nextInt(8) + "3" + rd.nextInt(9) +"\",\"rand\":1}},\"rsn\":\"%s\"}");
+        this.runAction3("{\"huodong\":{\"hd685createClub\":{\"name\":\"X"+rd.nextInt(7) + "2" + rd.nextInt(8) + "4" + rd.nextInt(9) +"\",\"rand\":1}},\"rsn\":\"%s\"}");
     }
 
     //7008920
@@ -318,8 +326,8 @@ public class HuodongPlayer extends BasePlayer {
         yp.chushi_One();
         yp.chushi_One();
 
-        this.buySchool();
-        this.buySchool();
+//        this.buySchool();
+//        this.buySchool();
 
         this.runAction2("{\"club\":{\"dayGongXian\":{\"dcid\":1}},\"rsn\":\"%s\"}");
 
@@ -362,6 +370,41 @@ public class HuodongPlayer extends BasePlayer {
             sleepInMillis(500);
             this.runAction3("{\"huodong2\":{\"hd997getSignRwd\":{\"id\":" + i + "}},\"rsn\":\"%s\"}");
         }
+    }
+
+    public void cuju(){
+        this.runAction2("{\"huodong2\":{\"hd874SelHero\":{\"heroidStr\":\"33,34,55,36,41,38\"}},\"rsn\":\"%s\"}");
+//        this.runAction2("{\"huodong2\":{\"hd874Start\":[]},\"rsn\":\"%s\"}");
+//        sleep(30);
+//        this.runAction2("{\"huodong2\":{\"hd874Play\":{\"dienum\":5,\"type\":1,\"time\":30,\"iswin\":1,\"blood\":5}},\"rsn\":\"%s\"}");
+        this.runAction3("{\"huodong2\":{\"hd874Play\":{\"dienum\":0,\"type\":2,\"time\":0,\"iswin\":0,\"blood\":5}},\"rsn\":\"%s\"}");
+        this.runAction3("{\"huodong2\":{\"hd874Play\":{\"dienum\":0,\"type\":2,\"time\":0,\"iswin\":0,\"blood\":5}},\"rsn\":\"%s\"}");
+        this.runAction3("{\"huodong2\":{\"hd874Play\":{\"dienum\":0,\"type\":2,\"time\":0,\"iswin\":0,\"blood\":5}},\"rsn\":\"%s\"}");
+        this.runAction3("{\"huodong2\":{\"hd874Play\":{\"dienum\":0,\"type\":2,\"time\":0,\"iswin\":0,\"blood\":5}},\"rsn\":\"%s\"}");
+        this.runAction3("{\"huodong2\":{\"hd874Play\":{\"dienum\":0,\"type\":2,\"time\":0,\"iswin\":0,\"blood\":5}},\"rsn\":\"%s\"}");
+        this.runAction3("{\"huodong2\":{\"hd874Play\":{\"dienum\":0,\"type\":2,\"time\":0,\"iswin\":0,\"blood\":5}},\"rsn\":\"%s\"}");
+
+
+
+    }
+
+    public void cujuReward(){
+        for(int i = 1; i <= 5; i++){
+            this.runAction2("{\"huodong2\":{\"hd874Rwd\":{\"type\":1,\"id\":"+i+"}},\"rsn\":\"%s\"}");
+        }
+    }
+
+    public void longzhou(){
+        String name = "";
+        this.runAction2("{\"hd999\":{\"name\":{\"name\":\"A13457\"}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"hd999\":{\"rwdTask\":{\"id\":1}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"hd999\":{\"rwdTask\":{\"id\":3}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"hd999\":{\"rwdTask\":{\"id\":6}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"hd999\":{\"rwdTask\":{\"id\":7}},\"rsn\":\"%s\"}");
+        for(int i = 1; i <= 8; i++){
+            this.runAction2("{\"hd999\":{\"eat\":{\"num\":1,\"id\":42105}},\"rsn\":\"%s\"}");
+        }
+
     }
 
 }

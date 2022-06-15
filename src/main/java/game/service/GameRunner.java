@@ -313,7 +313,7 @@ public interface GameRunner<T extends BasePlayer> {
             String players = FileUtils.readFileToString(playerData.getFile(), Charset.defaultCharset());
 
             List<PlayerData> datas = JSONObject.parseArray(players, PlayerData.class)
-//                    .subList(70, 88)
+//                    .subList(70, 82)
                     ;
 
 //            System.out.println(datas.size());

@@ -19,6 +19,13 @@ class Double11PlayerTest {
             hp.buyQinmi();
             hp.buyMeili();
 
+//            RewardPlayer rp = new RewardPlayer(p);
+//            rp.rewardYuanbao();
+//            rp.rewardYuanbao();
+//            rp.rewardYuanbao();
+//
+//            rp.reward_kua_meili();
+
 
 //            hp.buyMeili();
 
@@ -35,17 +42,31 @@ class Double11PlayerTest {
         }, p-> {
             Double11Player hp = new Double11Player(p);
             hp.buyJinguoIn11();
-            hp.buyMeili();
-                    hp.buyQinmi();
-                    hp.buyMeili();
+                    hp.buyZhuangbanBu();
+//            hp.buyMeili();
+//            hp.buyQinmi();
+//            hp.buyMeili();
+
+//                    RewardPlayer rp = new RewardPlayer(p);
+//                    rp.rewardYuanbao();
+//                    rp.rewardYuanbao();
+//                    rp.rewardYuanbao();
+//                    rp.reward_kua_meili();
         },
 //                null, null,
     p-> {
             Double11Player hp = new Double11Player(p);
             hp.buyJinguoIn11();
-            hp.buyMeili();
-        hp.buyQinmi();
-        hp.buyMeili();
+            hp.buyZhuangbanBu();
+//            hp.buyMeili();
+//            hp.buyQinmi();
+//            hp.buyMeili();
+
+//        RewardPlayer rp = new RewardPlayer(p);
+//        rp.rewardYuanbao();
+//        rp.rewardYuanbao();
+//        rp.rewardYuanbao();
+//        rp.reward_kua_meili();
         });
         System.out.println("done");
     }

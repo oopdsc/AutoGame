@@ -45,8 +45,8 @@ public interface GameRunner<T extends BasePlayer> {
 
     static Resource getResource(String file){
 
-//        return new ClassPathResource(file);
-        return new FileSystemResource("/usr/games/" + file);
+        return new ClassPathResource(file);
+//        return new FileSystemResource("/usr/games/" + file);
 //        return new FileSystemResource("D:/Work/reactor/src/main/resources/" + file);
     }
 
@@ -313,7 +313,7 @@ public interface GameRunner<T extends BasePlayer> {
             String players = FileUtils.readFileToString(playerData.getFile(), Charset.defaultCharset());
 
             List<PlayerData> datas = JSONObject.parseArray(players, PlayerData.class)
-//                    .subList(70, 82)
+//                    .subList(70, 80)
                     ;
 
 //            System.out.println(datas.size());

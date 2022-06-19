@@ -37,4 +37,8 @@ public class LeagueCommand {
     public static String fubenOver(int fbId){
         return "{\"rsn\":\"%s\",\"league\":{\"fbOver\":{\"id\":"+fbId+"}}}";
     }
+
+    public static String pickUpRwd(){
+        return "{\"rsn\":\"%s\",\"league\":{\"cbPickupRwd\":[]}}";
+    }
 }

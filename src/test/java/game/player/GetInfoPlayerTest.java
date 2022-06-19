@@ -26,10 +26,10 @@ class GetInfoPlayerTest {
     @Test
     void getAll() throws IOException {
 
-        FileUtils.write(new File("./"+ DAHAO +"/misc-20220614.txt"),
-                "名字,皮肤,书桌,钱,关卡,巾帼令,将臣布匹,书院装扮,巾帼装扮,联盟碎片,联盟道具,联盟高级道具," +
-                        "武力卷轴,智力卷轴,政治卷轴,魅力卷轴,卷轴,小黄书,大黄书," +
-                        "亲密1,亲密2,亲密包,魅力1,魅力2,酒楼,联盟\n", false);
+//        FileUtils.write(new File("./"+ DAHAO +"/misc-20220614.txt"),
+//                "名字,皮肤,书桌,钱,关卡,巾帼令,将臣布匹,书院装扮,巾帼装扮,联盟碎片,联盟道具,联盟高级道具," +
+//                        "武力卷轴,智力卷轴,政治卷轴,魅力卷轴,卷轴,小黄书,大黄书," +
+//                        "亲密1,亲密2,亲密包,魅力1,魅力2,酒楼,联盟\n", false);
 //        FileUtils.write(new File("./"+ XIAOHAO1 +"/misc-20220430.txt"),
 //                "名字,皮肤,书桌,钱,关卡,巾帼令,将臣布匹,书院装扮,巾帼装扮," +
 //                        "武力卷轴,智力卷轴,政治卷轴,魅力卷轴,卷轴,小黄书,大黄书," +
@@ -39,7 +39,7 @@ class GetInfoPlayerTest {
 //                        "武力卷轴,智力卷轴,政治卷轴,魅力卷轴,卷轴,小黄书,大黄书," +
 //                        "亲密1,亲密2,亲密包,魅力1,魅力2\n", false);
 
-        FileUtils.write(new File("./"+ DAHAO +"/zz-20220614.txt"), "profile,姓名,id,等级,武力,战力,满武力,书籍经验,总资质\n");
+//        FileUtils.write(new File("./"+ DAHAO +"/zz-20220614.txt"), "profile,姓名,id,等级,武力,战力,满武力,书籍经验,总资质\n");
 //        FileUtils.write(new File("./"+ XIAOHAO1 +"/zz-20220428.txt"), "profile,姓名,id,等级,武力,战力,满武力,书籍经验,总资质\n");
 //        FileUtils.write(new File("./"+ XIAOHAO2 +"/zz-20220428.txt"), "profile,姓名,id,等级,武力,战力,满武力,书籍经验,总资质\n");
 

@@ -3,6 +3,7 @@ package game;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import game.active.DefaultGameRunner;
+import game.command.BaseCommand;
 import game.player.*;
 import game.service.GameRunner;
 import game.service.PlayerData;
@@ -23,7 +24,7 @@ class GameRunnerTest {
 
     @Test
     void foo(){
-        System.out.println(31/2);
+        System.out.println(Integer.MAX_VALUE);
     }
     @Test
     void runner2(){
@@ -97,7 +98,9 @@ class GameRunnerTest {
         sw.start();
         runner.all1( p -> {
 
-            p.mengzhan();
+            p.runAction1(BaseCommand.mengzhan(1));
+
+
 
         });
 

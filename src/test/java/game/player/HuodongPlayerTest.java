@@ -1,9 +1,18 @@
 package game.player;
 
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.Option;
 import game.active.DefaultGameRunner;
+import game.command.BaseCommand;
+import game.command.LeagueCommand;
 import game.service.GameRunner;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 class HuodongPlayerTest {
@@ -150,18 +159,30 @@ class HuodongPlayerTest {
     @Test
     void saimaStart(){
         runner.all1(p -> {
-            GameRunner.sleepInMillis(runner.rd.nextInt(30));
+//            GameRunner.sleepInMillis(runner.rd.nextInt(30));
+//            p.runAction1(LeagueCommand.enter);
+//
+//            p.runAction2(LeagueCommand.fuben);
+//            String fuben = p.runAction2(LeagueCommand.fuben).getBody();
+//            Configuration conf = Configuration.defaultConfiguration();
+//            Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+//            DocumentContext dc = JsonPath.using(conf2).parse(fuben);
+//            List<Map<String, Object>> events = dc.read("$.a.league.fbList[0].events");
+//            if(Objects.isNull(events) || events.size() == 0){
+//            }else{
+//                for(int i = 0; i < events.size(); i++) {
+//                    Integer id = Integer.valueOf(events.get(i).get("id").toString());
+//                    p.runAction2(LeagueCommand.fubenEvent(1, id));
+//                }
+//            }
+//            p.runAction2(LeagueCommand.fubenOver(1));
+
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.saimaCreate(41);
+            hp.saimaCreate(36);
 
-            hp.cuju();
+//            hp.cuju();
 
-//            for (int i = 1; i <= 20; i++) {
-//                hp.runAction2("{\"huodong\":{\"hd456play\":{\"id\":361}},\"rsn\":\"%s\"}");
-//            }
-//            for(int i = 33; i <= 37; i++){
-//                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
-//            }
+
 
 //            String body = "{\"club\":{\"kuaPKAdd\":{\"hid\":35}},\"rsn\":\"%s\"}";
 //            hp.runAction1(body);
@@ -178,8 +199,19 @@ class HuodongPlayerTest {
 //            GameRunner.sleepInMillis(runner.rd.nextInt(30));
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.saima_reward();
+            p.runAction1(BaseCommand.mengzhan(1));
 
-            hp.cujuReward();
+        }, p -> {
+//            GameRunner.sleepInMillis(runner.rd.nextInt(30));
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.saima_reward();
+            p.runAction1(BaseCommand.mengzhan(1));
+
+        }, p -> {
+//            GameRunner.sleepInMillis(runner.rd.nextInt(30));
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.saima_reward();
+            p.runAction1(BaseCommand.mengzhan(1));
 
         });
         System.out.println("done");
@@ -392,7 +424,16 @@ class HuodongPlayerTest {
     void buyHighZaji() {
         runner.single("goldhuodong.json", p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.buyHighZaji();
+            hp.buyHighZhongshu();
+        });
+        System.out.println("done");
+    }
+
+    @Test
+    void buyHighZhongshu() {
+        runner.single("goldhuodong.json", p -> {
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.buyHighZhongshu();
         });
         System.out.println("done");
     }

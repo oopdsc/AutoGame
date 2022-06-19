@@ -126,6 +126,24 @@ public class HuodongPlayer extends BasePlayer {
         }
     }
 
+    public void buyHighZhongshu(){
+        for(int i = 1; i <= 10; i++){
+            this.runAction2("{\"huodong\":{\"hd437buy\":{\"id\":1}},\"rsn\":\"%s\"}");
+            this.runAction2("{\"huodong\":{\"hd437buy\":{\"id\":2}},\"rsn\":\"%s\"}");
+        }
+    }
+    public void useHighZhongshu(){
+//
+        for(int i = 1; i <= 30; i++){
+            this.runAction2("{\"huodong\":{\"hd437buy\":{\"id\":1}},\"rsn\":\"%s\"}");
+            this.runAction2("{\"huodong\":{\"hd437buy\":{\"id\":2}},\"rsn\":\"%s\"}");
+        }
+        this.runAction2("{\"huodong\":{\"hd437buy\":{\"id\":3}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"huodong\":{\"hd437buy\":{\"id\":3}},\"rsn\":\"%s\"}");
+    }
+
+
+
     /**
      * 杂技活动奖励
      */
@@ -173,7 +191,8 @@ public class HuodongPlayer extends BasePlayer {
     }
 
     public void saima_reward(){
-        for(int i = 1; i <= 15; i++){
+        this.runAction1("{\"huodong\":{\"hd685exchange\":{\"num\":1,\"id\":4}},\"rsn\":\"%s\"}");
+        for(int i = 1; i <= 6; i++){
             this.runAction1("{\"huodong\":{\"hd685exchange\":{\"num\":1,\"id\":6}},\"rsn\":\"%s\"}");
         }
     }

@@ -7,7 +7,7 @@ public class PlayerData {
     public String openid = "";
     public String openkey = "";
     public int silu = 50;
-    public int taofa = 50;
+    public int taofa = 60;
 
     public int zid = Flags.zid;
     public int zidbuy = Flags.zidbuy;
@@ -18,7 +18,8 @@ public class PlayerData {
     public int shopnum = 0;
     public int vipLv = 0;
 
-    public int wifeId = 1;
+    //马云率
+    public int wifeId = 33;
 
     public int[] hunt = {33, 38, 41};
 
@@ -72,6 +73,9 @@ public class PlayerData {
 
     public int cabinetIndex = 0;
     public int[] cabinetHeros = {};
+
+    public int[] fubenId1 = {34, 36, 44, 41, 9};
+    public int[] fubenId2 = {33, 55, 38, 23, 1};
 
     public String getUsername() {
         return username;

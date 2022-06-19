@@ -1,7 +1,11 @@
 package game.player;
 
+import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.Option;
+import game.command.BaseCommand;
+import game.command.LeagueCommand;
 import game.service.GameRunner;
 import game.service.PlayerData;
 import io.swagger.models.auth.In;
@@ -25,6 +29,9 @@ public class BasePlayer {
 
     Logger logger = LoggerFactory.getLogger(BasePlayer.class);
     RestTemplate restTemplate = new RestTemplate();
+    Configuration conf = Configuration.defaultConfiguration();
+    Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+    Random r = new Random();
 
     public String baseUrl = "";
 
@@ -52,7 +59,7 @@ public class BasePlayer {
             String body = "{\"rsn\":\"" + getRsn() + "\",\"login\":{\"loginAccount\":{\"platform\":\"qiangwanzdhgios\"," +
                     "\"openid\":\"" + data.openid + "\",\"openkey\":\"" + data.openkey + "\"}}}";
 
-            ResponseEntity<String> response2 = this.executeSleep("http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.380&uid=&token=&platform=qiangwanzdhgios&lang=zh-cn", body, 1);
+            ResponseEntity<String> response2 = this.executeSleep("http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.385&uid=&token=&platform=qiangwanzdhgios&lang=zh-cn", body, 1);
 
             body = response2.getBody();
 
@@ -63,12 +70,12 @@ public class BasePlayer {
                 String token = JsonPath.parse(body).read("$.a.loginMod.loginAccount.token", String.class);
                 this.data.uid = uid;
                 this.data.token = token;
-                this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.380&uid=" + uid + "&token=" + token + "&platform=qiangwanzdhgios&lang=zh-cn";
+                this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.385&uid=" + uid + "&token=" + token + "&platform=qiangwanzdhgios&lang=zh-cn";
             } catch (Exception ex) {
                 logger.error("Login failed for {}", data.username);
             }
         } else {
-            this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.380&uid=" + data.uid + "&token=" + data.token + "&platform=qiangwanzdhgios&lang=zh-cn";
+            this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.385&uid=" + data.uid + "&token=" + data.token + "&platform=qiangwanzdhgios&lang=zh-cn";
         }
 
 
@@ -501,9 +508,8 @@ public class BasePlayer {
     //酒店的卷轴残卷
     public void shopCanjuan() {
         if (data.shopnum > 0) {
-            String body1 = "{\"boite\":{\"shopChange\":{\"id\":10}},\"rsn\":\"" + getRsn() + "\"}";
             for (int i = 1; i <= data.shopnum; i++) {
-                this.execute(baseUrl, body1);
+                this.runAction1("{\"boite\":{\"shopChange\":{\"id\":10}},\"rsn\":\"%s\"}");
             }
             for(int i = 2; i <= 9; i++){
                 this.runAction1("{\"boite\":{\"shopChange\":{\"id\":"+i+"}},\"rsn\":\"%s\"}");
@@ -625,18 +631,18 @@ public class BasePlayer {
 
         if (data.housemake) {
             //zhili
-            this.runAction3("{\"club\":{\"householdMake\":{\"id\":6,\"heroid\":55}},\"rsn\":\"%s\"}");
+            this.runAction3(BaseCommand.houseMake(6, 55));
 
             //meili
-            this.runAction3("{\"club\":{\"householdMake\":{\"id\":2,\"heroid\":58}},\"rsn\":\"%s\"}");
+            this.runAction3(BaseCommand.houseMake(2, 58));
         }
 
         //五虎建城门
         for(int i = 33; i <= 37; i++){
-            this.runAction3("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            this.runAction3(BaseCommand.houseMake(12, i));
         }
         for(int i = 38; i <= 41; i++){
-            this.runAction2("{\"club\":{\"householdMake\":{\"id\":11,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
+            this.runAction3(BaseCommand.houseMake(11, i));
         }
     }
 
@@ -655,11 +661,7 @@ public class BasePlayer {
     public void hitboss() {
         if (data.hitBoss > 0) {
             for (int hid : data.heroid) {
-
-                String body = "{\"club\":{\"clubBossPK\":{\"cbid\":" + data.hitBoss + ",\"id\":" + hid + "}},\"rsn\":\"" + getRsn() + "\"}";
-                this.execute(baseUrl, body);
-                sleep(1);
-
+                this.runAction3(BaseCommand.hitClubBoss(data.hitBoss, hid));
             }
         }
     }
@@ -671,32 +673,22 @@ public class BasePlayer {
         LocalDate ld = LocalDate.now();
         int day = ld.getDayOfMonth() / 2;
         if (day < data.mzid.length) {
-            String body = "{\"club\":{\"kuaPKAdd\":{\"hid\":" + data.mzid[day] + "}},\"rsn\":\"" + getRsn() + "\"}";
-            this.execute(baseUrl, body);
+            this.runAction2(BaseCommand.mengzhan(data.mzid[day]));
         }
     }
 
     public void taskReward() {
 //        {"daily":{"gettask":{"id":3}},"rsn":"9rjmcbrtrt"}
-        int[] task = {3, 4, 6, 10, 11, 12, 13, 14, 15, 17, 18, 20, 21};
+        int[] task = {3, 4, 5, 6, 10, 11, 12, 13, 14, 15, 17, 18, 20, 21};
         for (int i = 0; i < task.length; i++) {
             String body = "{\"daily\":{\"gettask\":{\"id\":" + task[i] + "}},\"rsn\":\"" + getRsn() + "\"}";
             this.execute(baseUrl, body);
         }
-
         //{"daily":{"getrwd":{"id":1}},"rsn":"7csyvdcocy"}
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 1; i <= 5; i++) {
             String body = "{\"daily\":{\"getrwd\":{\"id\":" + i + "}},\"rsn\":\"" + getRsn() + "\"}";
             this.execute(baseUrl, body);
         }
-
-//        if(data.yamen){
-        this.runAction3("{\"daily\":{\"gettask\":{\"id\":5}},\"rsn\":\"%s\"}");
-
-        String body = "{\"daily\":{\"getrwd\":{\"id\":5}},\"rsn\":\"" + getRsn() + "\"}";
-        this.execute(baseUrl, body);
-//        }
-
     }
 
     public void weekYuanBaoReward() {
@@ -762,18 +754,78 @@ public class BasePlayer {
      * 中午12点的匈奴
      */
     public void menggu() {
-
-        String body2 = "{\"wordboss\":{\"goFightmg\":[]},\"rsn\":\"" + getRsn() + "\"}";
-        this.execute(baseUrl, body2);
-        sleep(1);
+        this.runAction1("{\"wordboss\":{\"goFightmg\":[]},\"rsn\":\"%s\"}");
 
         for (int hid : data.mengguid) {
             if (hid > 0) {
-                String body = "{\"wordboss\":{\"hitmenggu\":{\"id\":" + hid + "}},\"rsn\":\"" + getRsn() + "\"}";
-                this.execute(baseUrl, body);
-                sleep(1);
+                this.runAction1(BaseCommand.hitmenggu(hid));
             }
         }
+    }
+
+    public void leagueBuild(){
+        String resp = this.runAction2(LeagueCommand.startBuild).getBody();
+        DocumentContext dc = JsonPath.using(conf2).parse(resp);
+
+        Integer buildNum = dc.read("$.a.league.buildInfo.num");
+        if(buildNum.intValue() < 5){
+            List<Map<String, Object>> events = dc.read("$.a.league.buildList");
+            if (Objects.isNull(events) || events.size() == 0) {
+            } else {
+                int[] levels = new int[4];
+                for (int i = 0; i < 3; i++) {
+                    Integer id = Integer.valueOf(events.get(i).get("id").toString());
+                    Integer level = Integer.valueOf(events.get(i).get("level").toString());
+                    levels[id] = level;
+                }
+                int maxId = 1;
+                int maxLv = levels[maxId];
+                if (levels[2] > maxLv) {
+                    maxId = 2;
+                    maxLv = levels[2];
+                }
+                if (levels[3] > maxLv) {
+                    maxId = 3;
+                }
+                this.runActionSleep(LeagueCommand.dailyBuild(maxId), r.nextInt(2) + 2).getBody();
+            }
+        }
+    }
+
+    public void startFuben(){
+        this.runAction2(LeagueCommand.fuben);
+        if(this.data.fubenId1.length == 5){
+            this.runAction2(LeagueCommand.dispatchFuben(1, this.data.uid, this.data.fubenId1));
+        }
+
+        if(this.data.fubenId2.length == 5){
+            this.runAction2(LeagueCommand.dispatchFuben(2, this.data.uid, this.data.fubenId2));
+        }
+    }
+
+    public void overFuben(){
+        String fuben = this.runAction2(LeagueCommand.fuben).getBody();
+
+        if(this.data.fubenId1.length == 5){
+            this.overFubenId(fuben, 1);
+        }
+
+        if(this.data.fubenId2.length == 5){
+            this.overFubenId(fuben, 2);
+        }
+    }
+
+    public void overFubenId(String fuben, int fubenId){
+        DocumentContext dc = JsonPath.using(conf2).parse(fuben);
+        List<Map<String, Object>> events = dc.read("$.a.league.fbList["+(fubenId - 1)+"].events");
+        if(Objects.isNull(events) || events.size() == 0){
+        }else{
+            for(int i = 0; i < events.size(); i++) {
+                Integer id = Integer.valueOf(events.get(i).get("id").toString());
+                this.runAction2(LeagueCommand.fubenEvent(1, id));
+            }
+        }
+        this.runAction2(LeagueCommand.fubenOver(fubenId));
     }
 
     /**
@@ -782,8 +834,7 @@ public class BasePlayer {
     public void hitXiongnu() {
         for (int hid : data.geerdan) {
             if (hid > 0) {
-                String body = "{\"wordboss\":{\"hitgeerdan\":{\"id\":" + hid + "}},\"rsn\":\"" + getRsn() + "\"}";
-                this.execute(baseUrl, body);
+                this.runAction1(BaseCommand.hitgeerdan(hid));
             }
         }
     }
@@ -954,18 +1005,6 @@ public class BasePlayer {
         return response;
     }
 
-
-
-
-
-//    //run the command in the multi-thread mode to boost up, especially in Qinmi Active.
-    //this will cause server error, do not use it
-//    public void run(final String action) {
-//        executor.submit(() -> {
-//            String body = String.format(action, getRsn());
-//            this.execute(this.baseUrl, body);
-//        });
-//    }
 
     private HttpHeaders getHttpHeaders() {
         return this.headers;

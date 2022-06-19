@@ -10,6 +10,7 @@ import game.service.PlayerData;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +50,9 @@ public class GetInfoPlayer extends BasePlayer {
 //        System.out.println("done : " + folder);
 //        this.getMisc(resp, folder);
 
-        this.listHero(resp, folder);
+//        this.listHero(resp, folder);
+//        this.listLeague(resp, folder);
+        this.listMgft(resp, folder);
     }
 
 
@@ -582,7 +585,7 @@ public class GetInfoPlayer extends BasePlayer {
         for(int i = 0; i < 100; i++){
             Map<String, Object> m = lists.get(i);
             try {
-                FileUtils.write(new File("./loverank-20210428.txt"), m.get("name") + "," + m.get("num") + "\r", true);
+                FileUtils.write(new File("./loverank-20220617.txt"), m.get("name") + "," + m.get("num") + "\r", true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -873,5 +876,40 @@ public class GetInfoPlayer extends BasePlayer {
         });
 
         return sum;
+    }
+
+    public void listLeague(String resp, String folder) {
+        try{
+            Configuration conf = Configuration.defaultConfiguration();
+            conf = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+            DocumentContext dc = JsonPath.using(conf).parse(resp);
+
+            Object lid = dc.read("$.a.league.info.lid");
+            if(lid == null){
+                System.out.println(this.data.username);
+            }
+        }catch (Exception e){
+            System.out.println("error:" + this.data.username);
+        }
+
+    }
+
+    public void listMgft(String resp, String folder) {
+        try{
+            Configuration conf = Configuration.defaultConfiguration();
+            conf = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+            DocumentContext dc = JsonPath.using(conf).parse(resp);
+
+            List<Object> lid = dc.read("$.a.wordboss.mgft[*].id");
+            if(!CollectionUtils.isEmpty(lid)){
+                String content = Strings.join(lid, ',');
+                FileUtils.write(new File("./"+ folder +"/mgft-2022618.txt"),
+                        this.getData().username + "," + content + "\n", true);
+            }
+
+        }catch (Exception e){
+            System.out.println("error:" + this.data.username);
+        }
+
     }
 }

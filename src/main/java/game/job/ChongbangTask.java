@@ -29,15 +29,16 @@ public class ChongbangTask {
         System.out.println("hello");
     }
 //    child 冲榜
-//    @Scheduled(cron = "25 59 21 * * ?")
+//    @Scheduled(cron = "20 59 21 * * ?")
     public void chongbang() throws IOException {
         StopWatch sw = new StopWatch();
         sw.start();
         runner.single(GameRunner.HUODONG, p -> {
             p.son2();
-            for(int i = 1; i <= 42; i++){
-                p.sonFood2(1354);
-                p.sonFood2(1372);
+            for(int i = 1; i <= 50; i++){
+                p.sonFood2(1386);
+                p.sonFood2(1387);
+                p.sonFood2(1388);
                 p.son2();
             }
 
@@ -110,7 +111,10 @@ public class ChongbangTask {
     public void meili() {
         runner.processSingle(GameRunner.HUODONG, p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
-            for(int i = 1; i <= 2000; i++){
+            for(int i = 1; i <= 1000; i++){
+                mp.meili2();
+            }
+            for(int i = 1; i <= 3000; i++){
                 mp.meili2();
             }
         });

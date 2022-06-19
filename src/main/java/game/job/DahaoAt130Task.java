@@ -1,11 +1,9 @@
 package game.job;
 
 import game.active.DefaultGameRunner;
+import game.command.LeagueCommand;
 import game.config.Flags;
-import game.player.BasePlayer;
-import game.player.Double11Player;
-import game.player.JuediYamenPlayer;
-import game.player.YamenPlayer;
+import game.player.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -97,6 +95,9 @@ public class DahaoAt130Task {
 
     private void doAt10(BasePlayer p) {
         p.son_allDone();
+
+        p.runAction2(LeagueCommand.enter);
+        p.startFuben();
     }
 
     /**
@@ -136,6 +137,11 @@ public class DahaoAt130Task {
         LocalDateTime dt = LocalDateTime.now();
         DayOfWeek w = dt.getDayOfWeek();
 
+        if(w.getValue() == 3){
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.rewardZhuangban();
+        }
+
         if(w.getValue() % 2 == 0){
             p.mengzhanReward();
             p.mengzhan();
@@ -170,6 +176,8 @@ public class DahaoAt130Task {
      */
     public void doAt12(BasePlayer p){
         p.menggu();
+        p.runAction2(LeagueCommand.enter);
+        p.leagueBuild();
     }
 
     /**
@@ -177,7 +185,12 @@ public class DahaoAt130Task {
      * @param p
      */
     public void doAt19(BasePlayer p){
-
+        p.runAction2(LeagueCommand.enter);
+        p.overFuben();
+        p.runAction2(LeagueCommand.goShop);
+        p.runAction2(LeagueCommand.buyShopItem(5));
+        p.runAction2(LeagueCommand.buyShopItem(5));
+        p.runAction2(LeagueCommand.buyShopItem(5));
     }
 
     /**

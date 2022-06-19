@@ -38,16 +38,16 @@ class MeiliPlayerTest {
     void meili1() {
         StopWatch sw = new StopWatch();
         sw.start();
-        int num = 700;
+        int num = 1;
         runner.single(GameRunner.HUODONG, p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
-//            for(int i = 1; i <= num; i++){
-//                mp.meili1();
-//            }
-
-            for(int i = 1; i <= num; i++){
-                mp.meili2();
+            for(int i = 1; i <= 2000; i++){
+                mp.meili1();
             }
+
+//            for(int i = 1; i <= 2000; i++){
+//                mp.meili2();
+//            }
         });
         sw.stop();
         System.out.println("Done, time :" + sw.getTotalTimeSeconds());

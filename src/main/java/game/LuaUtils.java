@@ -28,7 +28,8 @@ public class LuaUtils {
     public static LuaValue runLua() throws IOException {
 
 //        String luaStr = "print math.random(1,3)";
-
+//1386
+//        1387
         String luaStr = "print os.time()";
 
         Globals globals = JsePlatform.standardGlobals();

@@ -1,10 +1,8 @@
 package game.service;
 
+import game.command.LeagueCommand;
 import game.config.Flags;
-import game.player.BasePlayer;
-import game.player.Double11Player;
-import game.player.JuediYamenPlayer;
-import game.player.YamenPlayer;
+import game.player.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -37,7 +35,9 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
             for(int i = 1; i <= Flags.cook; i++){
                 p.cookOne();
             }
-
+            p.runAction2(LeagueCommand.enter);
+            p.leagueBuild();
+            p.startFuben();
         }
 
         if (h == 10 || h == 18 || h == 14 || h == 16) {
@@ -120,6 +120,11 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
         LocalDateTime dt = LocalDateTime.now();
         DayOfWeek w = dt.getDayOfWeek();
 
+        if(w.getValue() == 3){
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.rewardZhuangban();
+        }
+
         if (w.getValue() % 2 == 0) {
             p.mengzhanReward();
             p.mengzhan();
@@ -142,6 +147,9 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
 
     private void doAt10(BasePlayer p) {
         p.son_allDone();
+
+        p.runAction2(LeagueCommand.enter);
+        p.startFuben();
     }
 
 
@@ -152,15 +160,22 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
      */
     public void doAt12(BasePlayer p) {
         p.menggu();
+        p.runAction2(LeagueCommand.enter);
+        p.leagueBuild();
     }
 
     /**
-     * 买匈奴道具  40+ 次
      *
      * @param p
      */
     public void doAt19(BasePlayer p) {
+        p.runAction2(LeagueCommand.enter);
+        p.overFuben();
 
+        p.runAction2(LeagueCommand.goShop);
+        p.runAction2(LeagueCommand.buyShopItem(5));
+        p.runAction2(LeagueCommand.buyShopItem(5));
+        p.runAction2(LeagueCommand.buyShopItem(5));
     }
 
     /**

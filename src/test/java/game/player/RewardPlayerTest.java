@@ -2,12 +2,14 @@ package game.player;
 
 import game.active.DefaultGameRunner;
 import game.command.BaseCommand;
+import game.command.LeagueCommand;
 import game.command.RewardCommand;
 import game.player.RewardPlayer;
 import game.service.GameRunner;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
 import static game.service.GameRunner.RUNNER;
 
@@ -19,6 +21,31 @@ class RewardPlayerTest {
     void reward1() {
         runner.all1(px -> {
             RewardPlayer p = new RewardPlayer(px);
+
+            p.rewardMeili();
+            p.rewardMeili();
+
+            p.runAction2(LeagueCommand.pickUpRwd());
+
+            for(int i = 1; i <= 9; i++){
+                p.rewardQinmi();
+                p.rewardLiangshi();
+                p.rewardTilidan();
+            }
+
+            p.rewardLiangshi();
+            p.rewardLiangshi();
+            p.rewardLiangshi();
+            p.rewardLiangshi();
+            p.rewardLiangshi();
+
+            p.rewardGuoli();
+            p.rewardGuoli();
+
+            p.runAction2(LeagueCommand.goShop);
+            p.runAction2(LeagueCommand.buyShopItem(5));
+            p.runAction2(LeagueCommand.buyShopItem(5));
+
 
 //            this.rewardLianmengBang(p);
 
@@ -44,22 +71,22 @@ class RewardPlayerTest {
 //            for(int i = 1; i <= 6; i++){
 //                p.rewardYuanbao();
 //            }
-            p.reward_kua_qinmi();
-
-            HuodongPlayer hp = new HuodongPlayer(p);
-            hp.chijiReward();
-            p.rewardLiangshi();
-            p.rewardLiangshi();
-            p.rewardZhengzai();
-            p.rewardZhengzai();
-            for(int i = 1; i <= 6; i++){
-                p.rewardQinmi();
-                p.rewardGuoli();
-                p.rewardLiangshi();
-                p.rewardLiangshi();
-                p.rewardZhengzai();
-                p.rewardZhengzai();
-            }
+//            p.reward_kua_qinmi();
+//
+//            HuodongPlayer hp = new HuodongPlayer(p);
+//            hp.chijiReward();
+//            p.rewardLiangshi();
+//            p.rewardLiangshi();
+//            p.rewardZhengzai();
+//            p.rewardZhengzai();
+//            for(int i = 1; i <= 6; i++){
+//                p.rewardQinmi();
+//                p.rewardGuoli();
+//                p.rewardLiangshi();
+//                p.rewardLiangshi();
+//                p.rewardZhengzai();
+//                p.rewardZhengzai();
+//            }
 
 
 

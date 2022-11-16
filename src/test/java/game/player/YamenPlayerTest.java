@@ -2,10 +2,8 @@ package game.player;
 
 import game.active.DefaultGameRunner;
 import game.config.Flags;
-import game.service.GameRunner;
+import game.runner.GameRunner;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class YamenPlayerTest {
 
@@ -21,10 +19,34 @@ class YamenPlayerTest {
 
     @Test
     void chushi() {
-        runner.single(GameRunner.HUODONG, p -> {
+        runner.single(GameRunner.DAHAO, d -> d.username.equals("ssqwerty"), p -> {
             YamenPlayer yp = new YamenPlayer(p);
             Flags.yamenShop = true;
-            for(int i = 1; i <= 10; i++){
+            for(int i = 1; i <= 2; i++){
+                yp.chushi_One();
+            }
+
+        });
+    }
+
+    @Test
+    void chushi2() {
+        runner.single(GameRunner.DAHAO, d -> d.username.equals("18612160829"), p -> {
+            YamenPlayer yp = new YamenPlayer(p);
+            Flags.yamenShop = true;
+            for(int i = 1; i <= 4; i++){
+                yp.chushi_One();
+            }
+
+        });
+    }
+
+    @Test
+    void chushi3() {
+        runner.single(GameRunner.DAHAO, d -> d.username.equals("15504973518"), p -> {
+            YamenPlayer yp = new YamenPlayer(p);
+            Flags.yamenShop = true;
+            for(int i = 1; i <= 4; i++){
                 yp.chushi_One();
             }
 

@@ -2,15 +2,13 @@ package game.player;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import game.config.Flags;
-import game.service.PlayerData;
-import org.springframework.http.ResponseEntity;
+import game.runner.PlayerData;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import static game.service.GameRunner.getRsn;
+import static game.runner.GameRunner.getRsn;
 
 public class JunjiPlayer extends BasePlayer {
     public JunjiPlayer(PlayerData data) {

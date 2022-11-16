@@ -2,7 +2,7 @@ package game.controller;
 
 import game.active.DefaultGameRunner;
 import game.player.GetInfoPlayer;
-import game.service.GameRunner;
+import game.runner.GameRunner;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static game.service.GameRunner.*;
+import static game.runner.GameRunner.*;
 
 @Controller()
 @RequestMapping("/all")

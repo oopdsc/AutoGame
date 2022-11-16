@@ -1,22 +1,5 @@
 package game.backup;
 
-import game.active.DefaultGameRunner;
-import game.config.Flags;
-import game.job.Xiaohao2Task;
-import game.player.BasePlayer;
-import game.player.Double11Player;
-import game.player.YamenPlayer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
-
-import java.io.IOException;
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-
-import static game.service.GameRunner.DAHAO;
-import static game.service.GameRunner.sleep;
-
 //@Component
 public class DahaoAt130Task {
 

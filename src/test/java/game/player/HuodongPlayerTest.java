@@ -1,19 +1,10 @@
 package game.player;
 
-import com.jayway.jsonpath.Configuration;
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.Option;
 import game.active.DefaultGameRunner;
 import game.command.BaseCommand;
 import game.command.LeagueCommand;
-import game.service.GameRunner;
+import game.runner.GameRunner;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Consumer;
 
 class HuodongPlayerTest {
 
@@ -24,7 +15,7 @@ class HuodongPlayerTest {
         runner.all1(p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.chiji();
-            hp.zhongshuhuodong();
+//            hp.zhongshuhuodong();
         });
     }
 
@@ -38,10 +29,57 @@ class HuodongPlayerTest {
 
     @Test
     void zaji() {
-        runner.all1(null, null, p -> {
+        runner.all1(p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.zajiActive();
-//            hp.zajiReward();
+            hp.zajiReward();
+
+            hp.xiangqinyingwu();
+//            hp.chiji();
+
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.reward_kua_guoli();
+
+            for(int i = 1; i <= 4; i++){
+                p.runAction2(LeagueCommand.buyShopItem(1));
+            }
+
+        }, p -> {
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.zajiActive();
+            hp.zajiReward();
+
+            hp.xiangqinyingwu();
+//            hp.chiji();
+
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.reward_kua_guoli();
+
+            for(int i = 1; i <= 4; i++){
+                p.runAction2(LeagueCommand.buyShopItem(1));
+            }
+
+            QinmiPlayer qp = new QinmiPlayer(p);
+            qp.useCook(3);
+
+        }, p -> {
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.zajiActive();
+            hp.zajiReward();
+
+            hp.xiangqinyingwu();
+//            hp.chiji();
+
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.reward_kua_guoli();
+
+            for(int i = 1; i <= 4; i++){
+                p.runAction2(LeagueCommand.buyShopItem(1));
+            }
+
+            QinmiPlayer qp = new QinmiPlayer(p);
+            qp.useCook(3);
+
         });
     }
 
@@ -61,20 +99,8 @@ class HuodongPlayerTest {
         runner.all1(p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.chiji();
-//            hp.zhongshuReward();
-//            hp.chijiReward();
-            hp.lishanXunli_daily();
-            hp.lishanXunli_xunli();
+            hp.zhongshuReward();
 
-            for(int i = 33; i <= 37; i++){
-                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":12,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
-            }
-            for(int i = 38; i <= 41; i++){
-                hp.runAction2("{\"club\":{\"householdMake\":{\"id\":11,\"heroid\":"+i+"}},\"rsn\":\"%s\"}");
-            }
-
-//            RewardPlayer rp = new RewardPlayer(p);
-            hp.runAction3("{\"huodong2\":{\"hd238Get\":[]},\"rsn\":\"%s\"}");
 
         }, p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
@@ -137,8 +163,8 @@ class HuodongPlayerTest {
             HuodongPlayer p = new HuodongPlayer(px);
             p.danzhu();
 
-            RewardPlayer rp = new RewardPlayer(p);
-            rp.reward_kuayamen();
+            GuoliPlayer gp = new GuoliPlayer(p);
+            gp.addGuoli();
         });
 
         GameRunner.sleep(5);
@@ -149,7 +175,7 @@ class HuodongPlayerTest {
         runner.single("gold.json", p -> {
             System.out.println(p.data.uid);
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.saimaCreate();
+            hp.saima_Create();
 //            hp.runAction1("{\"huodong\":{\"hd685chageRand\":{\"rand\":1}},\"rsn\":\"%s\"}");
         });
         System.out.println("done");
@@ -178,7 +204,7 @@ class HuodongPlayerTest {
 //            p.runAction2(LeagueCommand.fubenOver(1));
 
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.saimaCreate(36);
+            hp.saima_play(38);
 
 //            hp.cuju();
 
@@ -199,19 +225,9 @@ class HuodongPlayerTest {
 //            GameRunner.sleepInMillis(runner.rd.nextInt(30));
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.saima_reward();
-            p.runAction1(BaseCommand.mengzhan(1));
 
-        }, p -> {
-//            GameRunner.sleepInMillis(runner.rd.nextInt(30));
-            HuodongPlayer hp = new HuodongPlayer(p);
-            hp.saima_reward();
-            p.runAction1(BaseCommand.mengzhan(1));
 
-        }, p -> {
-//            GameRunner.sleepInMillis(runner.rd.nextInt(30));
-            HuodongPlayer hp = new HuodongPlayer(p);
-            hp.saima_reward();
-            p.runAction1(BaseCommand.mengzhan(1));
+
 
         });
         System.out.println("done");
@@ -225,17 +241,17 @@ class HuodongPlayerTest {
         runner.all1(p -> {
             GameRunner.sleepInMillis(runner.rd.nextInt(100));
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.randomSaima();
+            hp.saima_randJoin();
         });
         System.out.println("done");
     }
 
     @Test
     void heshan_create_test(){
-        runner.single("huodong.json", p -> {
+        runner.single(GameRunner.XIAOHAO2, p -> {
             System.out.println(p.data.uid);
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.heshan_create();
+//            hp.heshan_create();
         });
         System.out.println("done");
     }
@@ -244,6 +260,23 @@ class HuodongPlayerTest {
     void heshan_join_test(){
         runner.all1(p -> {
             HuodongPlayer hp = new HuodongPlayer(p);
+            hp.heshan_join();
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+        }, p -> {
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+        }, p -> {
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+            hp.runAction2(LeagueCommand.buyShopItem(1));
+            hp.runAction2(LeagueCommand.buyShopItem(1));
             hp.heshan_join();
         });
         System.out.println("done");
@@ -255,6 +288,7 @@ class HuodongPlayerTest {
             for(int i = 1; i <= 10; i++){
                 hp.heshan();
             }
+            hp.runAction2(LeagueCommand.buyShopItem(1));
         });
         System.out.println("done");
     }
@@ -278,7 +312,19 @@ class HuodongPlayerTest {
         runner.all1(p -> {
 
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.caoxueAll();
+            hp.caoxueReward();
+//            hp.caoxueAll();
+//
+            Double11Player dp = new Double11Player(p);
+            dp.buyJinguoIn11();
+
+            dp.runAction2(LeagueCommand.buyShopItem(1));
+            dp.runAction2(LeagueCommand.buyShopItem(1));
+            dp.runAction2(LeagueCommand.buyShopItem(1));
+            dp.runAction2(LeagueCommand.buyShopItem(1));
+            dp.runAction2(LeagueCommand.buyShopItem(5));
+            dp.runAction2(LeagueCommand.buyShopItem(5));
+
 //            String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":15,\"fuid\":7006984}}}";
 //            hp.runAction1(body);
 
@@ -296,6 +342,15 @@ class HuodongPlayerTest {
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.caoxueReward();
 
+            RewardPlayer rp = new RewardPlayer(p);
+            rp.reward_kuayamen();
+
+            rp.runAction2(BaseCommand.mengzhan(36));
+            rp.runAction2(LeagueCommand.buyShopItem(1));
+            rp.runAction2(LeagueCommand.buyShopItem(1));
+            rp.runAction2(LeagueCommand.buyShopItem(1));
+            rp.runAction2(LeagueCommand.buyShopItem(1));
+
 //            MeiliPlayer mp = new MeiliPlayer(p);
 //            mp.meili_reward();
 //            String body = "{\"rsn\":\"%s\",\"huanggong\":{\"qingAn\":{\"type\":0,\"chenghao\":15,\"fuid\":7006984}}}";
@@ -310,20 +365,30 @@ class HuodongPlayerTest {
 
     @Test
     void double11(){
-        runner.single(GameRunner.HUODONG, p -> {
+        runner.all1(p -> {
 
-            HuodongPlayer hp = new HuodongPlayer(p);
-//            hp.bu
-            hp.buySchool();
-            hp.buySchool();
-//            hp.buySchool();
-//            hp.buySchool();
-            hp.xiaohaoFanli();
-            RewardPlayer rp = new RewardPlayer(p);
-            for(int i = 1; i <= 5; i++){
-                rp.rewardYuanbao();
-            }
+//            HuodongPlayer hp = new HuodongPlayer(p);
+//
+//            hp.runAction2("{\"huodong2\":{\"hd990Info\":[]},\"rsn\":\"%s\"}");
+//            hp.runAction2("{\"huodong2\":{\"hd990Clear\":{\"a1\":0,\"a2\":3,\"b1\":0,\"b\":2,\"a\":1,\"b2\":4}},\"rsn\":\"%s\"}");
+//            hp.runAction2("{\"huodong2\":{\"hd990Clear\":{\"a1\":2,\"a2\":1,\"b1\":1,\"b\":2,\"a\":3,\"b2\":1}},\"rsn\":\"%s\"}");
+//            hp.runAction2("{\"huodong2\":{\"hd990Clear\":{\"a1\":6,\"a2\":2,\"b1\":5,\"b\":4,\"a\":3,\"b2\":2}},\"rsn\":\"%s\"}");
 
+            Double11Player dp = new Double11Player(p);
+            dp.buyJinguoIn11();
+
+            dp.runAction2(LeagueCommand.buyShopItem(1));
+            dp.runAction2(LeagueCommand.buyShopItem(1));
+            dp.runAction2(LeagueCommand.buyShopItem(1));
+            dp.runAction2(LeagueCommand.buyShopItem(1));
+
+            dp.runAction2(LeagueCommand.upgradeSeat(1));
+
+            dp.runAction2(LeagueCommand.buyShopItem(5));
+            dp.runAction2(LeagueCommand.buyShopItem(5));
+            dp.runAction2(LeagueCommand.buyShopItem(5));
+            dp.runAction2(LeagueCommand.buyShopItem(5));
+            dp.runAction2(LeagueCommand.buyShopItem(5));
         });
         System.out.println("done");
     }
@@ -340,7 +405,7 @@ class HuodongPlayerTest {
 
     @Test
     void wabao2(){
-        runner.single("huodong2.json", p -> {
+        runner.single("xiaohao11.json", p -> {
 
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.wabao();
@@ -350,13 +415,28 @@ class HuodongPlayerTest {
 
     @Test
     void wabao3(){
-        runner.single("huodong.json", p -> {
+        runner.single("xiaohao2.json", p -> {
 
             HuodongPlayer hp = new HuodongPlayer(p);
             hp.wabao();
         });
         System.out.println("done");
     }
+
+
+    @Test
+    void shenlong() {
+        runner.all1(p -> {
+            for(int i = 1; i <= 3; i++ ){
+                p.runAction1("{\"hd988\":{\"play\":{\"count\":1}},\"rsn\":\"%s\"}");
+            }
+
+            HuodongPlayer hp = new HuodongPlayer(p);
+//            hp.zajiActive();
+
+        });
+    }
+
 
     /**
      * 五一活动
@@ -406,10 +486,37 @@ class HuodongPlayerTest {
         runner.all1(p -> {
 
             HuodongPlayer hp = new HuodongPlayer(p);
-            hp.cuju();
+//            hp.cuju();
+//
+//            p.runAction2(LeagueCommand.goShop);
+//            p.runAction2(LeagueCommand.buyShopItem(1));
+//            p.runAction2(LeagueCommand.buyShopItem(1));
+//            p.runAction2(LeagueCommand.buyShopItem(1));
+//            p.runAction2(LeagueCommand.buyShopItem(1));
+//            p.runAction2(LeagueCommand.buyShopItem(2));
+//            p.runAction2(LeagueCommand.buyShopItem(2));
+//            p.runAction2(LeagueCommand.buyShopItem(2));
+//            p.runAction2(LeagueCommand.buyShopItem(3));
+//            p.runAction2(LeagueCommand.buyShopItem(3));
+//            p.runAction2(LeagueCommand.buyShopItem(3));
+//            p.runAction2(LeagueCommand.buyShopItem(3));
+//            p.runAction2(LeagueCommand.buyShopItem(8));
+//            p.runAction2(LeagueCommand.buyShopItem(8));
+////            p.runAction2(LeagueCommand.upgradeSeat(1));
+//            p.runAction2(LeagueCommand.buyShopItem(5));
+//
+//            QinmiPlayer qp = new QinmiPlayer(p);
+//            qp.useCook(3);
 
-            hp.saimaCreate(34);
+//            hp.saimaCreate(41);
 
+//            p.runAction2(LeagueCommand.goShop);
+//            p.runAction2(LeagueCommand.buyShopItem(1));
+//            p.runAction2(LeagueCommand.buyShopItem(1));
+//            p.runAction2(LeagueCommand.buyShopItem(1));
+//            p.runAction2(LeagueCommand.buyShopItem(1));
+////            p.runAction2(LeagueCommand.upgradeSeat(1));
+//            p.runAction2(LeagueCommand.buyShopItem(5));
 
 
 //            hp.zajiActive();
@@ -436,5 +543,38 @@ class HuodongPlayerTest {
             hp.buyHighZhongshu();
         });
         System.out.println("done");
+    }
+
+    @Test
+    void xiangqinyingwu() {
+        runner.all1(p -> {
+            if(!p.data.username.equals("pby123456")){
+
+
+                HuodongPlayer hp = new HuodongPlayer(p);
+                hp.xiangqinyingwu();
+            }
+
+//            hp.runAction3("{\"huodong2\":{\"hd962Info\":[]},\"rsn\":\"%s\"}");
+//            for(int i = 1; i <= 9; i++){
+//                hp.runAction3("{\"huodong2\":{\"hd962Start\":{\"num\":1}},\"rsn\":\"%s\"}");
+//            }
+
+//            RewardPlayer rp = new RewardPlayer(p);
+//            rp.reward_kuayamen();
+////            hp.runAction2(BaseCommand.mengzhan(2));
+//            hp.runAction2(LeagueCommand.buyShopItem(1));
+//            hp.runAction2(LeagueCommand.buyShopItem(1));
+//            hp.runAction2(LeagueCommand.buyShopItem(1));
+//            hp.runAction2(LeagueCommand.buyShopItem(1));
+//            hp.runAction2(LeagueCommand.buyShopItem(2));
+//            hp.runAction2(LeagueCommand.buyShopItem(2));
+//            hp.runAction2(LeagueCommand.buyShopItem(2));
+//
+//            hp.runAction2(LeagueCommand.buyShopItem(8));
+//            hp.runAction2(LeagueCommand.buyShopItem(8));
+////            hp.runAction2(LeagueCommand.upgradeSeat(1));
+//            hp.runAction2(LeagueCommand.buyShopItem(5));
+        });
     }
 }

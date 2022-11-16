@@ -1,7 +1,5 @@
-package game.service;
+package game.runner;
 
-import game.player.BasePlayer;
-import reactor.core.CorePublisher;
 import reactor.core.publisher.Flux;
 
 public interface Comsuer<PlayerData> {

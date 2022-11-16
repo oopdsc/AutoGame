@@ -6,6 +6,7 @@ import game.player.BasePlayer;
 import game.player.JuediYamenPlayer;
 import game.player.JunjiPlayer;
 import game.player.YamenPlayer;
+import game.service.CangJingGeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -34,6 +35,33 @@ public class CabinetTask {
             jp.checkCabinet2();
         });
         Flags.sleepTime = slt;
+    }
+
+    @Scheduled(cron = "0 15 11 * * ?")
+    public void cangjingge() {
+        runner.singleDahao(p -> {
+            CangJingGeService.seekHelp(p);
+        });
+
+        runner.singleXiaohao1(p -> {
+            CangJingGeService.oneKeyHelp(p);
+        });
+
+        runner.singleXiaohao2(p -> {
+            CangJingGeService.seekHelp(p);
+        });
+
+        runner.singleDahao(p -> {
+            CangJingGeService.manualHelp(p);
+        });
+
+        runner.singleXiaohao1(p -> {
+            CangJingGeService.seekHelp(p);
+        });
+
+        runner.singleXiaohao2(p -> {
+            CangJingGeService.manualHelp(p);
+        });
     }
 
 }

@@ -2,22 +2,30 @@ package game.player;
 
 import game.active.DefaultGameRunner;
 import game.config.Flags;
-import game.service.GameRunner;
+import game.runner.GameRunner;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LianmengPlayerTest {
 
     DefaultGameRunner runner = new DefaultGameRunner();
+//    15700 + 8600 = 24300 * 2 = 48600
 //、、24300   48600   6000
 //    27800+24300  52100  54110
 //    53200 - 48600 = 4600
+//    27210 54610  27400     24200
+//    25800
+//    26300 -> 47110
+//    24300 -> 30300  -> 37300
+
+//    529   487  42
+//    266
+//263
     @Test
     void club() {
         runner.single(GameRunner.GOLD, p -> {
             LianmengPlayer lp = new LianmengPlayer(p);
             lp.club();
+
         });
     }
 
@@ -28,7 +36,7 @@ class LianmengPlayerTest {
 
         runner.single("club.json", p -> {
             LianmengPlayer lp = new LianmengPlayer(p);
-            lp.dayHighGongxian();
+            lp.highItemGongxian();
             t++;
         });
     }

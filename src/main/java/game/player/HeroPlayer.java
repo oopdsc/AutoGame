@@ -1,6 +1,6 @@
 package game.player;
 
-import game.service.PlayerData;
+import game.runner.PlayerData;
 
 public class HeroPlayer extends BasePlayer {
     public HeroPlayer(PlayerData data) {
@@ -12,6 +12,16 @@ public class HeroPlayer extends BasePlayer {
         super.baseUrl = player.baseUrl;
     }
 
+//    合成女将令
+//    {"rsn":"1tttwatqaek","item":{"hecheng":{"count":2,"id":138}}}
+//{"rsn":"7yygxxldgcy","item":{"hecheng":{"count":4,"id":156}}}
+
+//
+//    {"hero":{"upghskill":{"sid":16,"id":55}},"rsn":"9zsjjcnszmt"}
+//    张春华第一光环
+//    {"hero":{"upghskill":{"sid":29,"id":66}},"rsn":"6wwxwyugpwg"}
+//    张春华第二光环
+//    {"hero":{"upghskill":{"sid":30,"id":66}},"rsn":"2mxhbbyalbq"}
     public void hero_zhili4(){
         this.runAction3("{\"rsn\":\"%s\",\"item\":{\"useforhero\":{\"count\":10,\"heroid\":55,\"id\":24}}}");
     }
@@ -28,9 +38,9 @@ public class HeroPlayer extends BasePlayer {
         this.runAction1("{\"hero\":{\"uppkskill\":{\"sid\":2,\"id\":"+heroid+"}},\"rsn\":\"%s\"}");
     }
 
-    public void useSkin(){
-        //关银屏 月夕花晨
-        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"useSkin\":{\"id\":2204}}}");
+    public void useSkin(int skinId){
+        //关银屏 月夕花晨  2204
+        this.runAction1("{\"rsn\":\"%s\",\"item\":{\"useSkin\":{\"id\":"+skinId+"}}}");
     }
 
     public void hero_up(int heroid, int currentLv){

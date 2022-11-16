@@ -1,8 +1,9 @@
 package game.player;
 
 import game.active.DefaultGameRunner;
+import game.command.LeagueCommand;
 import game.config.Flags;
-import game.service.GameRunner;
+import game.runner.GameRunner;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StopWatch;
 
@@ -33,7 +34,35 @@ class QinmiPlayerTest {
             QinmiPlayer qp = new QinmiPlayer(p);
             qp.useCook(3);
 
+            p.runAction2(LeagueCommand.goShop);
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(5));
+            p.runAction2(LeagueCommand.buyShopItem(5));
 
+
+        });
+
+        System.out.println("done");
+    }
+//    DAHAO     :  - 14757 = 3132
+//    XIAOHAO 1 : 14754 - 11622 = 3132
+//    XIAOHAO 2 : 17922 - 14754 = 3168
+    @Test
+    void singleUseCook() {
+        runner.processSingle(GameRunner.DAHAO, p -> {
+            QinmiPlayer qp = new QinmiPlayer(p);
+            qp.useCook(3);
+
+            p.runAction2(LeagueCommand.goShop);
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(5));
+            p.runAction2(LeagueCommand.buyShopItem(5));
 
         });
 
@@ -44,7 +73,7 @@ class QinmiPlayerTest {
 
     @Test
     void singleCook() {
-        runner.single(GameRunner.HUODONG, d -> d.username.equals("wang25687"), p -> {
+        runner.single(GameRunner.DAHAO, d -> d.username.equals("wang25687"), p -> {
             QinmiPlayer qp = new QinmiPlayer(p);
             for(int i = 1; i <= 4; i++){
                 qp.cook();
@@ -59,8 +88,9 @@ class QinmiPlayerTest {
         sw.start();
         int qinmi1 = 0;
         int qinmi2 = 0;
-        int qinmi3 = 10;
-        runner.processSingle(GameRunner.HUODONG, p -> {
+        int qinmi3 = 600;
+        runner.processSingle("child.json", p -> {
+//            402
             for(int i = 1; i <= qinmi1; i++){
                 p.qinmi11();
             }
@@ -72,6 +102,8 @@ class QinmiPlayerTest {
             for(int i = 1; i <= qinmi3; i++){
                 p.qinmi13();
             }
+
+
         });
         sw.stop();
         System.out.println("done " + sw.getTotalTimeSeconds() );
@@ -192,35 +224,84 @@ class QinmiPlayerTest {
 //            GameRunner.sleepInMillis(runner.rd.nextInt(1000));
             QinmiPlayer dp = new QinmiPlayer(p);
             dp.clubQinmi();
+
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.upgradeSeat(1));
+            p.runAction2(LeagueCommand.buyShopItem(5));
+            p.runAction2(LeagueCommand.buyShopItem(5));
+            p.runAction2(LeagueCommand.buyShopItem(5));
         });
 //        GameRunner.sleep(600);
         System.out.println(all1);
     }
 
     @Test
-    public void xiaohaoQinmi(){
-        runner.processMulti("clubQinmi.json", p -> {
-//        runner.processSingle(GameRunner.HUODONG, p -> {
+    public void xiaohaoQinmiClub(){
+        runner.all1(null, p->{
+            QinmiPlayer qp = new QinmiPlayer(p);
+            p.data.wifeId = 2;
+            for(int i = 1; i <= 30; i++){
+                qp.qinmi11();
+                qp.qinmi12();
+            }
+        }, p->{
+            QinmiPlayer qp = new QinmiPlayer(p);
+            p.data.wifeId = 2;
+            for(int i = 1; i <= 30; i++){
+                qp.qinmi11();
+                qp.qinmi12();
+            }
+        });
+
+    }
+
+    @Test
+    public void xiaohaoQinmi1(){
+//        runner.processMulti("clubQinmi.json", p -> {
+//        runner.processSingle("clubQinmi.json", p -> {
+            runner.processSingle(GameRunner.XIAOHAO1, p -> {
 //            GameRunner.sleepInMillis(runner.rd.nextInt(1000));
             QinmiPlayer qp = new QinmiPlayer(p);
 //            for(int i = 1; i <= 500; i++){
 //                qp.qinmi11();
 //            }
-            for(int i = 1; i <= 300; i++){
-                qp.qinmi12();
+            for(int i = 1; i <= 500; i++){
+                qp.qinmi11();
             }
         });
 
-        GameRunner.sleep(20);
+//        GameRunner.sleep(20);
         System.out.println("done");
     }
 
     @Test
     public void xiaohaoQinmi2(){
-        runner.processMulti("clubQinmi2.json", p -> {
-            GameRunner.sleepInMillis(runner.rd.nextInt(1000));
+//        runner.processMulti("clubQinmi.json", p -> {
+//        runner.processSingle("clubQinmi.json", p -> {
+        runner.processSingle(GameRunner.XIAOHAO2, p -> {
+//            GameRunner.sleepInMillis(runner.rd.nextInt(1000));
             QinmiPlayer qp = new QinmiPlayer(p);
-            for(int i = 1; i <= 500; i++){
+//            for(int i = 1; i <= 500; i++){
+//                qp.qinmi11();
+//            }
+            for(int i = 1; i <= 600; i++){
+                qp.qinmi11();
+            }
+        });
+
+//        GameRunner.sleep(20);
+        System.out.println("done");
+    }
+
+    @Test
+    public void xiaohaoQinmi3(){
+        runner.processMulti("clubQinmi2.json", p -> {
+            GameRunner.sleepInMillis(runner.rd.nextInt(200));
+            QinmiPlayer qp = new QinmiPlayer(p);
+            for(int i = 1; i <= 130; i++){
                 qp.qinmi12();
             }
         });

@@ -3,8 +3,8 @@ package game;
 import com.alibaba.fastjson.JSONObject;
 import com.jayway.jsonpath.JsonPath;
 import game.active.DefaultGameRunner;
-import game.service.GameRunner;
-import game.service.PlayerData;
+import game.runner.GameRunner;
+import game.runner.PlayerData;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.Resource;
@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import static game.service.GameRunner.DAHAO;
-import static game.service.GameRunner.getRsn;
+import static game.runner.GameRunner.DAHAO;
+import static game.runner.GameRunner.getRsn;
 
 public class JsonTest {
 

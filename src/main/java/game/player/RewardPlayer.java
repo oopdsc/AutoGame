@@ -1,9 +1,6 @@
 package game.player;
 
-import game.service.GameRunner;
-import game.service.PlayerData;
-
-import static game.service.GameRunner.sleepInMillis;
+import game.runner.PlayerData;
 
 public class RewardPlayer extends BasePlayer {
     public RewardPlayer(PlayerData data) {
@@ -95,6 +92,10 @@ public class RewardPlayer extends BasePlayer {
         this.runAction2("{\"huodong2\":{\"hd954GetSevRwd\":[]},\"rsn\":\"%s\"}");
     }
 
+    public void reward_league(){
+        this.runAction2("{\"rsn\":\"%s\",\"league\":{\"cbPickupRwd\":[]}}");
+    }
+
 
 
 
@@ -107,6 +108,9 @@ public class RewardPlayer extends BasePlayer {
         for(int i = 1; i <= 15; i++){
             this.rewardYinliang();
             this.rewardGuoli();
+        }
+        for(int i = 1; i <= 5; i++){
+            this.rewardYuanbao();
         }
 
     }

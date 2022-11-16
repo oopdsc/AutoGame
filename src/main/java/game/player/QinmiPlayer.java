@@ -2,7 +2,7 @@ package game.player;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import game.service.PlayerData;
+import game.runner.PlayerData;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

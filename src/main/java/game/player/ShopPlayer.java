@@ -1,6 +1,6 @@
 package game.player;
 
-import game.service.PlayerData;
+import game.runner.PlayerData;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class ShopPlayer extends BasePlayer {

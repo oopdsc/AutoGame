@@ -1,14 +1,9 @@
 package game.player;
 
 import game.active.DefaultGameRunner;
-import game.config.Flags;
-import game.service.GameRunner;
+import game.runner.GameRunner;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StopWatch;
-
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MeiliPlayerTest {
 
@@ -39,15 +34,15 @@ class MeiliPlayerTest {
         StopWatch sw = new StopWatch();
         sw.start();
         int num = 1;
-        runner.single(GameRunner.HUODONG, p -> {
+        runner.single("huodong.json", p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
-            for(int i = 1; i <= 2000; i++){
+            for(int i = 1; i <= 260; i++){
                 mp.meili1();
             }
 
-//            for(int i = 1; i <= 2000; i++){
+            for(int i = 1; i <= 3000; i++){
 //                mp.meili2();
-//            }
+            }
         });
         sw.stop();
         System.out.println("Done, time :" + sw.getTotalTimeSeconds());
@@ -61,11 +56,18 @@ class MeiliPlayerTest {
     void meili2() {
         StopWatch sw = new StopWatch();
         sw.start();
-        int num = 3;
+        int num1 = 4000;
+        int num2 = 5400;
+        int num3 = 600;
         runner.single("huodong2.json", p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
-            for(int i = 1; i <= num; i++){
-//                mp.meili1();
+            for(int i = 1; i <= num1; i++){
+                mp.meili1();
+            }
+            for(int i = 1; i <= num2; i++){
+                mp.meili2();
+            }
+            for(int i = 1; i <= num3; i++){
                 mp.meili2();
             }
         });
@@ -123,16 +125,26 @@ class MeiliPlayerTest {
 
     @Test
     void kua_meili(){
-        String all1 = runner.all1( null, p -> {
+        String all1 = runner.all1( p -> {
             MeiliPlayer mp = new MeiliPlayer(p);
             mp.kua_meili();
-        }, p -> {
-            MeiliPlayer mp = new MeiliPlayer(p);
-            mp.kua_meili();
+
+//            Double11Player dp = new Double11Player(p);
+//            dp.buyJinguoIn11();
         });
         System.out.println(all1);
     }
 
+    @Test
+    void kua_meili_play(){
+        runner.processSingle(GameRunner.HUODONG, p -> {
+            MeiliPlayer mp = new MeiliPlayer(p);
+            for(int i = 1; i <= 594; i++){
+                mp.kua_meili_play();
+            }
+        });
+//        System.out.println(all1);
+    }
 
     @Test
     void buyBeast() {

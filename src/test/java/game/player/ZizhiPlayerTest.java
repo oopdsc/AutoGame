@@ -1,13 +1,16 @@
 package game.player;
 
 import game.active.DefaultGameRunner;
-import game.service.GameRunner;
+import game.command.LeagueCommand;
+import game.runner.GameRunner;
+import game.service.CangJingGeService;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
-import static game.service.GameRunner.getRsn;
-import static org.junit.jupiter.api.Assertions.*;
+import static game.runner.GameRunner.getRsn;
 
 class ZizhiPlayerTest {
 
@@ -20,11 +23,55 @@ class ZizhiPlayerTest {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
 //                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
 //                    zp.useBook(ZizhiPlayer.SID_5ZHILI_JiaRenTieJi, 55);
-                    for(int i = 33; i <= 37; i++){
-                        zp.useBook(ZizhiPlayer.SID_4WULI_WUHU, i);
-                    }
+//                    for(int i = 33; i <= 37; i++){
+//                        zp.useBook(ZizhiPlayer.SID_4WULI_WUHU, i);
+//                    }
+//                    for(int i : p.data.mzid){
+//                    zp.runAction2(LeagueCommand.xsupgrade1(41));
+//                    for(int i = 1; i <= 1; i++){
+//                        zp.runAction2(LeagueCommand.xsupgrade1(38));
+////                        zp.runAction2(LeagueCommand.xsupgrade1(6));
+//                    }
 
-                    for(int i = 1; i <=1; i++){
+//                    zp.runAction2(LeagueCommand.xsupgrade1(34));
+//                    zp.runAction2(LeagueCommand.xsupgrade1(34));
+
+//                    zp.runAction2(LeagueCommand.xsupgrade(55));
+//                    zp.runAction2(LeagueCommand.xsupgrade(55));
+//                    zp.runAction2(LeagueCommand.xsupgrade(55));
+//                    zp.runAction2(LeagueCommand.xsupgrade(55));
+
+                    zp.runAction2(LeagueCommand.buyShopItem(1));
+                    zp.runAction2(LeagueCommand.buyShopItem(1));
+                    zp.runAction2(LeagueCommand.buyShopItem(1));
+                    zp.runAction2(LeagueCommand.buyShopItem(1));
+                    zp.runAction2(LeagueCommand.buyShopItem(2));
+                    zp.runAction2(LeagueCommand.buyShopItem(2));
+                    zp.runAction2(LeagueCommand.buyShopItem(2));
+
+                    zp.runAction2(LeagueCommand.buyShopItem(8));
+                    zp.runAction2(LeagueCommand.buyShopItem(8));
+//                    zp.runAction2(LeagueCommand.upgradeSeat(1));
+                    zp.runAction2(LeagueCommand.buyShopItem(5));
+                    zp.runAction2(LeagueCommand.buyShopItem(5));
+//                    }
+
+
+                    //        for(int i = 1; i <= 1; i++){
+//            this.runAction2(LeagueCommand.xsupgrade1(10));
+//            this.runAction2(LeagueCommand.xsupgrade1(11));
+//            this.runAction2(LeagueCommand.xsupgrade1(12));
+//            this.runAction2(LeagueCommand.xsupgrade1(13));
+//            this.runAction2(LeagueCommand.xsupgrade1(10));
+//            this.runAction2(LeagueCommand.xsupgrade1(11));
+//            this.runAction2(LeagueCommand.xsupgrade1(12));
+//            this.runAction2(LeagueCommand.xsupgrade1(13));
+//            this.runAction2(LeagueCommand.xsupgrade1(26));
+//            this.runAction2(LeagueCommand.xsupgrade1(28));
+//        }
+
+
+                    for (int i = 1; i <= 1; i++) {
 //                        zp.useBook(2, 1);
 //                        zp.useBook(2, 2);
 //                        zp.useBook(2, 8);
@@ -40,10 +87,93 @@ class ZizhiPlayerTest {
 //                        zp.useBook(3, 40);
                     }
                 }
-                );
+        );
         System.out.println("done");
     }
 
+    @Test
+    void zzbangAll2() {
+
+        List<String> names = new LinkedList<>();
+//        names.add("wang25687");
+//        names.add("ssqwerty");
+//        names.add("cq147369");
+//        names.add("muyang1");
+//        names.add("pby123");
+//        names.add("pby1234");
+
+        runner.all1(
+                p -> {
+                    if (!names.contains(p.data.username)) {
+                        CangJingGeService.oneKeyHelp(p);
+//                        TongmengService.buyItems(p);
+                    }
+                }
+        );
+    }
+
+
+    @Test
+    void zzbangAll() {
+
+        List<String> names = new LinkedList<>();
+//        names.add("wang25687");
+//        names.add("ssqwerty");
+//        names.add("cq147369");
+//        names.add("muyang1");
+//        names.add("pby123");
+//        names.add("pby1234");
+
+        runner.all1(
+                p -> {
+                    ZizhiPlayer zp = new ZizhiPlayer(p);
+                    if(!names.contains(p.data.username)){
+                        for (int i = 1; i <= 1; i++) {
+//                            加资质
+//                            zp.runAction2(LeagueCommand.xsupgrade1(10));
+//                            zp.runAction2(LeagueCommand.xsupgrade1(11));
+//                            zp.runAction2(LeagueCommand.xsupgrade1(12));
+//                            zp.runAction2(LeagueCommand.xsupgrade1(13));
+//                            zp.runAction2(LeagueCommand.xsupgrade1(10));
+//                            zp.runAction2(LeagueCommand.xsupgrade1(11));
+//                            zp.runAction2(LeagueCommand.xsupgrade1(12));
+//                            zp.runAction2(LeagueCommand.xsupgrade1(13));
+//                            zp.runAction2(LeagueCommand.xsupgrade1(26));
+//                            zp.runAction2(LeagueCommand.xsupgrade1(28));
+
+//                            加修身道具
+//                            zp.runAction2(LeagueCommand.xsupgrade1(38));
+
+//                          加国力
+                            zp.runAction2(LeagueCommand.xsupgrade1(33));
+                            zp.runAction2(LeagueCommand.xsupgrade1(34));
+                            zp.runAction2(LeagueCommand.xsupgrade1(35));
+                            zp.runAction2(LeagueCommand.xsupgrade1(36));
+                            zp.runAction2(LeagueCommand.xsupgrade1(37));
+                            zp.runAction2(LeagueCommand.xsupgrade1(39));
+                            zp.runAction2(LeagueCommand.xsupgrade1(40));
+                        }
+                    }
+
+
+//                    zp.runAction2(LeagueCommand.buyShopItem(1));
+//                    zp.runAction2(LeagueCommand.buyShopItem(1));
+//                    zp.runAction2(LeagueCommand.buyShopItem(1));
+//                    zp.runAction2(LeagueCommand.buyShopItem(1));
+//                    zp.runAction2(LeagueCommand.buyShopItem(2));
+//                    zp.runAction2(LeagueCommand.buyShopItem(2));
+//                    zp.runAction2(LeagueCommand.buyShopItem(2));
+//
+//                    zp.runAction2(LeagueCommand.buyShopItem(8));
+//                    zp.runAction2(LeagueCommand.buyShopItem(8));
+//                    zp.runAction2(LeagueCommand.buyShopItem(5));
+//                    zp.runAction2(LeagueCommand.buyShopItem(5));
+//                    zp.runAction2(LeagueCommand.buyShopItem(5));
+
+                }
+        );
+        System.out.println("done");
+    }
 
     @Test
     void chongbangJuanzhou() {
@@ -52,10 +182,19 @@ class ZizhiPlayerTest {
                 p -> {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
 
-                    for(int i = 1; i <= 1; i++){
+                    for(int i = 1; i <= 30; i++){
+                        zp.hanlinLvUp();
+                    }
+
+                    for (int i = 1; i <= 380; i++) {
                         zp.useJuanzhou0(127, 55);
                     }
-        });
+
+                    for (int i = 1; i <= 160; i++) {
+                        zp.useJuanzhou0(150, 58);
+                        zp.useJuanzhou0(169, 66);
+                    }
+                });
     }
 
     @Test
@@ -64,7 +203,8 @@ class ZizhiPlayerTest {
         runner.single(GameRunner.HUODONG,
                 p -> {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
-                    for(int i = 1; i <= 150; i++){
+                    for (int i = 1; i <= 450; i++) {
+//                        zp.runAction2("{\"rsn\":\"%s\",\"item\":{\"useforhero\":{\"count\":100,\"heroid\":55,\"id\":81}}}");
                         zp.useBook0(128, 55);
                     }
 
@@ -79,19 +219,19 @@ class ZizhiPlayerTest {
                     ZizhiPlayer zp = new ZizhiPlayer(p);
 
                     //郭嘉武力
-                    for(int i = 1; i <= 100; i++){
+                    for (int i = 1; i <= 100; i++) {
                         zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":66,\"num\":1,\"id\":41}},\"rsn\":\"%s\"}");
                     }
 //                   孙武武力
-                    for(int i = 1; i <= 200; i++){
+                    for (int i = 1; i <= 200; i++) {
                         zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":47,\"num\":1,\"id\":28}},\"rsn\":\"%s\"}");
                     }
                     // 周瑜武力
-                    for(int i = 1; i <= 100; i++){
+                    for (int i = 1; i <= 100; i++) {
                         zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":63,\"num\":1,\"id\":38}},\"rsn\":\"%s\"}");
                     }
 
-                    for(int i = 1; i <= 500; i++){
+                    for (int i = 1; i <= 500; i++) {
                         //马云绿智力
                         zp.runAction0("{\"hero\":{\"upzzskill\":{\"type\":2,\"sid\":127,\"num\":1,\"id\":55}},\"rsn\":\"%s\"}");
                         //郭嘉政治
@@ -168,7 +308,7 @@ class ZizhiPlayerTest {
     }
 
     @Test
-    public void reward(){
+    public void reward() {
         runner.all1(p -> {
             ZizhiPlayer zp = new ZizhiPlayer(p);
             zp.reward();

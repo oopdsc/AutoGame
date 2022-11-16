@@ -1,9 +1,8 @@
-package game.service;
+package game.runner;
 
 import com.alibaba.fastjson.JSONObject;
 import game.config.Flags;
 import game.player.BasePlayer;
-import game.player.Double11Player;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,6 @@ import reactor.core.scheduler.Schedulers;
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -45,8 +43,8 @@ public interface GameRunner<T extends BasePlayer> {
 
     static Resource getResource(String file){
 
-        return new ClassPathResource(file);
-//        return new FileSystemResource("/usr/games/" + file);
+//        return new ClassPathResource(file);
+        return new FileSystemResource("/usr/games/" + file);
 //        return new FileSystemResource("D:/Work/reactor/src/main/resources/" + file);
     }
 
@@ -313,10 +311,27 @@ public interface GameRunner<T extends BasePlayer> {
             String players = FileUtils.readFileToString(playerData.getFile(), Charset.defaultCharset());
 
             List<PlayerData> datas = JSONObject.parseArray(players, PlayerData.class)
-//                    .subList(70, 80)
+//                    .subList(0, 9)
                     ;
 
 //            System.out.println(datas.size());
+            Flux<PlayerData> flux = Flux.fromIterable(datas);
+
+            flux.map(this::login).doOnNext(onNext).subscribe();
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+        }
+    }
+
+    default void processSingle10(String file, Consumer<T> onNext) {
+        try{
+            Resource playerData = getResource(file);
+
+            String players = FileUtils.readFileToString(playerData.getFile(), Charset.defaultCharset());
+
+            List<PlayerData> datas = JSONObject.parseArray(players, PlayerData.class)
+                    .subList(0, 10)
+                    ;
             Flux<PlayerData> flux = Flux.fromIterable(datas);
 
             flux.map(this::login).doOnNext(onNext).subscribe();

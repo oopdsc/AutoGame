@@ -1,8 +1,8 @@
 package game.player;
 
-import game.service.PlayerData;
+import game.runner.PlayerData;
 
-import static game.service.GameRunner.getRsn;
+import static game.runner.GameRunner.getRsn;
 
 public class MeiliPlayer extends BasePlayer {
     public MeiliPlayer(PlayerData data) {
@@ -29,7 +29,7 @@ public class MeiliPlayer extends BasePlayer {
 
     public void meili21() {
         //33 - 马云绿
-        this.runAction1("{\"wife\":{\"reward\":{\"count\":25,\"id\":33,\"itemId\":94}},\"rsn\":\"%s\"}");
+        this.runAction1("{\"wife\":{\"reward\":{\"count\":50,\"id\":33,\"itemId\":93}},\"rsn\":\"%s\"}");
     }
 
     public void meili3(){
@@ -58,7 +58,7 @@ public class MeiliPlayer extends BasePlayer {
 
     /**
      * @param itemid  1 : 小经验；2 : 中经验； 3 ： 大经验
-     * @param beastid 1 ： 狐狸； 2 ： 猴子    8： 斗牛
+     * @param beastid 1 ： 狐狸； 2 ： 猴子    7: 白熊 8： 斗牛
      */
     public void upLvBeast(int itemid, int beastid) {
 //        {"rsn":"8avijeeaak","beast":{"upLv":{"type":1,"item_id":2,"id":1}}}
@@ -89,6 +89,10 @@ public class MeiliPlayer extends BasePlayer {
         this.runAction1("{\"huodong2\":{\"hd954GetTaskRwd\":[]},\"rsn\":\"%s\"}");
 //
         this.runAction1("{\"huodong2\":{\"hd954play\":{\"num\":1}},\"rsn\":\"%s\"}");
+    }
+
+    public void kua_meili_play(){
+        this.runAction0("{\"huodong2\":{\"hd954play\":{\"num\":1}},\"rsn\":\"%s\"}");
     }
 
     public void meili_reward(){

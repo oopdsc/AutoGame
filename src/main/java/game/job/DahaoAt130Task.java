@@ -4,6 +4,8 @@ import game.active.DefaultGameRunner;
 import game.command.LeagueCommand;
 import game.config.Flags;
 import game.player.*;
+import game.service.LianmengService;
+import game.service.TongmengService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,6 +21,14 @@ public class DahaoAt130Task {
 
     DefaultGameRunner runner = new DefaultGameRunner();
 
+    //晚上8点匈奴
+    @Scheduled(cron = "7 3 20 * * ?")
+    public void hitXiongnu(){
+        runner.shuffleDahao(p -> {
+            doAt20(p);
+        });
+    }
+
     //每个小时收菜
     @Scheduled(cron = "7 5 * * * ?")
     public void shoucai() {
@@ -26,10 +36,7 @@ public class DahaoAt130Task {
         int h = dt.getHour();
 
         if(h == 20){
-            runner.shuffleDahao(p -> {
-                p.sjxo();
-                doAt20(p);
-            });
+            return;
         }else{
 
             runner.singleDahao(
@@ -78,6 +85,8 @@ public class DahaoAt130Task {
                             doAt10(p);
                         } else if(h == 12){
                             doAt12(p);
+                        }else if(h == 15){
+                            doAt15(p);
                         }else if(h == 19){
                             doAt19(p);
                         }else if(h == 22){
@@ -85,7 +94,6 @@ public class DahaoAt130Task {
                         } else if(h == 23){
                             doAt23(p);
                         }
-
                     });
 
         }
@@ -148,10 +156,11 @@ public class DahaoAt130Task {
         }
 
         p.buybook();
-        p.buyItem0();
-        p.buyItem3();
-        p.buyItem2();
-        p.buyItem1();
+        LianmengService.buyItems(p);
+//        p.buyItem0();
+//        p.buyItem3();
+//        p.buyItem2();
+//        p.buyItem1();
         p.shopCanjuan();
 
 
@@ -177,7 +186,12 @@ public class DahaoAt130Task {
     public void doAt12(BasePlayer p){
         p.menggu();
         p.runAction2(LeagueCommand.enter);
-        p.leagueBuild();
+        for (int i = 1; i <= 5; i++) {
+            p.leagueBuild();
+        }
+    }
+
+    public void doAt15(BasePlayer p){
     }
 
     /**
@@ -188,9 +202,7 @@ public class DahaoAt130Task {
         p.runAction2(LeagueCommand.enter);
         p.overFuben();
         p.runAction2(LeagueCommand.goShop);
-        p.runAction2(LeagueCommand.buyShopItem(5));
-        p.runAction2(LeagueCommand.buyShopItem(5));
-        p.runAction2(LeagueCommand.buyShopItem(5));
+        TongmengService.buyItems(p);
     }
 
     /**

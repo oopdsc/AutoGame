@@ -1,10 +1,9 @@
 package game.player;
 
 import game.active.DefaultGameRunner;
+import game.service.GuoliService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("国力榜测试")
 class GuoliPlayerTest {
@@ -33,6 +32,15 @@ class GuoliPlayerTest {
         runner.single("huodong.json", p -> {
             GuoliPlayer gp = new GuoliPlayer(p);
             gp.addAllGuoli();
+        });
+        System.out.println("done");
+    }
+
+    @Test
+    @DisplayName("加国力")
+    public void addSingleGuoli2(){
+        runner.single("huodong.json", p -> {
+            GuoliService.buyItems(p);
         });
         System.out.println("done");
     }

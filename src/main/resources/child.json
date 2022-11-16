@@ -1,0 +1,33 @@
+[
+  {
+    "username": "wang25687",
+    "openid": "2473577_ios",
+    "openkey": "3b5f5d5af1a42fddb00b3a5c5e08d830",
+    "silu": 140,
+    "taofa": 120,
+    "wifeId": 20,
+    "sonFood": false,
+    "openboss": true,
+    "housemake": true,
+    "yamen": true,
+    "isYanwu": true,
+    "cookid": 810,
+    "hunt": [33, 34, 35],
+    "zid": 28,
+    "zidCount": 20,
+    "zidbuy": 8,
+    "cooknum": 25,
+    "buyItem3": 0,
+    "hitboss": 4,
+    "heroid": [33],
+    "buyXiongnu2": true,
+    "geerdan": [23, 10, 28, 45, 35, 43, 11, 12, 40, 16],
+    "mengguid": [
+      31, 29, 30, 27, 5, 14, 21, 7, 25, 17,
+      18, 4, 3, 15, 19, 22, 9, 1, 8, 34,
+      23, 10, 28, 45, 35, 43, 11, 12, 40, 16,
+      13, 6, 2, 39, 20, 24, 41, 50, 44, 37,
+      36, 46, 55, 47, 38, 33, 51, 66, 26
+    ]
+  }
+]

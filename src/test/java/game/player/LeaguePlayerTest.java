@@ -7,8 +7,7 @@ import com.jayway.jsonpath.Option;
 import game.active.DefaultGameRunner;
 import game.command.BaseCommand;
 import game.command.LeagueCommand;
-import game.service.GameRunner;
-import game.service.Hero;
+import game.runner.GameRunner;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

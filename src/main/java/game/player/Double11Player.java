@@ -1,6 +1,6 @@
 package game.player;
 
-import game.service.PlayerData;
+import game.runner.PlayerData;
 
 public class Double11Player extends BasePlayer {
     public Double11Player(PlayerData data) {

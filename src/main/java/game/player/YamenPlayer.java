@@ -2,8 +2,8 @@ package game.player;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import game.service.GameRunner;
-import game.service.PlayerData;
+import game.runner.GameRunner;
+import game.runner.PlayerData;
 import org.springframework.http.ResponseEntity;
 
 public class YamenPlayer extends BasePlayer {

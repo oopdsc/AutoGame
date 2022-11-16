@@ -1,6 +1,6 @@
 package game.command;
 
-import static game.service.GameRunner.getRsn;
+import static game.runner.GameRunner.getRsn;
 
 public class BaseCommand {
 

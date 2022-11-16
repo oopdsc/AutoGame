@@ -1,7 +1,6 @@
 package game.config;
 
-import game.service.GameRunner;
-import game.service.XiaohaoRunner;
+import game.runner.XiaohaoRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;

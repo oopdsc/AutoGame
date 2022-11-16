@@ -3,8 +3,6 @@ package game.controller;
 import game.active.DefaultGameRunner;
 import game.player.JuediYamenPlayer;
 import game.player.YamenPlayer;
-import game.player.ZhanmaPlayer;
-import game.service.GameRunner;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -6,9 +6,8 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.Option;
 import game.command.BaseCommand;
 import game.command.LeagueCommand;
-import game.service.GameRunner;
-import game.service.PlayerData;
-import io.swagger.models.auth.In;
+import game.runner.GameRunner;
+import game.runner.PlayerData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -23,7 +22,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static game.service.GameRunner.*;
+import static game.runner.GameRunner.*;
 
 public class BasePlayer {
 
@@ -70,12 +69,12 @@ public class BasePlayer {
                 String token = JsonPath.parse(body).read("$.a.loginMod.loginAccount.token", String.class);
                 this.data.uid = uid;
                 this.data.token = token;
-                this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.385&uid=" + uid + "&token=" + token + "&platform=qiangwanzdhgios&lang=zh-cn";
+                this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.413&uid=" + uid + "&token=" + token + "&platform=qiangwanzdhgios&lang=zh-cn";
             } catch (Exception ex) {
                 logger.error("Login failed for {}", data.username);
             }
         } else {
-            this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.385&uid=" + data.uid + "&token=" + data.token + "&platform=qiangwanzdhgios&lang=zh-cn";
+            this.baseUrl = "http://sglyqw.commpad.cn/servers/s7.php?sevid=7&ver=V1.0.413&uid=" + data.uid + "&token=" + data.token + "&platform=qiangwanzdhgios&lang=zh-cn";
         }
 
 
@@ -273,6 +272,19 @@ public class BasePlayer {
     //升级武将光环
     //{"hero":{"upghskill":{"sid":4,"id":35}},"rsn":"9zzstinbjmt"}
 //    {"hero":{"upghskill":{"sid":6,"id":38}},"rsn":"7cpoycoccg"}
+
+    public void upghskill2(int sid, int hid){
+        this.runAction2("{\"hero\":{\"upghskill\":{\"sid\":"+sid+",\"id\":"+hid+"}},\"rsn\":\"%s\"}");
+    }
+
+    /**
+     * 升级武将光环
+     * @param sid skill id - 16：马云绿智力光环
+     * @param hid hero id
+     */
+    public void upghskill0(int sid, int hid){
+        this.runAction0("{\"hero\":{\"upghskill\":{\"sid\":"+sid+",\"id\":"+hid+"}},\"rsn\":\"%s\"}");
+    }
 
 
     public void useXoItems() {
@@ -801,6 +813,10 @@ public class BasePlayer {
         if(this.data.fubenId2.length == 5){
             this.runAction2(LeagueCommand.dispatchFuben(2, this.data.uid, this.data.fubenId2));
         }
+
+        if(this.data.fubenId3.length == 5){
+            this.runAction2(LeagueCommand.dispatchFuben(3, this.data.uid, this.data.fubenId2));
+        }
     }
 
     public void overFuben(){
@@ -812,6 +828,10 @@ public class BasePlayer {
 
         if(this.data.fubenId2.length == 5){
             this.overFubenId(fuben, 2);
+        }
+
+        if(this.data.fubenId3.length == 5){
+            this.overFubenId(fuben, 3);
         }
     }
 

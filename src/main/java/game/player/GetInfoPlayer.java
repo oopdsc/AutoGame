@@ -4,9 +4,9 @@ import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.Option;
-import game.service.Hero;
-import game.service.HeroData;
-import game.service.PlayerData;
+import game.runner.Hero;
+import game.runner.HeroData;
+import game.runner.PlayerData;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import static game.service.GameRunner.DAHAO;
-import static game.service.GameRunner.getRsn;
+import static game.runner.GameRunner.getRsn;
 
 public class GetInfoPlayer extends BasePlayer {
     public GetInfoPlayer(PlayerData data) {
@@ -41,17 +40,29 @@ public class GetInfoPlayer extends BasePlayer {
     public void getAll(String folder){
         String resp = this.getAllinfo();
 //        this.getBeastInfo(resp, folder);
+
 //        this.getCash(resp, folder);
 //        this.getBook(resp, folder);
 //        this.getClub(resp, folder);
 //        this.getQinmi(resp, folder);
+//        this.getMisc(resp, folder);
+
 //        this.hero(resp, folder);
 //        this.getCourtyardInfo(false, folder);
 //        System.out.println("done : " + folder);
-//        this.getMisc(resp, folder);
 
-//        this.listHero(resp, folder);
+//        this.buyHero(resp, folder);
+
+
+
+        this.listHero(resp, folder);
 //        this.listLeague(resp, folder);
+//        this.listMgft(resp, folder);
+    }
+
+
+    public void mgft(String folder){
+        String resp = this.getAllinfo();
         this.listMgft(resp, folder);
     }
 
@@ -317,6 +328,62 @@ public class GetInfoPlayer extends BasePlayer {
         }
     }
 
+    public void buyHero(String res, String folder){
+
+        Configuration conf = Configuration.defaultConfiguration();
+        Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        DocumentContext dc = JsonPath.using(conf2).parse(res);
+
+        List<Hero> heros = new LinkedList<>();
+        List<Map<String, Object>> heros2 = dc.read("$.a.hero.heroList");
+        boolean hasHero = false;
+        boolean hasHero2 = false;
+
+        for(int i = 0; i < heros2.size(); i++) {
+            Hero hero = new Hero();
+            Integer id = Integer.valueOf(heros2.get(i).get("id").toString());
+
+            Integer lv = Integer.valueOf(heros2.get(i).get("level").toString());
+            Integer zz = Integer.valueOf(((Map) heros2.get(i).get("zz")).get("e1").toString());
+
+            hero.lv = lv.intValue();
+            hero.zz = zz.intValue();
+            hero.name = HeroData.heroname.get(id);
+            hero.id = id;
+            heros.add(hero);
+//            topheros2.put(zz, id + HeroData.heroname.get(id) + "-" + lv + ":" + zz);
+
+            if (id.intValue() == 66) {
+                hasHero = true;
+            }else {
+
+            }
+
+            if (id.intValue() == 58) {
+                hasHero2 = true;
+            }else{
+
+            }
+        }
+//        合成女将令
+//        153 - 马云率
+//        156 - 张春华    66
+//        154 - 张星彩    58
+
+        if(!hasHero){
+            this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":10,\"id\":156}}}");
+            this.runAction1("{\"huodong\":{\"hd272Rwd\":{\"id\":66}},\"rsn\":\"%s\"}");
+        }
+
+        if(!hasHero2){
+            this.runAction1("{\"rsn\":\"%s\",\"item\":{\"hecheng\":{\"count\":10,\"id\":154}}}");
+            this.runAction1("{\"huodong\":{\"hd272Rwd\":{\"id\":58}},\"rsn\":\"%s\"}");
+        }
+//
+
+
+    }
+
 
     public void hero(String res, String folder){
 //        ResponseEntity<String> resp =  this.runAction3("{\"rsn\":\"%s\",\"guide\":{\"login\":{\"platform\":\"qiangwanzdhgios\",\"ug\":\"\"}}}");
@@ -449,7 +516,7 @@ public class GetInfoPlayer extends BasePlayer {
         String content = Strings.join(rr, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/beast-20220411.txt"), this.getData().username + "," + content + "\r", true);
+            FileUtils.write(new File("./"+ folder +"/beast-20220704.txt"), this.getData().username + "," + content + "\r", true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -580,12 +647,14 @@ public class GetInfoPlayer extends BasePlayer {
         Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
         DocumentContext dc = JsonPath.using(conf2).parse(body);
 
+        logger.info(body);
+
         List<Map<String, Object>> lists = dc.read("$.a.ranking.love");
 
         for(int i = 0; i < 100; i++){
             Map<String, Object> m = lists.get(i);
             try {
-                FileUtils.write(new File("./loverank-20220617.txt"), m.get("name") + "," + m.get("num") + "\r", true);
+                FileUtils.write(new File("./loverank-20221018.txt"), m.get("name") + "," + m.get("num") + "\r", true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -635,13 +704,18 @@ public class GetInfoPlayer extends BasePlayer {
     }
 
 
-    public void hero_pkskill_lvup(int heroid){
+    public void hero_pkskill_lvup(int ... heroids){
 
         String resp = this.getAllinfo();
         Configuration conf = Configuration.defaultConfiguration();
         Configuration conf2 = conf.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
         DocumentContext dc = JsonPath.using(conf2).parse(resp);
+        for(int i : heroids){
+            this.hero_pkskill_lvup2(dc, 80, i);
+        }
+    }
 
+    public void hero_pkskill_lvup2(DocumentContext dc, int lv, int heroid){
         List<Integer> lv1 = dc.read("$.a.hero.heroList[?(@.id=="+heroid+")].pkskill[?(@.id==1)].level");
         List<Integer> lv2 = dc.read("$.a.hero.heroList[?(@.id=="+heroid+")].pkskill[?(@.id==2)].level");
 
@@ -649,10 +723,10 @@ public class GetInfoPlayer extends BasePlayer {
         int lv2i = Integer.valueOf(getFromList(lv2).toString()).intValue();
 
         HeroPlayer hp = new HeroPlayer(this);
-        for(int i = 1; i <= 100 - lv1i; i++){
+        for(int i = 1; i <= lv - lv1i; i++){
             hp.pkskill1up(heroid);
         }
-        for(int i = 1; i <= 100 - lv2i; i++){
+        for(int i = 1; i <= lv - lv2i; i++){
             hp.pkskill2up(heroid);
         }
     }
@@ -691,7 +765,7 @@ public class GetInfoPlayer extends BasePlayer {
         }
 
         try {
-            FileUtils.write(new File("./"+ folder +"/zz-20220614.txt"),
+            FileUtils.write(new File("./"+ folder +"/zz-20221108.txt"),
                      sb.toString(), true);
 
         } catch (IOException e) {
@@ -730,7 +804,7 @@ public class GetInfoPlayer extends BasePlayer {
         String content = Strings.join(all, ',');
 
         try {
-            FileUtils.write(new File("./"+ folder +"/misc-20220614.txt"), this.getData().username + "," + content + "\n", true);
+            FileUtils.write(new File("./"+ folder +"/misc-20221019.txt"), this.getData().username + "," + content + "\n", true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -903,7 +977,7 @@ public class GetInfoPlayer extends BasePlayer {
             List<Object> lid = dc.read("$.a.wordboss.mgft[*].id");
             if(!CollectionUtils.isEmpty(lid)){
                 String content = Strings.join(lid, ',');
-                FileUtils.write(new File("./"+ folder +"/mgft-2022618.txt"),
+                FileUtils.write(new File("./"+ folder +"/mgft-20220817.txt"),
                         this.getData().username + "," + content + "\n", true);
             }
 

@@ -1,4 +1,4 @@
-package game.service;
+package game.runner;
 
 import java.text.DecimalFormat;
 

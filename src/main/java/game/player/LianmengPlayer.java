@@ -1,9 +1,9 @@
 package game.player;
 
 import game.command.ShopCommand;
-import game.service.PlayerData;
+import game.runner.PlayerData;
 
-import static game.service.GameRunner.getRsn;
+import static game.runner.GameRunner.getRsn;
 
 public class LianmengPlayer extends BasePlayer {
     public LianmengPlayer(PlayerData data) {
@@ -26,6 +26,24 @@ public class LianmengPlayer extends BasePlayer {
 //    135   联盟令碎片
 //    {"rsn":"6wllsylgby","item":{"hecheng":{"count":1,"id":128}}}  合成普通联盟令
 
+//    9700
+
+//    "{\"club\":{\"clubBossPK\":{\"cbid\":" + bossId + ",\"id\":" + heroId + "}},\"rsn\":\"%s\"}";
+    public void clubBossPk(){
+        this.runAction2("{\"club\":{\"clubBossPK\":{\"cbid\":1,\"id\":34}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"club\":{\"clubBossPK\":{\"cbid\":2,\"id\":41}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"club\":{\"clubBossPK\":{\"cbid\":3,\"id\":51}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"club\":{\"clubBossPK\":{\"cbid\":4,\"id\":40}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"club\":{\"clubBossPK\":{\"cbid\":10,\"id\":46}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"club\":{\"clubBossPK\":{\"cbid\":12,\"id\":45}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"club\":{\"clubBossPK\":{\"cbid\":11,\"id\":36}},\"rsn\":\"%s\"}");
+        this.runAction2("{\"club\":{\"clubBossPK\":{\"cbid\":13,\"id\":35}},\"rsn\":\"%s\"}");
+    }
+
+    public void getMengZhanReward(){
+        this.runAction1("{\"club\":{\"kuaPKrwdget\":{\"id\":2}},\"rsn\":\"%s\"}");
+    }
+
 
     public void club(){
         this.applyClub();
@@ -42,8 +60,9 @@ public class LianmengPlayer extends BasePlayer {
         String body = "{\"club\":{\"dayGongXian\":{\"dcid\":3}},\"rsn\":\"" + getRsn() + "\"}";
         this.execute(baseUrl, body);
     }
-
-    public void dayHighGongxian() {
+//{"rsn":"5wwwjrryewf","item":{"hecheng":{"count":3,"id":128}}}
+//    {"rsn":"6wwwskkxywk","item":{"hecheng":{"count":1,"id":132}}}
+    public void highItemGongxian() {
         this.runAction0("{\"club\":{\"dayGongXian\":{\"dcid\":5}},\"rsn\":\"%s\"}");
     }
 

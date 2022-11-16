@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-import static game.service.GameRunner.*;
+import static game.runner.GameRunner.*;
 
 @Component
 public class GoldTask {

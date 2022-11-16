@@ -1,14 +1,20 @@
-package game.service;
+package game.runner;
 
 import game.command.LeagueCommand;
 import game.config.Flags;
 import game.player.*;
+import game.service.LianmengService;
+import game.service.TongmengService;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.function.Consumer;
 
 public class XiaohaoRunner implements Consumer<BasePlayer> {
+
+    public Consumer<BasePlayer> hitXiongnu(){
+        return p -> p.hitXiongnu();
+    }
 
     @Override
     public void accept(BasePlayer p) {
@@ -35,9 +41,6 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
             for(int i = 1; i <= Flags.cook; i++){
                 p.cookOne();
             }
-            p.runAction2(LeagueCommand.enter);
-            p.leagueBuild();
-            p.startFuben();
         }
 
         if (h == 10 || h == 18 || h == 14 || h == 16) {
@@ -69,7 +72,7 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
         } else if (h == 19) {
             doAt19(p);
         } else if (h == 20) {
-            doAt20(p);
+//            doAt20(p);
         } else if (h == 22) {
             doAt22(p);
         } else if (h == 23) {
@@ -131,7 +134,8 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
         }
 
         p.buybook();
-        p.buyItem3();
+        LianmengService.buyItems(p);
+//        p.buyItem3();
         p.shopCanjuan();
 
     }
@@ -161,7 +165,9 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
     public void doAt12(BasePlayer p) {
         p.menggu();
         p.runAction2(LeagueCommand.enter);
-        p.leagueBuild();
+        for (int i = 1; i <= 5; i++) {
+            p.leagueBuild();
+        }
     }
 
     /**
@@ -173,9 +179,7 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
         p.overFuben();
 
         p.runAction2(LeagueCommand.goShop);
-        p.runAction2(LeagueCommand.buyShopItem(5));
-        p.runAction2(LeagueCommand.buyShopItem(5));
-        p.runAction2(LeagueCommand.buyShopItem(5));
+        TongmengService.buyItems(p);
     }
 
     /**
@@ -194,7 +198,8 @@ public class XiaohaoRunner implements Consumer<BasePlayer> {
      * @param p
      */
     public void doAt22(BasePlayer p) {
-
+        p.harvest();
+        p.xiaohaoPlant();
     }
 
     /**

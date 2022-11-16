@@ -2,13 +2,9 @@ package game.player;
 
 import game.active.DefaultGameRunner;
 import game.config.Flags;
-import game.service.GameRunner;
-import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class JunjiPlayerTest {
 

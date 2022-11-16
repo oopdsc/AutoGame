@@ -1,8 +1,7 @@
 package game.player;
 
 import com.jayway.jsonpath.JsonPath;
-import game.service.GameRunner;
-import game.service.PlayerData;
+import game.runner.PlayerData;
 
 public class ZizhiPlayer extends BasePlayer {
     public ZizhiPlayer(PlayerData data) {
@@ -104,6 +103,7 @@ public class ZizhiPlayer extends BasePlayer {
     }
 
     public void useBook0(int sid, int hid){
+//        {"hero":{"upzzskill":{"type":1,"sid":128,"num":1,"id":55}},"rsn":"8aaakvkejei"}
         this.runAction0("{\"hero\":{\"upzzskill\":{\"type\":1,\"sid\":"+sid+",\"num\":1,\"id\":"+hid+"}},\"rsn\":\"%s\"}");
     }
 

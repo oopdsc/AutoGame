@@ -1,4 +1,4 @@
-package game.service;
+package game.runner;
 
 import game.config.Flags;
 
@@ -6,8 +6,8 @@ public class PlayerData {
     public String username = "";
     public String openid = "";
     public String openkey = "";
-    public int silu = 50;
-    public int taofa = 60;
+    public int silu = 70;
+    public int taofa = 70;
 
     public int zid = Flags.zid;
     public int zidbuy = Flags.zidbuy;
@@ -76,6 +76,7 @@ public class PlayerData {
 
     public int[] fubenId1 = {34, 36, 44, 41, 9};
     public int[] fubenId2 = {33, 55, 38, 23, 1};
+    public int[] fubenId3 = {};
 
     public String getUsername() {
         return username;

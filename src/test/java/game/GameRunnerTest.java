@@ -3,10 +3,9 @@ package game;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import game.active.DefaultGameRunner;
-import game.command.BaseCommand;
+import game.command.LeagueCommand;
 import game.player.*;
-import game.service.GameRunner;
-import game.service.PlayerData;
+import game.runner.GameRunner;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StopWatch;
@@ -14,9 +13,8 @@ import org.springframework.util.StopWatch;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
-import static game.service.GameRunner.*;
+import static game.runner.GameRunner.*;
 
 class GameRunnerTest {
 
@@ -58,12 +56,31 @@ class GameRunnerTest {
     @Test
     void runner1(){
         String all1 = runner.all1( p -> {
-            for(int i = 1; i <= 12; i++){
-                p.runAction2("{\"huodong2\":{\"hd962Start\":{\"num\":1}},\"rsn\":\"%s\"}");
-            }
+//            for(int i = 1; i <= 12; i++){
+//                p.runAction2("{\"huodong2\":{\"hd962Start\":{\"num\":1}},\"rsn\":\"%s\"}");
+//            }
 
-            HuodongPlayer hp = new HuodongPlayer(p);
-            hp.zajiActive();
+            p.runAction2("{\"huodong2\":{\"hd995GetTaskRwd\":[]},\"rsn\":\"%s\"}");
+            p.runAction2("{\"huodong2\":{\"hd995play\":{\"num\":1}},\"rsn\":\"%s\"}");
+            p.runAction2("{\"huodong2\":{\"hd995play\":{\"num\":1}},\"rsn\":\"%s\"}");
+
+//            HuodongPlayer hp = new HuodongPlayer(p);
+//            hp.longzhu();
+            p.runAction2(LeagueCommand.goShop);
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+//            p.runAction2(LeagueCommand.upgradeSeat(1));
+            p.runAction2(LeagueCommand.buyShopItem(5));
+            p.runAction2(LeagueCommand.buyShopItem(5));
+            p.runAction2(LeagueCommand.buyShopItem(5));
+//            p.runAction2(LeagueCommand.buyShopItem(5));
+//            p.runAction2(LeagueCommand.buyShopItem(5));
+//            p.runAction2(LeagueCommand.fzPickupAllScore());
+
+//            hp.cefeng();
+
         });
         System.out.println(all1);
     }
@@ -98,9 +115,34 @@ class GameRunnerTest {
         sw.start();
         runner.all1( p -> {
 
-            p.runAction1(BaseCommand.mengzhan(1));
+//            p.runAction1(BaseCommand.mengzhan(1));
+//            p.runAction2("{\"huodong2\":{\"hd968RwdTask\":{\"id\":1}},\"rsn\":\"%s\"}");
+//            p.runAction2("{\"huodong2\":{\"hd968RwdTask\":{\"id\":2}},\"rsn\":\"%s\"}");
+//            p.runAction2("{\"huodong2\":{\"hd968RwdTask\":{\"id\":4}},\"rsn\":\"%s\"}");
+//            p.runAction2("{\"huodong2\":{\"hd968Play\":{\"isCash\":0,\"count\":10}},\"rsn\":\"%s\"}");
+//            p.runAction2("{\"huodong2\":{\"hd968RwdBox\":{\"id\":1}},\"rsn\":\"%s\"}");
+//            p.runAction2("{\"huodong2\":{\"hd995GetSevRwd\":[]},\"rsn\":\"%s\"}");
 
+//            for(int i = 1; i <= 20; i++){
+//                p.runAction2("{\"huodong\":{\"hd456buy\":{\"id\":1}},\"rsn\":\"%s\"}");
+//            }
 
+            p.runAction2(LeagueCommand.goShop);
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+            p.runAction2(LeagueCommand.buyShopItem(1));
+//            p.runAction2(LeagueCommand.upgradeSeat(1));
+            p.runAction2(LeagueCommand.buyShopItem(5));
+
+            ZizhiPlayer zp = new ZizhiPlayer(p);
+            for(int i = 33; i <= 37; i++){
+                zp.useBook(ZizhiPlayer.SID_4WULI_WUHU, i);
+            }
+
+            for(int i = 38; i <= 41; i++){
+                zp.useBook(ZizhiPlayer.SID_3WULI, i);
+            }
 
         });
 
@@ -136,6 +178,7 @@ class GameRunnerTest {
         sw.stop();
         System.out.println("Done, time :" + sw.getTotalTimeSeconds());
     }
+
 
 
     @Test

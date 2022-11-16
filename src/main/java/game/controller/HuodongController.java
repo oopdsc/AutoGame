@@ -2,11 +2,10 @@ package game.controller;
 
 import game.active.DefaultGameRunner;
 import game.player.HuodongPlayer;
+import game.runner.GameRunner;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.function.Consumer;
 
@@ -86,6 +85,32 @@ public class HuodongController {
     @ResponseBody
     public String caoxueReward() {
         this.base(hp -> {hp.caoxueReward();});
+        return "done";
+    }
+
+    @ApiOperation(value="赛马初始化", tags = {"赛马"})
+    @GetMapping("/saimaInit")
+    @ResponseBody
+    public String saimaInit() {
+
+        runner.processSingle10(GameRunner.GOLD, p ->{
+            HuodongPlayer hp = new HuodongPlayer(p);
+            hp.saima_Create();
+        });
+
+        this.base(hp -> {
+            hp.saima_randJoin();
+        });
+        return "done";
+    }
+
+    @ApiOperation(value="赛马比赛", tags = {"赛马"})
+    @PostMapping("/saimaPlay")
+    @ResponseBody
+    public String saimaPlay(@RequestBody int heroid) {
+        this.base(hp -> {
+            hp.saima_play(heroid);
+        });
         return "done";
     }
 

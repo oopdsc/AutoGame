@@ -10,9 +10,12 @@ public class LeagueCommand {
     }
 
     public static String startFZ = "{\"rsn\":\"%s\",\"league\":{\"fzMain\":[]}}";
+
+    //    {"rsn":"4ccahgibmmb","league":{"fzDispatchHero":{"heroId":30,"seatId":2}}}
     public static String dispatchFZ(int hero, int seat){
         return "{\"rsn\":\"%s\",\"league\":{\"fzDispatchHero\":{\"heroId\":"+hero+",\"seatId\":"+seat+"}}}";
     }
+
 
     public static String goShop = "{\"rsn\":\"%s\",\"league\":{\"shopMain\":[]}}";
 
@@ -38,7 +41,36 @@ public class LeagueCommand {
         return "{\"rsn\":\"%s\",\"league\":{\"fbOver\":{\"id\":"+fbId+"}}}";
     }
 
+    /**
+     * 领取同盟藏典阁奖励
+     * @return
+     */
     public static String pickUpRwd(){
         return "{\"rsn\":\"%s\",\"league\":{\"cbPickupRwd\":[]}}";
+    }
+
+    public static String fzPickupAllScore(){
+        return "{\"rsn\":\"%s\",\"league\":{\"fzPickupAllScore\":[]}}";
+    }
+
+    /**
+     * 同盟典藏阁席位升级
+     * @param seatId
+     * @return
+     */
+    public static String upgradeSeat(int seatId){
+        return "{\"rsn\":\"%s\",\"league\":{\"fzUpgradeSeat\":{\"seatId\":"+seatId+"}}}";
+    }
+
+    /**
+     * 武将修身升级
+     * @param heroid
+     * @return
+     */
+    public static String xsupgrade(int heroid){
+        return "{\"hero\":{\"xsUpgrade\":{\"type\":0,\"hid\":"+heroid+"}},\"rsn\":\"%s\"}";
+    }
+    public static String xsupgrade1(int heroid){
+        return "{\"hero\":{\"xsUpgrade\":{\"type\":1,\"hid\":"+heroid+"}},\"rsn\":\"%s\"}";
     }
 }
